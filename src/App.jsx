@@ -26,38 +26,32 @@ function App() {
     return () => clearTimeout(timer)
   }, [])
 
-  if (loading) {
-    return <Loader />
-  }
-
   return (
-  <>
-    {loading ? (
-      <Loader />
-    ) : (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-
-        <ScrollProgress />
-        <Navbar />
-        <Hero />
-        <Services />
-        <Stats />
-        <Gallery />
-        <Testimonials />
-        <Instagram />
-        <Map />
-        <Contact />
-        <Footer />
-        <Whatsapp />
-
-      </motion.div>
-    )}
-  </>
-)
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <ScrollProgress />
+          <Navbar />
+          <Hero />
+          <Services />
+          <Stats />
+          <Gallery />
+          <Testimonials />
+          <Instagram />
+          <Map />
+          <Contact />
+          <Footer />
+          <Whatsapp />
+        </motion.div>
+      )}
+    </>
+  )
 }
 
 export default App
