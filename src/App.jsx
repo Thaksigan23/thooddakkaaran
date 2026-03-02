@@ -14,6 +14,7 @@ import Contact from "./components/Contact"
 import Footer from "./components/Footer"
 import ScrollProgress from "./components/ScrollProgress"
 import Whatsapp from "./components/Whatsapp"
+import BackToTop from "./components/BackToTop"
 
 function App() {
 
@@ -37,18 +38,29 @@ function App() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
+
           <ScrollProgress />
+
           <Navbar />
-          <Hero />
-          <Services />
-          <Stats />
-          <Gallery />
-          <Testimonials />
-          <Instagram />
-          <Map />
-          <Contact />
+
+          {/* Page Content */}
+          <main className="pt-20">
+
+            <Hero />
+            <Services />
+            <Stats />
+            <Gallery />
+            <Testimonials />
+            <Instagram />
+            <Map />
+            <Contact />
+
+          </main>
+
           <Footer />
           <Whatsapp />
+          <BackToTop />
+
         </motion.div>
       )}
     </>

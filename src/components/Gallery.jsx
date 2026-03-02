@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import Reveal from "./Reveal"
 export default function Gallery() {
 
   const images = [
@@ -14,6 +14,7 @@ export default function Gallery() {
   const [index, setIndex] = useState(-1)
 
   return (
+    <Reveal>
     <section id="gallery" className="py-24 bg-gray-100">
 
       <h2 className="text-4xl font-bold text-center mb-12">
@@ -34,5 +35,6 @@ export default function Gallery() {
       </div>
 
     </section>
+    </Reveal>
   )
 }

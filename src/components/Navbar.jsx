@@ -11,54 +11,67 @@ export default function Navbar() {
 
     const handleScroll = () => {
 
-      // Navbar background change
       setScrolled(window.scrollY > 50)
 
-      // Active section detection
       const sections = ["home", "services", "gallery", "contact"]
 
       sections.forEach((section) => {
+
         const element = document.getElementById(section)
 
         if (element) {
+
           const rect = element.getBoundingClientRect()
 
           if (rect.top <= 120 && rect.bottom >= 120) {
             setActive(section)
           }
+
         }
+
       })
+
     }
 
     window.addEventListener("scroll", handleScroll)
-
     return () => window.removeEventListener("scroll", handleScroll)
 
   }, [])
 
   return (
+
     <nav
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white shadow-md"
-          : "backdrop-blur-lg bg-white/70 border-b border-white/30"
+          ? "bg-white/90 backdrop-blur-lg shadow-md"
+          : "bg-white/70 backdrop-blur-md"
       }`}
     >
 
-      <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
         {/* Logo */}
-        <h1 className="text-2xl font-bold text-green-700">
-          Thooddakkaaran
-        </h1>
+        <div className="flex items-center gap-3">
+
+          <img
+            src="/images/logo.png"
+            alt="Thooddakkaaran Logo"
+            className="h-10 w-auto"
+          />
+
+          <span className="text-xl font-bold text-green-700">
+            Thooddakkaaran
+          </span>
+
+        </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-8 font-medium">
+        <ul className="hidden md:flex items-center gap-8 font-medium text-gray-700">
 
           <li>
             <a
               href="#home"
-              className={`hover:text-green-700 transition ${
+              className={`transition hover:text-green-700 ${
                 active === "home" ? "text-green-700 font-semibold" : ""
               }`}
             >
@@ -69,7 +82,7 @@ export default function Navbar() {
           <li>
             <a
               href="#services"
-              className={`hover:text-green-700 transition ${
+              className={`transition hover:text-green-700 ${
                 active === "services" ? "text-green-700 font-semibold" : ""
               }`}
             >
@@ -80,7 +93,7 @@ export default function Navbar() {
           <li>
             <a
               href="#gallery"
-              className={`hover:text-green-700 transition ${
+              className={`transition hover:text-green-700 ${
                 active === "gallery" ? "text-green-700 font-semibold" : ""
               }`}
             >
@@ -91,7 +104,7 @@ export default function Navbar() {
           <li>
             <a
               href="#contact"
-              className={`hover:text-green-700 transition ${
+              className={`transition hover:text-green-700 ${
                 active === "contact" ? "text-green-700 font-semibold" : ""
               }`}
             >
@@ -101,9 +114,9 @@ export default function Navbar() {
 
         </ul>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Button */}
         <div
-          className="md:hidden text-2xl cursor-pointer"
+          className="md:hidden text-2xl cursor-pointer text-gray-700"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <FaTimes /> : <FaBars />}
@@ -113,9 +126,10 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
+
         <div className="md:hidden bg-white shadow-lg">
 
-          <ul className="flex flex-col items-center gap-6 p-6">
+          <ul className="flex flex-col items-center gap-6 py-6 text-gray-700 font-medium">
 
             <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
             <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
@@ -125,8 +139,10 @@ export default function Navbar() {
           </ul>
 
         </div>
+
       )}
 
     </nav>
+
   )
 }

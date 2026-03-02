@@ -1,25 +1,38 @@
-import { motion } from "framer-motion"
-import { FaArrowRight, FaChevronDown } from "react-icons/fa"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { FaArrowRight } from "react-icons/fa"
 
 export default function Hero() {
+
+  const { scrollY } = useScroll()
+
+  const y = useTransform(scrollY, [0, 500], [0, 150])
+
   return (
     <section
       id="home"
-      className="relative h-screen flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1603569283847-aa295f0d016a')] bg-cover bg-center"
+      className="relative h-screen flex items-center justify-center overflow-hidden"
     >
 
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+      {/* Parallax Background */}
+      <motion.div
+        style={{ y }}
+        className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1598514983318-2f64f8f4796c')] bg-cover bg-center"
+      ></motion.div>
 
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+
+      {/* Content */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="relative text-center text-white max-w-4xl px-6"
+        className="relative text-center text-white max-w-3xl px-6"
       >
 
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
           Growing the Future of
-          <span className="block text-red-500">
+          <span className="block text-accent">
             Sustainable Agriculture
           </span>
         </h1>
@@ -33,7 +46,7 @@ export default function Hero() {
 
           <a
             href="#services"
-            className="flex items-center justify-center gap-2 bg-red-600 px-7 py-3 rounded-xl hover:scale-105 hover:shadow-xl transition-all duration-300"
+            className="flex items-center justify-center gap-2 bg-accent px-7 py-3 rounded-xl hover:scale-105 hover:shadow-xl transition"
           >
             Explore Services
             <FaArrowRight />
@@ -41,24 +54,13 @@ export default function Hero() {
 
           <a
             href="#contact"
-            className="flex items-center justify-center gap-2 bg-white text-black px-7 py-3 rounded-xl hover:scale-105 transition-all duration-300"
+            className="flex items-center justify-center gap-2 bg-white text-black px-7 py-3 rounded-xl hover:scale-105 transition"
           >
             Contact Us
           </a>
 
         </div>
 
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 12, 0] }}
-        transition={{ repeat: Infinity, duration: 1.5 }}
-        className="absolute bottom-10 flex justify-center w-full"
-      >
-        <a href="#services" className="text-white text-2xl hover:text-red-400 transition">
-          <FaChevronDown />
-        </a>
       </motion.div>
 
     </section>

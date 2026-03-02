@@ -5,3 +5,24 @@
 html {
   scroll-behavior: smooth;
 }
+
+body{
+  font-family: 'Poppins', sans-serif;
+}
+.gradient-bg {
+  background: linear-gradient(-45deg, #dcfce7, #f0fdf4, #ecfdf5, #fef2f2);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

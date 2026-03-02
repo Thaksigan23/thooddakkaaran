@@ -2,24 +2,19 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,jsx}",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+
+      colors: {
+        primary: "#166534",   // deep farm green
+        secondary: "#22c55e", // fresh green
+        accent: "#ef4444",    // pomegranate red
+        soft: "#f0fdf4"       // light agriculture background
+      }
+
+    },
   },
   plugins: [],
-
-
-  theme: {
-  extend: {
-    colors: {
-      primary: "#2E7D32",
-      leaf: "#4CAF50",
-      pomegranate: "#C62828",
-      soil: "#6D4C41",
-      background: "#F5F7F4"
-    }
-  }
-}
-
 }

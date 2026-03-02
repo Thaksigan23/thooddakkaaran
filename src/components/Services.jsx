@@ -1,66 +1,83 @@
 import { motion } from "framer-motion"
-import { FaSeedling, FaLeaf, FaTractor, FaAppleAlt } from "react-icons/fa"
-
+import { FaSeedling, FaLeaf, FaTractor, FaTree } from "react-icons/fa"
+import Reveal from "./Reveal"
 export default function Services() {
 
   const services = [
-  {
-    icon: <FaAppleAlt size={40} />,
-    title: "Pomegranate Cultivation",
-    desc: "Expert techniques for growing high-quality pomegranates."
-  },
-  {
-    icon: <FaSeedling size={40} />,
-    title: "Farm Consultation",
-    desc: "Professional advice for modern agriculture methods."
-  },
-  {
-    icon: <FaTractor size={40} />,
-    title: "Plant Supply",
-    desc: "Healthy plants and farming materials for farmers."
-  },
-  {
-    icon: <FaLeaf size={40} />,
-    title: "Sustainable Agriculture",
-    desc: "Eco-friendly farming solutions for long-term success."
-  }
-]
+    {
+      title: "Pomegranate Cultivation",
+      desc: "Expert techniques for growing high-quality pomegranates.",
+      icon: <FaSeedling />
+    },
+    {
+      title: "Farm Consultation",
+      desc: "Professional advice for modern agriculture methods.",
+      icon: <FaLeaf />
+    },
+    {
+      title: "Plant Supply",
+      desc: "Healthy plants and farming materials for farmers.",
+      icon: <FaTree />
+    },
+    {
+      title: "Sustainable Agriculture",
+      desc: "Eco-friendly farming solutions for long-term success.",
+      icon: <FaTractor />
+    }
+  ]
 
   return (
-<section id="services" className="py-28 bg-gradient-to-b from-green-50 to-white">
-        
-      <h2 className="text-4xl font-bold text-center mb-12">
+    <Reveal>
+
+<section id="services" className="py-28 gradient-bg">
+    
+      <h2 className="text-4xl font-bold text-center mb-4 text-primary">
         Our Farming Solutions
       </h2>
 
-      <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 px-6">
+      <p className="text-center text-gray-500 mb-16">
+        Supporting farmers with sustainable agriculture solutions
+      </p>
+
+      <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 px-6">
 
         {services.map((service, index) => (
 
-          <motion.div
-  key={index}
-  whileHover={{ scale: 1.05 }}
-  className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition text-center"
->
+  <div key={index} className="group relative">
 
-  <div className="text-green-600 mb-4 flex justify-center">
-    {service.icon}
+    {/* Glow effect */}
+    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-200 to-red-200 opacity-0 group-hover:opacity-20 blur-xl transition"></div>
+
+    <motion.div
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.3 }}
+      className="relative bg-white/80 backdrop-blur-lg border border-white/40 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 text-center"
+    >
+
+      {/* Icon */}
+      <div className="text-4xl text-secondary mb-4 flex justify-center group-hover:text-accent transition duration-300">
+        {service.icon}
+      </div>
+
+      {/* Title */}
+      <h3 className="text-xl font-semibold mb-3 text-primary">
+        {service.title}
+      </h3>
+
+      {/* Description */}
+      <p className="text-gray-600">
+        {service.desc}
+      </p>
+
+    </motion.div>
+
   </div>
 
-  <h3 className="text-xl font-semibold mb-3">
-    {service.title}
-  </h3>
-
-  <p className="text-gray-600">
-    {service.desc}
-  </p>
-
-</motion.div>
-
-        ))}
+))}
 
       </div>
 
     </section>
+    </Reveal>
   )
 }
