@@ -1,17 +1,15 @@
 import { useState } from "react"
-import Lightbox from "yet-another-react-lightbox"
-import "yet-another-react-lightbox/styles.css"
 
 export default function Gallery() {
 
   const images = [
-  { src: "/images/gal1.png" },
-  { src: "/images/gal2.png" },
-  { src: "/images/gal3.png" },
-  { src: "/images/gal4.png" },
-  { src: "/images/gal5.png" },
-  { src: "/images/gal6.png" }
-]
+    { src: "/images/gal1.png" },
+    { src: "/images/gal2.png" },
+    { src: "/images/gal3.png" },
+    { src: "/images/gal4.png" },
+    { src: "/images/gal5.png" },
+    { src: "/images/gal6.png" }
+  ]
 
   const [index, setIndex] = useState(-1)
 
@@ -24,24 +22,16 @@ export default function Gallery() {
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6">
 
-  {images.map((img, i) => (
-    <img
-      key={i}
-      src={img.src}
-      onClick={() => setIndex(i)}
-      className="rounded-xl object-cover h-72 w-full cursor-pointer hover:scale-105 transition duration-300"
-    />
-  ))}
-
+        {images.map((img, i) => (
+          <img
+            key={i}
+            src={img.src}
+            alt="Farm Gallery"
+            className="rounded-xl object-cover h-72 w-full hover:scale-105 transition duration-300"
+          />
+        ))}
 
       </div>
-
-      <Lightbox
-        open={index >= 0}
-        close={() => setIndex(-1)}
-        index={index}
-        slides={images}
-      />
 
     </section>
   )
