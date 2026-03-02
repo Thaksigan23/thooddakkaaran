@@ -4,7 +4,6 @@ import { FaArrowRight } from "react-icons/fa"
 export default function Hero() {
 
   const { scrollY } = useScroll()
-
   const y = useTransform(scrollY, [0, 500], [0, 150])
 
   return (
@@ -16,8 +15,28 @@ export default function Hero() {
       {/* Parallax Background */}
       <motion.div
         style={{ y }}
-        className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1598514983318-2f64f8f4796c')] bg-cover bg-center"
+        className="absolute inset-0 bg-[url('/images/hero.png')] bg-cover bg-center"
       ></motion.div>
+
+      {/* Floating Blurred Color Blobs */}
+
+      <motion.div
+        className="absolute w-96 h-96 bg-red-400 rounded-full blur-3xl opacity-30 top-20 left-20"
+        animate={{ x: [0, 50, 0], y: [0, -50, 0] }}
+        transition={{ duration: 10, repeat: Infinity }}
+      />
+
+      <motion.div
+        className="absolute w-96 h-96 bg-green-400 rounded-full blur-3xl opacity-30 bottom-10 right-20"
+        animate={{ x: [0, -60, 0], y: [0, 40, 0] }}
+        transition={{ duration: 12, repeat: Infinity }}
+      />
+
+      <motion.div
+        className="absolute w-72 h-72 bg-yellow-300 rounded-full blur-3xl opacity-20 top-40 right-40"
+        animate={{ x: [0, 30, 0], y: [0, -40, 0] }}
+        transition={{ duration: 14, repeat: Infinity }}
+      />
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>

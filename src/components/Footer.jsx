@@ -1,106 +1,110 @@
-import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa"
+import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa"
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-white py-16">
+    <footer className="bg-[#0f2d1c] text-gray-300 pt-20 pb-10">
 
-      <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-10 px-6">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 px-6">
 
-        {/* Company Info */}
+        {/* Company */}
         <div>
-          <h2 className="text-2xl font-bold mb-4">
-            Thooddakkaaran
-          </h2>
 
-          <p className="text-gray-200">
-            Premium pomegranate farming and sustainable agriculture
-            solutions helping farmers grow better crops across Sri Lanka.
+          <img
+            src="/images/logo.png"
+            className="h-16 mb-4"
+          />
+
+          <p className="text-sm leading-relaxed">
+            Thooddakkaaran Pvt Ltd specializes in premium pomegranate
+            farming and sustainable agriculture solutions helping
+            farmers grow healthy crops across Sri Lanka.
           </p>
-        </div>
 
-        {/* Quick Links */}
-        <div>
+          {/* Social */}
+          <div className="flex gap-4 mt-6 text-xl">
 
-          <h3 className="text-xl font-semibold mb-4">
-            Quick Links
-          </h3>
-
-          <ul className="space-y-2">
-
-            <li>
-              <a href="#home" className="hover:text-accent">
-                Home
-              </a>
-            </li>
-
-            <li>
-              <a href="#services" className="hover:text-accent">
-                Services
-              </a>
-            </li>
-
-            <li>
-              <a href="#gallery" className="hover:text-accent">
-                Gallery
-              </a>
-            </li>
-
-            <li>
-              <a href="#contact" className="hover:text-accent">
-                Contact
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-
-        {/* Social Media */}
-        <div>
-
-          <h3 className="text-xl font-semibold mb-4">
-            Follow Us
-          </h3>
-
-          <div className="flex gap-4 text-2xl">
-
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-accent"
-            >
-              <FaFacebook />
-            </a>
-
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-accent"
-            >
-              <FaInstagram />
-            </a>
-
-            <a
-              href="https://wa.me/94700000000"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-accent"
-            >
-              <FaWhatsapp />
-            </a>
+            <FaFacebook className="hover:text-green-400 cursor-pointer"/>
+            <FaInstagram className="hover:text-green-400 cursor-pointer"/>
+            <FaLinkedin className="hover:text-green-400 cursor-pointer"/>
+            <FaWhatsapp className="hover:text-green-400 cursor-pointer"/>
 
           </div>
 
         </div>
 
+
+        {/* Quick Links */}
+        <div>
+
+          <h3 className="text-white font-semibold mb-4">
+            Quick Links
+          </h3>
+
+          <ul className="space-y-2 text-sm">
+
+            <li><a href="#home" className="hover:text-green-400">Home</a></li>
+            <li><a href="#services" className="hover:text-green-400">Services</a></li>
+            <li><a href="#gallery" className="hover:text-green-400">Gallery</a></li>
+            <li><a href="#contact" className="hover:text-green-400">Contact</a></li>
+
+          </ul>
+
+        </div>
+
+
+        {/* Services */}
+        <div>
+
+          <h3 className="text-white font-semibold mb-4">
+            Our Services
+          </h3>
+
+          <ul className="space-y-2 text-sm">
+
+            <li>Pomegranate Cultivation</li>
+            <li>Farm Consultation</li>
+            <li>Plant Supply</li>
+            <li>Sustainable Agriculture</li>
+
+          </ul>
+
+        </div>
+
+
+        {/* Location */}
+        <div>
+
+          <h3 className="text-white font-semibold mb-4">
+            Our Location
+          </h3>
+
+          <iframe
+            className="rounded-lg w-full h-40"
+            src="https://www.google.com/maps?q=Mirusuvil,Sri Lanka&output=embed"
+          />
+
+        </div>
+
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-green-700 mt-10 pt-6 text-center text-gray-200">
 
-        © {new Date().getFullYear()} Thooddakkaaran Pvt Ltd. All rights reserved.
+      {/* Bottom */}
+      <div className="border-t border-gray-700 mt-12 pt-6 text-sm">
+
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-6 gap-4">
+
+          <p>
+            © 2026 Thooddakkaaran Pvt Ltd. All rights reserved.
+          </p>
+
+          <div className="flex gap-6">
+
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+
+          </div>
+
+        </div>
 
       </div>
 

@@ -56,8 +56,7 @@ export default function Navbar() {
           <img
             src="/images/logo.png"
             alt="Thooddakkaaran Logo"
-            className="h-10 w-auto"
-          />
+className="h-16 w-auto hover:scale-105 transition duration-300"          />
 
           <span className="text-xl font-bold text-green-700">
             Thooddakkaaran
