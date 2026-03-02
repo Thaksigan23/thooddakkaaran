@@ -15,7 +15,6 @@ import Whatsapp from "./components/Whatsapp"
 import { motion } from "framer-motion"
 
 function App() {
-
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -28,9 +27,9 @@ function App() {
 
   return (
     <>
-      {loading ? (
-        <Loader />
-      ) : (
+      {loading && <Loader />}
+
+      {!loading && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
