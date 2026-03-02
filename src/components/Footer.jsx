@@ -91,22 +91,36 @@ export default function Footer() {
       {/* Bottom */}
       <div className="border-t border-gray-700 mt-12 pt-6 text-sm">
 
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-6 gap-4">
+  <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-6 gap-4">
 
-          <p>
-            © 2026 Thooddakkaaran Pvt Ltd. All rights reserved.
-          </p>
+    {/* Copyright */}
+    <p>
+      © 2026 Thooddakkaaran Pvt Ltd. All rights reserved.
+    </p>
 
-          <div className="flex gap-6">
+    {/* Made By */}
+    <div className="flex items-center gap-2">
 
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
+      <span>Made with ❤️ by</span>
+<a href="https://www.techloom.ai/" target="_blank">
 
-          </div>
+      <img
+        src="/images/techloom.png"
+        className="h-6"
+        alt="Your Company"
+      />
+</a>
 
-        </div>
+    </div>
+    {/* Legal */}
+    <div className="flex gap-6">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
 
-      </div>
+  </div>
+
+</div>
 
     </footer>
   )
