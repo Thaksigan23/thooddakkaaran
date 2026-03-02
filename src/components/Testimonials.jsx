@@ -1,19 +1,19 @@
 export default function Testimonials() {
 
   const testimonials = [
-    {
-      name: "Kumar",
-      text: "Thooddakkaaran helped me grow high-quality pomegranates. My farm production increased a lot."
-    },
-    {
-      name: "Ramesh",
-      text: "Their farming consultation is very helpful. I learned modern agriculture techniques."
-    },
-    {
-      name: "Suresh",
-      text: "Healthy plants and great farming support. Highly recommended for farmers."
-    }
-  ]
+  {
+    name: "Farmer – Jaffna",
+    text: "Thooddakkaaran helped me improve my pomegranate farming. Their guidance increased my farm production."
+  },
+  {
+    name: "Farmer – Kilinochchi",
+    text: "Healthy plants and excellent farming consultation. Highly recommended for farmers."
+  },
+  {
+    name: "Farmer – Vavuniya",
+    text: "Their modern agriculture techniques helped improve crop quality and farm productivity."
+  }
+]
 
   return (
 <section className="py-28 bg-gradient-to-r from-green-50 via-white to-green-50">

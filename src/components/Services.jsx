@@ -4,33 +4,33 @@ import Reveal from "./Reveal"
 export default function Services() {
 
   const services = [
-    {
-      title: "Pomegranate Cultivation",
-      desc: "Expert techniques for growing high-quality pomegranates.",
-      icon: <FaSeedling />
-    },
-    {
-      title: "Farm Consultation",
-      desc: "Professional advice for modern agriculture methods.",
-      icon: <FaLeaf />
-    },
-    {
-      title: "Plant Supply",
-      desc: "Healthy plants and farming materials for farmers.",
-      icon: <FaTree />
-    },
-    {
-      title: "Sustainable Agriculture",
-      desc: "Eco-friendly farming solutions for long-term success.",
-      icon: <FaTractor />
-    }
-  ]
+  {
+    title: "Pomegranate Cultivation",
+    desc: "Expert techniques and guidance for successful pomegranate farming with improved crop quality and higher yield.",
+    icon: <FaSeedling />
+  },
+  {
+    title: "Farm Consultation",
+    desc: "Professional agricultural consultation including soil preparation, irrigation systems, and pest management.",
+    icon: <FaLeaf />
+  },
+  {
+    title: "Plant Supply",
+    desc: "Healthy high-quality pomegranate plants supplied to farmers across Sri Lanka for strong plant growth.",
+    icon: <FaTree />
+  },
+  {
+    title: "Sustainable Agriculture",
+    desc: "Eco-friendly farming methods that improve soil health and promote long-term agricultural productivity.",
+    icon: <FaTractor />
+  }
+]
 
   return (
     <Reveal>
 
 <section id="services" className="py-28 gradient-bg">
-    
+
       <h2 className="text-4xl font-bold text-center mb-4 text-primary">
         Our Farming Solutions
       </h2>

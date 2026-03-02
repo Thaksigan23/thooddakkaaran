@@ -20,6 +20,10 @@ export default function Gallery() {
       <h2 className="text-4xl font-bold text-center mb-12">
         Farm Gallery
       </h2>
+      <p className="text-center text-gray-500 max-w-2xl mx-auto mb-12">
+  Explore our farms where we cultivate premium pomegranates and
+  support farmers with modern agricultural techniques.
+</p>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6">
 

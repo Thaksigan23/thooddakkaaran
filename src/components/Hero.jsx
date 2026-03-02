@@ -50,16 +50,17 @@ export default function Hero() {
       >
 
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
-          Growing the Future of
-          <span className="block text-accent">
-            Sustainable Agriculture
-          </span>
-        </h1>
+  Premium Pomegranate Farming
+  <span className="block text-accent">
+    in Sri Lanka
+  </span>
+</h1>
 
         <p className="text-lg md:text-xl text-gray-200 mb-8">
-          Premium pomegranate farming and sustainable agriculture
-          solutions helping farmers grow better crops across Sri Lanka.
-        </p>
+  Thooddakkaaran (Pvt) Ltd provides high-quality pomegranate plants,
+  expert farm consultation, and sustainable agriculture solutions
+  supporting farmers across Sri Lanka.
+</p>
 
         <div className="flex flex-col md:flex-row justify-center gap-4">
 

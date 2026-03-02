@@ -15,6 +15,7 @@ import Footer from "./components/Footer"
 import ScrollProgress from "./components/ScrollProgress"
 import Whatsapp from "./components/Whatsapp"
 import BackToTop from "./components/BackToTop"
+import WhyChooseUs from "./components/WhyChooseUs"
 
 function App() {
 
@@ -48,6 +49,8 @@ function App() {
 
             <Hero />
             <Services />
+            <WhyChooseUs />
+
             <Stats />
             <Gallery />
             <Testimonials />

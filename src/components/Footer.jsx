@@ -14,11 +14,11 @@ export default function Footer() {
             className="h-16 mb-4"
           />
 
-          <p className="text-sm leading-relaxed">
-            Thooddakkaaran Pvt Ltd specializes in premium pomegranate
-            farming and sustainable agriculture solutions helping
-            farmers grow healthy crops across Sri Lanka.
-          </p>
+          <p className="text-gray-400 mt-4 max-w-sm">
+  Thooddakkaaran (Pvt) Ltd is a trusted agriculture company in Sri Lanka
+  specializing in premium pomegranate farming, plant supply,
+  and modern farming consultation.
+</p>
 
           {/* Social */}
           <div className="flex gap-4 mt-6 text-xl">

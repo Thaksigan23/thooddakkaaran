@@ -12,9 +12,9 @@ export default function Stats() {
   return (
     <section className="py-20 text-center bg-white">
 
-      <h2 className="text-4xl font-bold mb-12">
-        Our Impact
-      </h2>
+      <h2 className="text-4xl font-bold text-center mb-12">
+  Supporting Farmers Across Sri Lanka
+</h2>
 
       <div className="max-w-5xl mx-auto grid md:grid-cols-4 gap-8">
 

@@ -5,12 +5,13 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto px-6 text-center">
 
         <h2 className="text-4xl font-bold mb-4 text-primary">
-          Contact Us
+Contact Thooddakkaaran (Pvt) Ltd
         </h2>
 
-        <p className="text-gray-600 mb-12">
-          Start your farming journey with Thooddakkaaran (Pvt) Ltd
-        </p>
+        <p className="text-gray-500 mb-10 text-center">
+  Start your farming journey with Thooddakkaaran. Contact us for
+  premium pomegranate plants and professional farm consultation.
+</p>
 
         {/* Glass Form */}
         <div className="max-w-xl mx-auto bg-white/80 backdrop-blur-lg border border-white/40 shadow-xl rounded-2xl p-8">
