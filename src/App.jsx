@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react"
-import Loader from "./components/Loader"
 import Navbar from "./components/Navbar"
 import Hero from "./components/Hero"
 import Services from "./components/Services"
@@ -12,43 +10,22 @@ import Contact from "./components/Contact"
 import Footer from "./components/Footer"
 import ScrollProgress from "./components/ScrollProgress"
 import Whatsapp from "./components/Whatsapp"
-import { motion } from "framer-motion"
 
 function App() {
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 1500)
-
-    return () => clearTimeout(timer)
-  }, [])
-
   return (
     <>
-      {loading && <Loader />}
-
-      {!loading && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          <ScrollProgress />
-          <Navbar />
-          <Hero />
-          <Services />
-          <Stats />
-          <Gallery />
-          <Testimonials />
-          <Instagram />
-          <Map />
-          <Contact />
-          <Footer />
-          <Whatsapp />
-        </motion.div>
-      )}
+      <ScrollProgress />
+      <Navbar />
+      <Hero />
+      <Services />
+      <Stats />
+      <Gallery />
+      <Testimonials />
+      <Instagram />
+      <Map />
+      <Contact />
+      <Footer />
+      <Whatsapp />
     </>
   )
 }
