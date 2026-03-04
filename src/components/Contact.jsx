@@ -1,50 +1,76 @@
+import { useRef } from "react"
+import emailjs from "@emailjs/browser"
+
 export default function Contact() {
 
+  const form = useRef()
+
+  const sendEmail = (e) => {
+    e.preventDefault()
+
+    emailjs.sendForm(
+  "service_1t50k5g",   // correct service id
+  "template_ubyghnk",  // your template id
+  form.current,
+  "SxNdlpc7MdA_MI7I1"  // public key
+)
+
+      .then(
+        () => {
+          alert("Message sent successfully!")
+          form.current.reset()
+        },
+        () => {
+          alert("Failed to send message")
+        }
+      )
+  }
+
   return (
+    <section id="contact" className="py-28 gradient-bg">
 
-    <section
-      id="contact"
-      className="py-28 px-6 bg-green-50 dark:bg-gray-950 transition-colors duration-500"
-    >
+      <div className="max-w-6xl mx-auto px-6 text-center">
 
-      <div className="max-w-6xl mx-auto text-center">
-
-        {/* Section Title */}
-        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-green-400">
+        <h2 className="text-4xl font-bold mb-4 text-green-700">
           Contact Thooddakkaaran (Pvt) Ltd
         </h2>
 
-        <p className="text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
+        <p className="text-gray-500 mb-10">
           Start your farming journey with Thooddakkaaran. Contact us for
           premium pomegranate plants and professional farm consultation.
         </p>
 
-        {/* Contact Form */}
-        <div className="max-w-xl mx-auto bg-white dark:bg-gray-900 shadow-xl rounded-2xl p-8">
+        <div className="max-w-xl mx-auto bg-white/80 backdrop-blur-lg border border-white/40 shadow-xl rounded-2xl p-8">
 
-          <form className="space-y-5">
+          <form ref={form} onSubmit={sendEmail} className="space-y-5">
 
             <input
               type="text"
+              name="name"
               placeholder="Your Name"
-              className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500"
+              required
+              className="w-full p-3 rounded-lg border border-gray-200"
             />
 
             <input
               type="email"
+              name="email"
               placeholder="Your Email"
-              className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500"
+              required
+              className="w-full p-3 rounded-lg border border-gray-200"
             />
 
             <textarea
+              name="message"
               rows="4"
               placeholder="Your Message"
-              className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500"
+              required
+              className="w-full p-3 rounded-lg border border-gray-200"
             ></textarea>
 
             <button
               type="submit"
-              className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg transition duration-300"
+              className="w-full bg-green-600 text-white py-3 rounded-lg hover:scale-105 transition"
             >
               Send Message
             </button>
@@ -56,6 +82,5 @@ export default function Contact() {
       </div>
 
     </section>
-
   )
 }
