@@ -1,18 +1,51 @@
 import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
 
 export default function Stats() {
 
   const stats = [
-    { number: "20+", text: "Years Experience" },
-    { number: "500+", text: "Farmers Supported" },
-    { number: "50+", text: "Acres Cultivated" },
-    { number: "10K+", text: "Plants Supplied" }
+    { value: 20, suffix: "+", label: "Years Experience" },
+    { value: 500, suffix: "+", label: "Farmers Supported" },
+    { value: 50, suffix: "+", label: "Acres Cultivated" },
+    { value: 10, suffix: "K+", label: "Plants Supplied" }
   ]
 
+  const [counts, setCounts] = useState([0, 0, 0, 0])
+
+  useEffect(() => {
+
+    const intervals = stats.map((stat, index) => {
+
+      let start = 0
+      const end = stat.value
+      const duration = 2000
+      const incrementTime = 20
+      const step = end / (duration / incrementTime)
+
+      return setInterval(() => {
+
+        start += step
+
+        setCounts(prev => {
+          const newCounts = [...prev]
+          newCounts[index] = Math.min(Math.floor(start), end)
+          return newCounts
+        })
+
+        if (start >= end) clearInterval(intervals[index])
+
+      }, incrementTime)
+
+    })
+
+    return () => intervals.forEach(clearInterval)
+
+  }, [])
+
   return (
+
     <section className="py-24 px-6 bg-white dark:bg-gray-950 transition-colors duration-500">
 
-      {/* Section Title */}
       <div className="text-center max-w-3xl mx-auto mb-16">
 
         <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-green-400 mb-4">
@@ -26,10 +59,9 @@ export default function Stats() {
 
       </div>
 
-      {/* Stats Grid */}
       <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
 
-        {stats.map((item, index) => (
+        {stats.map((stat, index) => (
 
           <motion.div
             key={index}
@@ -40,14 +72,12 @@ export default function Stats() {
             className="group bg-gray-50 dark:bg-gray-900 rounded-2xl p-8 shadow hover:shadow-xl transition"
           >
 
-            {/* Number */}
-            <h3 className="text-4xl md:text-5xl font-bold text-green-700 dark:text-green-400 group-hover:scale-110 transition">
-              {item.number}
+            <h3 className="text-4xl md:text-5xl font-bold text-green-700 dark:text-green-400">
+              {counts[index]}{stat.suffix}
             </h3>
 
-            {/* Label */}
             <p className="mt-3 text-gray-600 dark:text-gray-400 text-sm">
-              {item.text}
+              {stat.label}
             </p>
 
           </motion.div>
@@ -57,5 +87,6 @@ export default function Stats() {
       </div>
 
     </section>
+
   )
 }
