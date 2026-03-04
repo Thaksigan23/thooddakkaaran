@@ -13,9 +13,11 @@
     "@emailjs/browser": "^4.4.1",
     "aos": "^2.3.4",
     "framer-motion": "^12.34.4",
+    "i18next": "^25.8.14",
     "react": "^19.2.0",
     "react-countup": "^6.5.3",
     "react-dom": "^19.2.0",
+    "react-i18next": "^16.5.4",
     "react-icons": "^5.5.0",
     "react-parallax": "^3.5.2",
     "yet-another-react-lightbox": "^3.29.1"

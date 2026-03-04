@@ -2,13 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-body{
+/* Body styling + theme background */
+body {
   font-family: 'Poppins', sans-serif;
+  @apply bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200;
 }
+
+/* Smooth theme transition */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Animated gradient background */
 .gradient-bg {
   background: linear-gradient(-45deg, #dcfce7, #f0fdf4, #ecfdf5, #fef2f2);
   background-size: 400% 400%;

@@ -7,18 +7,19 @@ export default function Hero() {
   const y = useTransform(scrollY, [0, 500], [0, 150])
 
   return (
+
     <section
       id="home"
-      className="relative h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden"
     >
 
       {/* Parallax Background */}
       <motion.div
         style={{ y }}
-        className="absolute inset-0 bg-[url('/images/hero.png')] bg-cover bg-center"
-      ></motion.div>
+        className="absolute inset-0 -z-10 bg-[url('/images/hero.png')] bg-cover bg-center"
+      />
 
-      {/* Floating Blurred Color Blobs */}
+      {/* Floating Color Blobs */}
 
       <motion.div
         className="absolute w-96 h-96 bg-red-400 rounded-full blur-3xl opacity-30 top-20 left-20"
@@ -38,8 +39,8 @@ export default function Hero() {
         transition={{ duration: 14, repeat: Infinity }}
       />
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30 dark:from-black/80 dark:via-black/60 dark:to-black/40"></div>
 
       {/* Content */}
       <motion.div
@@ -50,23 +51,23 @@ export default function Hero() {
       >
 
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
-  Premium Pomegranate Farming
-  <span className="block text-accent">
-    in Sri Lanka
-  </span>
-</h1>
+          Premium Pomegranate Farming
+          <span className="block text-red-500">
+            in Sri Lanka
+          </span>
+        </h1>
 
         <p className="text-lg md:text-xl text-gray-200 mb-8">
-  Thooddakkaaran (Pvt) Ltd provides high-quality pomegranate plants,
-  expert farm consultation, and sustainable agriculture solutions
-  supporting farmers across Sri Lanka.
-</p>
+          Thooddakkaaran (Pvt) Ltd provides high-quality pomegranate plants,
+          expert farm consultation, and sustainable agriculture solutions
+          supporting farmers across Sri Lanka.
+        </p>
 
         <div className="flex flex-col md:flex-row justify-center gap-4">
 
           <a
             href="#services"
-            className="flex items-center justify-center gap-2 bg-accent px-7 py-3 rounded-xl hover:scale-105 hover:shadow-xl transition"
+            className="flex items-center justify-center gap-2 bg-red-500 px-7 py-3 rounded-xl hover:scale-105 hover:shadow-xl transition"
           >
             Explore Services
             <FaArrowRight />

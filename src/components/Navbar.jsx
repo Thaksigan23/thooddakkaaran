@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 import { FaBars, FaTimes } from "react-icons/fa"
+import ThemeToggle from "./ThemeToggle"
+import LanguageSwitcher from "./LanguageSwitcher"
 
 export default function Navbar() {
 
@@ -34,114 +36,138 @@ export default function Navbar() {
     }
 
     window.addEventListener("scroll", handleScroll)
+
     return () => window.removeEventListener("scroll", handleScroll)
 
   }, [])
+
 
   return (
 
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-lg shadow-md"
-          : "bg-white/70 backdrop-blur-md"
+          ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg shadow-md"
+          : "bg-white/70 dark:bg-gray-900/70 backdrop-blur-md"
       }`}
     >
 
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      {/* Navbar Container */}
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 h-16">
 
         {/* Logo */}
-        <div className="flex items-center gap-3">
+        <a href="#home" className="flex items-center gap-3">
 
-          <img
-            src="/images/logo.png"
-            alt="Thooddakkaaran Logo"
-className="h-16 w-auto hover:scale-105 transition duration-300"          />
+          <div className="bg-white dark:bg-white p-1 rounded-md">
 
-          <span className="text-xl font-bold text-green-700">
+            <img
+              src="/images/logo.png"
+              alt="Thooddakkaaran Logo"
+              className="h-10 w-auto"
+            />
+
+          </div>
+
+          <span className="text-lg font-bold text-green-700 dark:text-green-400">
             Thooddakkaaran
           </span>
 
-        </div>
+        </a>
+
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-8 font-medium text-gray-700">
+        <div className="hidden md:flex items-center gap-6 font-medium text-gray-700 dark:text-gray-200">
 
-          <li>
-            <a
-              href="#home"
-              className={`transition hover:text-green-700 ${
-                active === "home" ? "text-green-700 font-semibold" : ""
-              }`}
-            >
-              Home
-            </a>
-          </li>
+          <a
+            href="#home"
+            className={`transition hover:text-green-600 ${
+              active === "home" ? "text-green-600 font-semibold" : ""
+            }`}
+          >
+            Home
+          </a>
 
-          <li>
-            <a
-              href="#services"
-              className={`transition hover:text-green-700 ${
-                active === "services" ? "text-green-700 font-semibold" : ""
-              }`}
-            >
-              Services
-            </a>
-          </li>
+          <a
+            href="#services"
+            className={`transition hover:text-green-600 ${
+              active === "services" ? "text-green-600 font-semibold" : ""
+            }`}
+          >
+            Services
+          </a>
 
-          <li>
-            <a
-              href="#gallery"
-              className={`transition hover:text-green-700 ${
-                active === "gallery" ? "text-green-700 font-semibold" : ""
-              }`}
-            >
-              Gallery
-            </a>
-          </li>
+          <a
+            href="#gallery"
+            className={`transition hover:text-green-600 ${
+              active === "gallery" ? "text-green-600 font-semibold" : ""
+            }`}
+          >
+            Gallery
+          </a>
 
-          <li>
-            <a
-              href="#contact"
-              className={`transition hover:text-green-700 ${
-                active === "contact" ? "text-green-700 font-semibold" : ""
-              }`}
-            >
-              Contact
-            </a>
-          </li>
+          <a
+            href="#contact"
+            className={`transition hover:text-green-600 ${
+              active === "contact" ? "text-green-600 font-semibold" : ""
+            }`}
+          >
+            Contact
+          </a>
 
-        </ul>
+          {/* Language + Theme */}
+          <LanguageSwitcher />
+          <ThemeToggle />
 
-        {/* Mobile Button */}
-        <div
-          className="md:hidden text-2xl cursor-pointer text-gray-700"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <FaTimes /> : <FaBars />}
+        </div>
+
+
+        {/* Mobile Menu Button */}
+        <div className="flex items-center gap-3 md:hidden">
+
+          <LanguageSwitcher />
+          <ThemeToggle />
+
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-xl text-gray-700 dark:text-gray-200"
+          >
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+
         </div>
 
       </div>
 
+
       {/* Mobile Menu */}
       {menuOpen && (
 
-        <div className="md:hidden bg-white shadow-lg">
+        <div className="md:hidden bg-white dark:bg-gray-900 shadow-lg">
 
-          <ul className="flex flex-col items-center gap-6 py-6 text-gray-700 font-medium">
+          <div className="flex flex-col items-center gap-6 py-6 text-gray-700 dark:text-gray-200 font-medium">
 
-            <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
-            <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
-            <a href="#gallery" onClick={() => setMenuOpen(false)}>Gallery</a>
-            <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+            <a href="#home" onClick={() => setMenuOpen(false)}>
+              Home
+            </a>
 
-          </ul>
+            <a href="#services" onClick={() => setMenuOpen(false)}>
+              Services
+            </a>
+
+            <a href="#gallery" onClick={() => setMenuOpen(false)}>
+              Gallery
+            </a>
+
+            <a href="#contact" onClick={() => setMenuOpen(false)}>
+              Contact
+            </a>
+
+          </div>
 
         </div>
 
       )}
 
     </nav>
-
   )
 }

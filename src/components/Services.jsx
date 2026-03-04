@@ -1,83 +1,101 @@
 import { motion } from "framer-motion"
 import { FaSeedling, FaLeaf, FaTractor, FaTree } from "react-icons/fa"
 import Reveal from "./Reveal"
+
 export default function Services() {
 
   const services = [
-  {
-    title: "Pomegranate Cultivation",
-    desc: "Expert techniques and guidance for successful pomegranate farming with improved crop quality and higher yield.",
-    icon: <FaSeedling />
-  },
-  {
-    title: "Farm Consultation",
-    desc: "Professional agricultural consultation including soil preparation, irrigation systems, and pest management.",
-    icon: <FaLeaf />
-  },
-  {
-    title: "Plant Supply",
-    desc: "Healthy high-quality pomegranate plants supplied to farmers across Sri Lanka for strong plant growth.",
-    icon: <FaTree />
-  },
-  {
-    title: "Sustainable Agriculture",
-    desc: "Eco-friendly farming methods that improve soil health and promote long-term agricultural productivity.",
-    icon: <FaTractor />
-  }
-]
+    {
+      title: "Pomegranate Cultivation",
+      description:
+        "Expert techniques and guidance for successful pomegranate farming with improved crop quality and higher yield.",
+      icon: <FaSeedling />
+    },
+    {
+      title: "Farm Consultation",
+      description:
+        "Professional agricultural consultation including soil preparation, irrigation systems, and pest management.",
+      icon: <FaLeaf />
+    },
+    {
+      title: "Plant Supply",
+      description:
+        "Healthy high-quality pomegranate plants supplied to farmers across Sri Lanka for strong plant growth.",
+      icon: <FaTree />
+    },
+    {
+      title: "Sustainable Agriculture",
+      description:
+        "Eco-friendly farming methods that improve soil health and promote long-term agricultural productivity.",
+      icon: <FaTractor />
+    }
+  ]
 
   return (
     <Reveal>
 
-<section id="services" className="py-28 gradient-bg">
+      <section
+        id="services"
+        className="py-28 px-6 bg-green-50 dark:bg-gray-950 transition-colors duration-500"
+      >
 
-      <h2 className="text-4xl font-bold text-center mb-4 text-primary">
-        Our Farming Solutions
-      </h2>
+        {/* Section Title */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
 
-      <p className="text-center text-gray-500 mb-16">
-        Supporting farmers with sustainable agriculture solutions
-      </p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-green-400">
+            Our Farming Solutions
+          </h2>
 
-      <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 px-6">
+          <p className="text-gray-600 dark:text-gray-400 text-lg">
+            Supporting farmers across Sri Lanka with sustainable agriculture
+            solutions, expert consultation, and high-quality plant supply.
+          </p>
 
-        {services.map((service, index) => (
+        </div>
 
-  <div key={index} className="group relative">
+        {/* Services Grid */}
+        <div className="max-w-7xl mx-auto grid gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
 
-    {/* Glow effect */}
-    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-200 to-red-200 opacity-0 group-hover:opacity-20 blur-xl transition"></div>
+          {services.map((service, index) => (
 
-    <motion.div
-      whileHover={{ y: -8 }}
-      transition={{ duration: 0.3 }}
-      className="relative bg-white/80 backdrop-blur-lg border border-white/40 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 text-center"
-    >
+            <motion.div
+              key={index}
+              whileHover={{ y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="group relative"
+            >
 
-      {/* Icon */}
-      <div className="text-4xl text-secondary mb-4 flex justify-center group-hover:text-accent transition duration-300">
-        {service.icon}
-      </div>
+              {/* Glow Effect */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-400 to-red-400 opacity-0 group-hover:opacity-20 blur-xl transition duration-300"></div>
 
-      {/* Title */}
-      <h3 className="text-xl font-semibold mb-3 text-primary">
-        {service.title}
-      </h3>
+              {/* Card */}
+              <div className="relative bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 text-center">
 
-      {/* Description */}
-      <p className="text-gray-600">
-        {service.desc}
-      </p>
+                {/* Icon */}
+                <div className="text-4xl text-green-600 mb-4 flex justify-center group-hover:text-red-500 transition duration-300">
+                  {service.icon}
+                </div>
 
-    </motion.div>
+                {/* Title */}
+                <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+                  {service.title}
+                </h3>
 
-  </div>
+                {/* Description */}
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  {service.description}
+                </p>
 
-))}
+              </div>
 
-      </div>
+            </motion.div>
 
-    </section>
+          ))}
+
+        </div>
+
+      </section>
+
     </Reveal>
   )
 }
