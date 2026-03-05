@@ -3,74 +3,83 @@ import { FaLeaf, FaSeedling, FaUsers, FaChartLine } from "react-icons/fa"
 export default function WhyChooseUs() {
 
   const reasons = [
+
     {
       icon: <FaLeaf />,
-      title: "20+ Years Farming Experience",
-      desc: "Our team has decades of experience in pomegranate cultivation and modern agriculture practices."
+      title: "5+ Years of Farming Experience",
+      desc: "Our team understands the realities of modern agriculture and sustainable farming practices across Sri Lanka."
     },
+
     {
       icon: <FaSeedling />,
-      title: "High Quality Plants",
-      desc: "We supply strong and healthy pomegranate plants carefully selected for optimal growth."
+      title: "Farm-to-Product Integrity",
+      desc: "Because we grow our own fruits, we ensure freshness, purity and natural quality in every product."
     },
+
     {
       icon: <FaUsers />,
-      title: "Farmer Support",
-      desc: "We work closely with farmers and provide continuous guidance to improve crop productivity."
+      title: "Strategic Farmer Partnerships",
+      desc: "We work closely with local farmers, building long-term partnerships that support collective agricultural growth."
     },
+
     {
       icon: <FaChartLine />,
-      title: "Modern Farming Techniques",
-      desc: "Our solutions help farmers adopt modern agriculture methods for better yield and sustainability."
+      title: "Eco-Friendly Agriculture",
+      desc: "Our sustainable farming methods improve soil health, conserve resources, and increase long-term productivity."
     }
+
   ]
 
   return (
-    <section className="py-28 px-6 bg-white dark:bg-gray-950 transition-colors duration-500">
 
-      {/* Section Heading */}
-      <div className="text-center max-w-3xl mx-auto mb-16">
+<section className="py-28 px-6 bg-gray-50 dark:bg-gray-900 transition">
 
-        <h2 className="text-4xl font-bold text-gray-900 dark:text-green-400 mb-4">
-          Why Choose Thooddakkaaran
-        </h2>
+<div className="max-w-6xl mx-auto">
 
-        <p className="text-gray-600 dark:text-gray-300">
-          We are committed to helping farmers succeed through high-quality
-          plants, expert agricultural guidance, and sustainable farming practices.
-        </p>
+{/* Title */}
 
-      </div>
+<h2 className="text-4xl md:text-5xl font-bold text-center mb-6 text-gray-900 dark:text-green-400">
+Why Choose Thooddakkaaran
+</h2>
+
+<p className="text-center text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-16">
+We deliver reliable farming solutions and trusted produce that reflect
+the true value of sustainable agriculture in Sri Lanka.
+</p>
 
 
-      {/* Reasons Grid */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+{/* Cards */}
 
-        {reasons.map((item, index) => (
+<div className="grid md:grid-cols-4 gap-10">
 
-          <div
-            key={index}
-            className="text-center bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl shadow hover:shadow-lg transition duration-300"
-          >
+{reasons.map((item, index) => (
 
-            <div className="text-4xl text-green-600 mb-4 flex justify-center">
-              {item.icon}
-            </div>
+<div
+key={index}
+className="text-center bg-white dark:bg-gray-800 p-8 rounded-2xl shadow hover:shadow-xl transition"
+>
 
-            <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-              {item.title}
-            </h3>
+<div className="text-4xl text-green-600 mb-4 flex justify-center">
+{item.icon}
+</div>
 
-            <p className="text-gray-600 dark:text-gray-300 text-sm">
-              {item.desc}
-            </p>
+<h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
+{item.title}
+</h3>
 
-          </div>
+<p className="text-gray-600 dark:text-gray-400 text-sm">
+{item.desc}
+</p>
 
-        ))}
+</div>
 
-      </div>
+))}
 
-    </section>
+</div>
+
+</div>
+
+</section>
+
   )
 }

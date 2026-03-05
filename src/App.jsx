@@ -16,6 +16,8 @@ import ScrollProgress from "./components/ScrollProgress"
 import Whatsapp from "./components/Whatsapp"
 import BackToTop from "./components/BackToTop"
 import WhyChooseUs from "./components/WhyChooseUs"
+import About from "./components/About"
+import VisionMission from "./components/VisionMission"
 
 function App() {
 
@@ -48,10 +50,11 @@ function App() {
           <main className="pt-20">
 
             <Hero />
+            <About/>
             <Services />
             <WhyChooseUs />
-
             <Stats />
+            <VisionMission/>
             <Gallery />
             <Testimonials />
             <Instagram />

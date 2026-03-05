@@ -1,64 +1,71 @@
+import { motion } from "framer-motion"
+
 export default function Testimonials() {
 
   const testimonials = [
     {
       name: "Farmer – Jaffna",
-      text: "Thooddakkaaran helped me improve my pomegranate farming. Their guidance increased my farm production."
+      text: "Thooddakkaaran helped improve my pomegranate farm productivity. Their guidance and plant quality significantly increased my harvest."
     },
     {
       name: "Farmer – Kilinochchi",
-      text: "Healthy plants and excellent farming consultation. Highly recommended for farmers."
+      text: "Healthy plants and professional agricultural consultation. I highly recommend Thooddakkaaran for sustainable fruit farming."
     },
     {
       name: "Farmer – Vavuniya",
-      text: "Their modern agriculture techniques helped improve crop quality and farm productivity."
+      text: "Their modern farming techniques and crop management support helped improve both crop quality and farm income."
     }
   ]
 
   return (
 
-    <section className="py-28 px-6 bg-green-50 dark:bg-gray-950 transition-colors duration-500">
+<section className="py-28 px-6 bg-gradient-to-r from-green-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 transition">
 
-      {/* Section Title */}
-      <div className="text-center max-w-3xl mx-auto mb-16">
+{/* Section Title */}
 
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-green-400 mb-4">
-          Farmer Testimonials
-        </h2>
+<div className="text-center max-w-3xl mx-auto mb-16">
 
-        <p className="text-gray-600 dark:text-gray-400">
-          Hear from farmers who improved their crop productivity and farming
-          success with our agricultural support and guidance.
-        </p>
+<h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-green-400 mb-4">
+Farmer Testimonials
+</h2>
 
-      </div>
+<p className="text-gray-600 dark:text-gray-400">
+Hear what farmers across Sri Lanka say about our farming solutions,
+high-quality plants, and agricultural consultation services.
+</p>
 
-      {/* Testimonials Grid */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+</div>
 
-        {testimonials.map((item, index) => (
+{/* Testimonials Grid */}
 
-          <div
-            key={index}
-            className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow hover:shadow-xl transition duration-300"
-          >
+<div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
 
-            {/* Quote */}
-            <p className="text-gray-600 dark:text-gray-400 mb-6 italic leading-relaxed">
-              "{item.text}"
-            </p>
+{testimonials.map((item, index) => (
 
-            {/* Farmer Name */}
-            <h3 className="text-green-700 dark:text-green-400 font-semibold">
-              — {item.name}
-            </h3>
+<motion.div
+key={index}
+initial={{ opacity: 0, y: 40 }}
+whileInView={{ opacity: 1, y: 0 }}
+transition={{ duration: 0.6, delay: index * 0.2 }}
+viewport={{ once: true }}
+className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow hover:shadow-xl transition"
+>
 
-          </div>
+<p className="text-gray-600 dark:text-gray-300 mb-6 italic">
+"{item.text}"
+</p>
 
-        ))}
+<h3 className="text-green-700 dark:text-green-400 font-semibold">
+— {item.name}
+</h3>
 
-      </div>
+</motion.div>
 
-    </section>
+))}
+
+</div>
+
+</section>
+
   )
 }

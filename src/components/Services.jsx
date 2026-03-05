@@ -4,32 +4,33 @@ import Reveal from "./Reveal"
 
 export default function Services() {
 
-  const services = [
-    {
-      title: "Pomegranate Cultivation",
-      description:
-        "Expert techniques and guidance for successful pomegranate farming with improved crop quality and higher yield.",
-      icon: <FaSeedling />
-    },
-    {
-      title: "Farm Consultation",
-      description:
-        "Professional agricultural consultation including soil preparation, irrigation systems, and pest management.",
-      icon: <FaLeaf />
-    },
-    {
-      title: "Plant Supply",
-      description:
-        "Healthy high-quality pomegranate plants supplied to farmers across Sri Lanka for strong plant growth.",
-      icon: <FaTree />
-    },
-    {
-      title: "Sustainable Agriculture",
-      description:
-        "Eco-friendly farming methods that improve soil health and promote long-term agricultural productivity.",
-      icon: <FaTractor />
-    }
-  ]
+ const services = [
+
+{
+title: "Premium Fruit Cultivation",
+description:
+"Sustainable cultivation of pomegranates, dragon fruits, watermelons and guavas using modern agricultural techniques."
+},
+
+{
+title: "Farm Consultation",
+description:
+"Professional guidance for Sri Lankan farmers including soil preparation, irrigation planning and crop management."
+},
+
+{
+title: "High-Yield Plant Saplings",
+description:
+"We supply premium pomegranate and fruit saplings bred for Sri Lankan soil and climate conditions."
+},
+
+{
+title: "Sustainable Agriculture",
+description:
+"Eco-friendly farming practices that improve soil fertility and increase harvest productivity."
+}
+
+]
 
   return (
     <Reveal>
