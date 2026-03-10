@@ -6,7 +6,7 @@ export default function Whatsapp() {
   const [show, setShow] = useState(true)
 
   return (
-    <div className="fixed bottom-10 left-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-5 right-6 z-50 flex flex-col items-end gap-3">
 
       {/* Chat Preview Bubble */}
       {show && (
