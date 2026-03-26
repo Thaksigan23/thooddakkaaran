@@ -1,89 +1,130 @@
 import { motion, useScroll, useTransform } from "framer-motion"
 import { FaArrowRight } from "react-icons/fa"
+import {
+  fadeUp,
+  slideLeft,
+  floatingAnimation,
+} from "../utils/animations"
 
 export default function Hero() {
-
   const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 500], [0, 150])
+  const y = useTransform(scrollY, [0, 500], [0, 120])
 
   return (
-
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden pt-16"
     >
-
-      {/* Parallax Background */}
+      {/* Background */}
       <motion.div
-        style={{ y }}
-        className="absolute inset-0 -z-10 bg-[url('/images/hero.png')] bg-cover bg-center"
+        style={{
+          y,
+          backgroundImage: "url('/images/hero.png')",
+        }}
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
       />
 
-      {/* Floating Color Blobs */}
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/45 to-black/70" />
 
+      {/* Soft glow */}
       <motion.div
-        className="absolute w-96 h-96 bg-red-400 rounded-full blur-3xl opacity-30 top-20 left-20"
-        animate={{ x: [0, 50, 0], y: [0, -50, 0] }}
-        transition={{ duration: 10, repeat: Infinity }}
-      />
-
-      <motion.div
-        className="absolute w-96 h-96 bg-green-400 rounded-full blur-3xl opacity-30 bottom-10 right-20"
-        animate={{ x: [0, -60, 0], y: [0, 40, 0] }}
-        transition={{ duration: 12, repeat: Infinity }}
+        className="absolute top-10 right-10 w-72 h-72 bg-red-500/20 rounded-full blur-3xl"
+        {...floatingAnimation}
       />
 
       <motion.div
-        className="absolute w-72 h-72 bg-yellow-300 rounded-full blur-3xl opacity-20 top-40 right-40"
-        animate={{ x: [0, 30, 0], y: [0, -40, 0] }}
-        transition={{ duration: 14, repeat: Infinity }}
+        className="absolute bottom-0 right-20 w-80 h-80 bg-green-500/20 rounded-full blur-3xl"
+        animate={{
+          y: [0, 20, 0],
+          x: [0, -20, 0],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       />
-
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30 dark:from-black/80 dark:via-black/60 dark:to-black/40"></div>
 
       {/* Content */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="relative text-center text-white max-w-3xl px-6"
-      >
-
-        <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
-Sustainable Farming Solutions
-<span className="block text-accent">
-Premium Fruit Cultivation in Sri Lanka
-</span>
-</h1>
-
-        <p className="text-lg md:text-xl text-gray-200 mb-8">
-Thooddakkaaran Private Limited empowers farmers across Sri Lanka with
-sustainable agriculture solutions, premium pomegranate and dragon fruit
-cultivation, expert farm consultation, and high-yield fruit saplings.
-</p>
-
-        <div className="flex flex-col md:flex-row justify-center gap-4">
-
-          <a
-            href="#services"
-            className="flex items-center justify-center gap-2 bg-red-500 px-7 py-3 rounded-xl hover:scale-105 hover:shadow-xl transition"
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+        <div className="flex justify-center lg:justify-end">
+          <motion.div
+            variants={slideLeft(0, 0.9)}
+            initial="hidden"
+            animate="visible"
+            className="max-w-2xl text-center lg:text-left"
           >
-            Explore Services
-            <FaArrowRight />
-          </a>
+            {/* Badge */}
+            <motion.div
+              variants={fadeUp(0.15, 0.6)}
+              initial="hidden"
+              animate="visible"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-4 py-2 mb-5"
+            >
+              <span className="w-2 h-2 rounded-full bg-green-400" />
+              <span className="text-sm text-green-100 font-medium">
+                Sustainable Agriculture in Sri Lanka
+              </span>
+            </motion.div>
 
-          <a
-            href="#contact"
-            className="flex items-center justify-center gap-2 bg-white text-black px-7 py-3 rounded-xl hover:scale-105 transition"
-          >
-            Contact Us
-          </a>
+            {/* Heading */}
+            <motion.h1
+              variants={fadeUp(0.25, 0.7)}
+              initial="hidden"
+              animate="visible"
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-white"
+            >
+              Growing Premium
+              <span className="block text-accent">
+                Pomegranate & Dragon Fruit
+              </span>
+              <span className="block text-white">
+                with Sustainable Farming Solutions
+              </span>
+            </motion.h1>
 
+            {/* Paragraph */}
+            <motion.p
+              variants={fadeUp(0.35, 0.7)}
+              initial="hidden"
+              animate="visible"
+              className="text-base sm:text-lg md:text-xl text-green-100/95 leading-relaxed mb-8"
+            >
+              Thooddakkaaran Private Limited supports farmers across Sri Lanka
+              with expert farm consultation, premium fruit cultivation, quality
+              saplings, and practical agricultural solutions for long-term yield
+              and growth.
+            </motion.p>
+
+            {/* Buttons */}
+            <motion.div
+              variants={fadeUp(0.45, 0.7)}
+              initial="hidden"
+              animate="visible"
+              className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4"
+            >
+              <a
+                href="#services"
+                className="inline-flex items-center justify-center gap-2 bg-accent text-white px-7 py-3.5 rounded-xl font-semibold shadow-lg hover:scale-105 hover:shadow-2xl transition duration-300"
+              >
+                Explore Services
+                <FaArrowRight className="text-sm" />
+              </a>
+
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2 border border-white/30 bg-white/10 backdrop-blur-md text-white px-7 py-3.5 rounded-xl font-semibold hover:bg-white hover:text-gray-900 transition duration-300"
+              >
+                Contact Us
+              </a>
+            </motion.div>
+          </motion.div>
         </div>
+      </div>
 
-      </motion.div>
-
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black/40 to-transparent" />
     </section>
   )
 }

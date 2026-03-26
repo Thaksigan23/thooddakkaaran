@@ -1,155 +1,168 @@
-import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa"
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaWhatsapp,
+  FaMapMarkerAlt,
+  FaEnvelope,
+  FaPhoneAlt,
+} from "react-icons/fa"
 
 export default function Footer() {
+  const socialLinks = [
+    {
+      icon: <FaFacebookF />,
+      href: "https://facebook.com/",
+      label: "Facebook",
+    },
+    {
+      icon: <FaInstagram />,
+      href: "https://instagram.com/",
+      label: "Instagram",
+    },
+    {
+      icon: <FaLinkedinIn />,
+      href: "https://linkedin.com/",
+      label: "LinkedIn",
+    },
+    {
+      icon: <FaWhatsapp />,
+      href: "https://wa.me/94700000000",
+      label: "WhatsApp",
+    },
+  ]
+
+  const quickLinks = [
+    { name: "Home", href: "#home" },
+    { name: "Services", href: "#services" },
+    { name: "Gallery", href: "#gallery" },
+    { name: "Contact", href: "#contact" },
+  ]
+
+  const services = [
+    "Pomegranate Cultivation",
+    "Farm Consultation",
+    "Plant Supply",
+    "Sustainable Agriculture",
+  ]
 
   return (
+    <footer className="bg-[#0b2215] text-gray-300 pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-6">
+        
+        {/* Top Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-12 border-b border-white/10">
+          
+          {/* Company Info */}
+          <div>
+            <div className="flex items-center gap-4">
+              <div className="bg-white p-2.5 rounded-xl shadow-md">
+                <img
+                  src="/images/logo.png"
+                  alt="Logo"
+                  className="h-14 w-auto"
+                />
+              </div>
 
-    <footer className="bg-[#0f2d1c] text-gray-300 pt-20 pb-10">
+              <div>
+                <h2 className="text-white text-xl font-bold">
+                  Thooddakkaaran
+                </h2>
+                <p className="text-sm text-green-300">
+                  Premium Pomegranate Farm
+                </p>
+              </div>
+            </div>
 
-      {/* Top Footer */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 px-6">
+            <p className="text-gray-400 mt-5 text-sm leading-7">
+              Trusted agriculture company in Sri Lanka specializing in premium
+              pomegranate farming, plant supply, and modern farming consultation.
+            </p>
 
-        {/* Company Info */}
-        <div>
+            {/* Contact Info */}
+            <div className="mt-6 space-y-3 text-sm">
+              <div className="flex items-center gap-3">
+                <FaMapMarkerAlt className="text-green-400" />
+                <span>Mirusuvil, Sri Lanka</span>
+              </div>
 
-          <div className="bg-white p-3 rounded-lg inline-block shadow">
-            <img
-              src="/images/logo.png"
-              alt="Thooddakkaaran Logo"
-              className="h-14 w-auto"
-            />
+              <div className="flex items-center gap-3">
+                <FaEnvelope className="text-green-400" />
+                <span>info@thooddakkaaran.com</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <FaPhoneAlt className="text-green-400" />
+                <span>+94 70 000 0000</span>
+              </div>
+            </div>
+
+            {/* Social Icons */}
+            <div className="flex gap-3 mt-6">
+              {socialLinks.map((item, i) => (
+                <a
+                  key={i}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-green-500 transition"
+                >
+                  {item.icon}
+                </a>
+              ))}
+            </div>
           </div>
 
-          <p className="text-gray-400 mt-5 text-sm leading-relaxed max-w-sm">
-            Thooddakkaaran (Pvt) Ltd is a trusted agriculture company in Sri Lanka
-            specializing in premium pomegranate farming, plant supply,
-            and modern farming consultation.
-          </p>
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-white font-semibold mb-5 text-lg">
+              Quick Links
+            </h3>
 
-          {/* Social Icons */}
-          <div className="flex gap-5 mt-6 text-xl">
-
-            <a href="#" className="hover:text-green-400 transition">
-              <FaFacebook />
-            </a>
-
-            <a href="#" className="hover:text-green-400 transition">
-              <FaInstagram />
-            </a>
-
-            <a href="#" className="hover:text-green-400 transition">
-              <FaLinkedin />
-            </a>
-
-            <a href="#" className="hover:text-green-400 transition">
-              <FaWhatsapp />
-            </a>
-
+            <ul className="space-y-3 text-sm">
+              {quickLinks.map((link, i) => (
+                <li key={i}>
+                  <a
+                    href={link.href}
+                    className="text-gray-400 hover:text-green-400 transition"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
-        </div>
+          {/* Services */}
+          <div>
+            <h3 className="text-white font-semibold mb-5 text-lg">
+              Our Services
+            </h3>
 
-
-        {/* Quick Links */}
-        <div>
-
-          <h3 className="text-white font-semibold mb-4 text-lg">
-            Quick Links
-          </h3>
-
-          <ul className="space-y-3 text-sm">
-
-            <li>
-              <a href="#home" className="hover:text-green-400 transition">
-                Home
-              </a>
-            </li>
-
-            <li>
-              <a href="#services" className="hover:text-green-400 transition">
-                Services
-              </a>
-            </li>
-
-            <li>
-              <a href="#gallery" className="hover:text-green-400 transition">
-                Gallery
-              </a>
-            </li>
-
-            <li>
-              <a href="#contact" className="hover:text-green-400 transition">
-                Contact
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-
-
-        {/* Services */}
-        <div>
-
-          <h3 className="text-white font-semibold mb-4 text-lg">
-            Our Services
-          </h3>
-
-          <ul className="space-y-3 text-sm text-gray-400">
-
-            <li>Pomegranate Cultivation</li>
-            <li>Farm Consultation</li>
-            <li>Plant Supply</li>
-            <li>Sustainable Agriculture</li>
-
-          </ul>
-
-        </div>
-
-
-        {/* Location Map */}
-        <div>
-
-          <h3 className="text-white font-semibold mb-4 text-lg">
-            Our Location
-          </h3>
-
-          <div className="overflow-hidden rounded-lg shadow">
-
-            <iframe
-              title="Farm Location"
-              src="https://www.google.com/maps?q=Mirusuvil,Sri Lanka&output=embed"
-              className="w-full h-40 border-0"
-              loading="lazy"
-            />
-
+            <ul className="space-y-3 text-sm">
+              {services.map((service, i) => (
+                <li key={i} className="text-gray-400">
+                  {service}
+                </li>
+              ))}
+            </ul>
           </div>
 
         </div>
 
-      </div>
-
-
-      {/* Bottom Footer */}
-      <div className="border-t border-gray-700 mt-12 pt-6 text-sm">
-
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-6 gap-4">
-
-          {/* Copyright */}
-          <p className="text-gray-400 text-center md:text-left">
+        {/* Bottom Section */}
+        <div className="pt-6 flex flex-col lg:flex-row items-center justify-between gap-4">
+          
+          <p className="text-gray-400 text-sm text-center lg:text-left">
             © 2026 Thooddakkaaran Pvt Ltd. All rights reserved.
           </p>
 
-          {/* Made By */}
-          <div className="flex items-center gap-2">
-
-            <span className="text-gray-400">Made with ❤️ by</span>
-
+          <div className="flex items-center gap-2 text-sm text-gray-400">
+            <span>Made with love by</span>
             <a
               href="https://www.techloom.ai/"
               target="_blank"
               rel="noreferrer"
-              className="hover:opacity-80 transition"
             >
               <img
                 src="/images/techloom.png"
@@ -157,27 +170,19 @@ export default function Footer() {
                 alt="Techloom"
               />
             </a>
-
           </div>
 
-          {/* Legal Links */}
-          <div className="flex gap-6 text-gray-400">
-
-            <a href="#" className="hover:text-green-400 transition">
+          <div className="flex gap-5 text-sm">
+            <a href="#" className="text-gray-400 hover:text-green-400 transition">
               Privacy Policy
             </a>
-
-            <a href="#" className="hover:text-green-400 transition">
+            <a href="#" className="text-gray-400 hover:text-green-400 transition">
               Terms of Service
             </a>
-
           </div>
 
         </div>
-
       </div>
-
     </footer>
-
   )
 }
