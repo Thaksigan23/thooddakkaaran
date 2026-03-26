@@ -1,55 +1,78 @@
 <!doctype html>
 <html lang="en" translate="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
+    <!-- Prevent Google Auto Translate -->
+    <meta name="google" content="notranslate" />
 
-<meta charset="UTF-8" />
+    <!-- Primary SEO -->
+    <title>Thooddakkaaran | Premium Pomegranate Farming Sri Lanka</title>
+    <meta
+      name="description"
+      content="Thooddakkaaran Private Limited is a Sri Lankan sustainable farming company specializing in premium pomegranate, dragon fruit cultivation, farm consultation, and high-yield fruit saplings for farmers across Sri Lanka."
+    />
+    <meta
+      name="keywords"
+      content="Thooddakkaaran, pomegranate farming Sri Lanka, dragon fruit farming, sustainable agriculture Sri Lanka, farm consultation, fruit saplings Sri Lanka"
+    />
+    <meta name="author" content="Thooddakkaaran Pvt Ltd" />
+    <meta name="theme-color" content="#166534" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Canonical -->
+    <link rel="canonical" href="https://thooddakkaaran.vercel.app/" />
 
-<!-- Prevent Google Auto Translate -->
-<meta name="google" content="notranslate">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
 
-<link rel="icon" type="image/png" href="/favicon.png" />
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-<title>Thooddakkaaran | Premium Pomegranate Farming Sri Lanka</title>
+    <!-- Open Graph -->
+    <meta property="og:title" content="Thooddakkaaran | Premium Pomegranate Farming Sri Lanka" />
+    <meta
+      property="og:description"
+      content="Premium pomegranate farming and sustainable agriculture solutions in Sri Lanka."
+    />
+    <meta property="og:image" content="https://thooddakkaaran.vercel.app/images/farm1.jpg" />
+    <meta property="og:url" content="https://thooddakkaaran.vercel.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Thooddakkaaran" />
 
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Twitter Preview -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Thooddakkaaran | Premium Pomegranate Farming Sri Lanka" />
+    <meta
+      name="twitter:description"
+      content="Premium pomegranate farming and sustainable agriculture solutions in Sri Lanka."
+    />
+    <meta name="twitter:image" content="https://thooddakkaaran.vercel.app/images/farm1.jpg" />
 
-<!-- SEO Description -->
-<meta name="description"
-content="Thooddakkaaran Private Limited is a Sri Lankan sustainable farming company specializing in premium pomegranate, dragon fruit cultivation, farm consultation, and high-yield fruit saplings for farmers across Sri Lanka." />
+    <!-- Google Analytics -->
+    <script>
+      if (location.hostname !== "localhost") {
+        const script = document.createElement("script");
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-CL1706T4YQ";
+        script.async = true;
+        document.head.appendChild(script);
 
-<!-- Social Media Preview -->
-<meta property="og:title" content="Thooddakkaaran Pvt Ltd" />
-<meta property="og:description" content="Premium pomegranate farming and sustainable agriculture solutions in Sri Lanka." />
-<meta property="og:image" content="/images/farm1.jpg" />
-<meta property="og:url" content="https://thooddakkaaran.vercel.app" />
-<meta property="og:type" content="website" />
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        window.gtag = gtag;
+        gtag("js", new Date());
+        gtag("config", "G-CL1706T4YQ");
+      }
+    </script>
+  </head>
 
-<!-- Google Analytics (Production Only) -->
-<script>
-if (location.hostname !== "localhost") {
-  const script = document.createElement("script");
-  script.src = "https://www.googletagmanager.com/gtag/js?id=G-CL1706T4YQ";
-  script.async = true;
-  document.head.appendChild(script);
-
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-CL1706T4YQ');
-}
-</script>
-
-</head>
-
-<body>
-
-<div id="root"></div>
-
-<script type="module" src="/src/main.jsx"></script>
-
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
