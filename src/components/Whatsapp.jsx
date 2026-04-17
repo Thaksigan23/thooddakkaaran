@@ -6,7 +6,7 @@ export default function Whatsapp() {
   const [show, setShow] = useState(true)
 
   return (
-    <div className="fixed bottom-5 right-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-5 left-6 z-50 flex flex-col items-end gap-3">
 
       {/* Chat Bubble */}
       {show && (
@@ -19,7 +19,7 @@ export default function Whatsapp() {
           {/* Close Button */}
           <button
             onClick={() => setShow(false)}
-            className="absolute top-2 right-2 text-gray-400 hover:text-gray-600 dark:hover:text-white transition"
+            className="absolute top-2 left-2 text-gray-400 hover:text-gray-600 dark:hover:text-white transition"
           >
             <FaTimes size={14} />
           </button>

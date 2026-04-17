@@ -166,7 +166,7 @@ export default function Footer() {
             >
               <img
                 src="/images/techloom.png"
-                className="h-6"
+                className="h-4"
                 alt="Techloom"
               />
             </a>
