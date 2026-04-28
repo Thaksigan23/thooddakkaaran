@@ -1,6 +1,12 @@
 import { motion } from "framer-motion"
 import { FaMapMarkerAlt, FaArrowRight } from "react-icons/fa"
 
+const FARM_LOCATION = import.meta.env.VITE_CONTACT_LOCATION || "Mirusuvil, Sri Lanka"
+const FACTORY_LOCATION = import.meta.env.VITE_FACTORY_LOCATION || "Factory Location, Sri Lanka"
+const FACTORY_MAP_URL = import.meta.env.VITE_FACTORY_MAP_URL
+const FARM_MAP_QUERY = encodeURIComponent(FARM_LOCATION)
+const FACTORY_MAP_QUERY = encodeURIComponent(FACTORY_LOCATION)
+
 export default function Map() {
   return (
     <section className="py-24 px-6 bg-white dark:bg-gray-950 transition-colors duration-500">
@@ -16,8 +22,8 @@ export default function Map() {
           </h2>
 
           <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-            Visit our farm in Mirusuvil, Sri Lanka, where we cultivate premium
-            pomegranates and support farmers with modern agricultural solutions.
+            Visit our farm and factory locations in Sri Lanka, where we cultivate
+            premium fruits and support farmers with modern agricultural solutions.
           </p>
         </div>
 
@@ -40,16 +46,23 @@ export default function Map() {
             </h3>
 
             <p className="text-gray-600 dark:text-gray-400 leading-7 mb-6">
-              Located in Mirusuvil, Sri Lanka, our farm is dedicated to premium
+              Located in Sri Lanka, our farm is dedicated to premium
               fruit cultivation, sustainable agriculture, and farmer support.
             </p>
 
             <div className="space-y-3 text-gray-600 dark:text-gray-400 mb-8">
               <p>
                 <span className="font-semibold text-gray-900 dark:text-white">
-                  Location:
+                  Farm:
                 </span>{" "}
-                Mirusuvil, Sri Lanka
+                {FARM_LOCATION}
+              </p>
+
+              <p>
+                <span className="font-semibold text-gray-900 dark:text-white">
+                  Factory:
+                </span>{" "}
+                {FACTORY_LOCATION}
               </p>
 
               <p>
@@ -60,15 +73,26 @@ export default function Map() {
               </p>
             </div>
 
-            <a
-              href="https://www.google.com/maps?q=Mirusuvil,Sri Lanka"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition shadow-md"
-            >
-              Get Directions
-              <FaArrowRight className="text-sm" />
-            </a>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={`https://www.google.com/maps?q=${FARM_MAP_QUERY}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition shadow-md"
+              >
+                Farm Directions
+                <FaArrowRight className="text-sm" />
+              </a>
+              <a
+                href={FACTORY_MAP_URL || `https://www.google.com/maps?q=${FACTORY_MAP_QUERY}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 border border-green-200 dark:border-white/20 bg-white dark:bg-white/5 text-green-700 dark:text-white px-6 py-3 rounded-xl font-semibold transition hover:bg-green-50 dark:hover:bg-white/10"
+              >
+                Factory Directions
+                <FaArrowRight className="text-sm" />
+              </a>
+            </div>
           </motion.div>
 
           {/* Right Map */}
@@ -81,7 +105,7 @@ export default function Map() {
           >
             <iframe
               title="Thooddakkaaran Farm Location"
-              src="https://www.google.com/maps?q=Mirusuvil,Sri Lanka&output=embed"
+              src={`https://www.google.com/maps?q=${FARM_MAP_QUERY}&output=embed`}
               className="w-full h-full min-h-[420px] border-0"
               loading="lazy"
               allowFullScreen

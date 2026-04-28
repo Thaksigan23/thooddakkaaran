@@ -12,6 +12,7 @@ const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 const CONTACT_PHONE = import.meta.env.VITE_CONTACT_PHONE || "+94 70 000 0000"
 const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || "info@thooddakkaaran.com"
 const CONTACT_LOCATION = import.meta.env.VITE_CONTACT_LOCATION || "Mirusuvil, Sri Lanka"
+const FACTORY_LOCATION = import.meta.env.VITE_FACTORY_LOCATION || "Factory Location - Add in .env"
 const CONTACT_PHONE_HREF = `tel:${CONTACT_PHONE.replace(/[^\d+]/g, "")}`
 const CONTACT_EMAIL_HREF = `mailto:${CONTACT_EMAIL}`
 
@@ -117,6 +118,13 @@ export default function Contact() {
                 <div className="flex items-center gap-4">
                   <FaMapMarkerAlt className="text-green-600" />
                   <span>{CONTACT_LOCATION}</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <FaMapMarkerAlt className="text-green-600" />
+                  <span>
+                    <span className="font-semibold text-gray-700 dark:text-gray-300">Factory:</span>{" "}
+                    {FACTORY_LOCATION}
+                  </span>
                 </div>
 
               </div>

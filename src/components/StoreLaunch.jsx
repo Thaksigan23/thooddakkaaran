@@ -33,26 +33,26 @@ export default function StoreLaunch() {
   return (
     <section
       id="store"
-      className="relative overflow-hidden py-24 px-6 bg-gradient-to-br from-[#0f2d19] via-[#173e24] to-[#5d1f15] text-white"
+      className="relative overflow-hidden py-24 px-6 bg-gradient-to-br from-emerald-50 via-white to-lime-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 text-gray-900 dark:text-white"
     >
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute -top-16 left-10 h-56 w-56 rounded-full bg-green-300 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-orange-300 blur-3xl" />
+      <div className="absolute inset-0 opacity-30 dark:opacity-20">
+        <div className="absolute -top-16 left-10 h-56 w-56 rounded-full bg-emerald-300/70 dark:bg-emerald-500/30 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-lime-300/60 dark:bg-lime-500/20 blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto">
         <Reveal>
           <div className="max-w-3xl mx-auto text-center mb-14">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-green-100 mb-5">
+            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-white/15 bg-white/80 dark:bg-white/10 px-4 py-2 text-sm font-semibold text-emerald-700 dark:text-emerald-200 mb-5">
               E-Commerce Launch
             </span>
 
             <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-5">
               Our Online Store Is
-              <span className="block text-[#ffd28d]">Coming Soon</span>
+              <span className="block text-emerald-600 dark:text-emerald-300">Coming Soon</span>
             </h2>
 
-            <p className="text-base md:text-lg text-white/80 leading-8">
+            <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-8">
               We are preparing a dedicated e-commerce experience for customers
               who want to discover and purchase Thooddakkaaran products online.
               Until then, this website remains the main place to learn about
@@ -67,14 +67,14 @@ export default function StoreLaunch() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="rounded-[2rem] border border-white/10 bg-white/10 backdrop-blur-xl p-8 md:p-10 shadow-2xl"
+            className="rounded-[2rem] border border-emerald-100 dark:border-white/10 bg-white/85 dark:bg-white/5 backdrop-blur-xl p-8 md:p-10 shadow-2xl"
           >
-            <div className="inline-flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 mb-6">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#ffd28d] text-[#173e24] text-lg">
+            <div className="inline-flex items-center gap-3 rounded-2xl bg-emerald-50 dark:bg-white/10 px-4 py-3 mb-6">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-600 text-white text-lg">
                 <FaShoppingBag />
               </div>
               <div>
-                <p className="text-sm uppercase tracking-[0.24em] text-white/60">
+                <p className="text-sm uppercase tracking-[0.24em] text-gray-500 dark:text-white/60">
                   Launch Preview
                 </p>
                 <p className="font-semibold text-lg">Digital Storefront</p>
@@ -85,7 +85,7 @@ export default function StoreLaunch() {
               A new way to connect customers with our products
             </h3>
 
-            <p className="text-white/80 leading-8 mb-8">
+            <p className="text-gray-600 dark:text-gray-300 leading-8 mb-8">
               The upcoming store will extend this website with a direct shopping
               experience while keeping the same premium agricultural identity.
               For now, visitors can explore our services and contact us for
@@ -95,7 +95,7 @@ export default function StoreLaunch() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#ffd28d] px-6 py-3 font-semibold text-[#173e24] transition hover:scale-[1.02]"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 font-semibold text-white transition hover:scale-[1.02] hover:bg-emerald-700"
               >
                 Contact Us Today
                 <FaArrowRight className="text-sm" />
@@ -103,7 +103,7 @@ export default function StoreLaunch() {
 
               <a
                 href="#home"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-6 py-3 font-semibold text-white transition hover:bg-white/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-200 dark:border-white/20 bg-white/70 dark:bg-white/5 px-6 py-3 font-semibold text-emerald-700 dark:text-white transition hover:bg-emerald-50 dark:hover:bg-white/10"
               >
                 Back To Main Website
               </a>
@@ -121,14 +121,14 @@ export default function StoreLaunch() {
               <motion.div
                 key={item.title}
                 variants={fadeUp()}
-                className="rounded-[1.75rem] border border-white/10 bg-black/15 p-7 backdrop-blur-md shadow-xl"
+                className="rounded-[1.75rem] border border-emerald-100 dark:border-white/10 bg-white/80 dark:bg-black/15 p-7 backdrop-blur-md shadow-xl"
               >
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-[#ffd28d] text-xl mb-5">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 dark:bg-white/10 text-emerald-600 dark:text-emerald-300 text-xl mb-5">
                   {item.icon}
                 </div>
 
                 <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
-                <p className="text-white/75 leading-7">{item.description}</p>
+                <p className="text-gray-600 dark:text-gray-300 leading-7">{item.description}</p>
               </motion.div>
             ))}
           </motion.div>
