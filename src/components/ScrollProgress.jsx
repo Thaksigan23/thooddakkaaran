@@ -1,29 +1,37 @@
 import { useEffect, useState } from "react"
-import { FaArrowUp } from "react-icons/fa"
 
-export default function BackToTop() {
-  const [visible, setVisible] = useState(false)
+export default function ScrollProgress() {
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      setVisible(window.scrollY > 300)
+    const updateProgress = () => {
+      const scrollTop = window.scrollY
+      const pageHeight = document.documentElement.scrollHeight - window.innerHeight
+
+      if (pageHeight <= 0) {
+        setScrollProgress(0)
+        return
+      }
+
+      setScrollProgress((scrollTop / pageHeight) * 100)
     }
 
-    window.addEventListener("scroll", toggleVisibility)
-    return () => window.removeEventListener("scroll", toggleVisibility)
+    updateProgress()
+    window.addEventListener("scroll", updateProgress)
+    window.addEventListener("resize", updateProgress)
+
+    return () => {
+      window.removeEventListener("scroll", updateProgress)
+      window.removeEventListener("resize", updateProgress)
+    }
   }, [])
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    })
-  }
-
-  if (!visible) return null
-
   return (
-    
-      <FaArrowUp />
+    <div className="fixed top-0 left-0 right-0 z-[60] h-1 bg-transparent">
+      <div
+        className="h-full bg-green-500 transition-[width] duration-150 ease-out"
+        style={{ width: `${scrollProgress}%` }}
+      />
+    </div>
   )
 }

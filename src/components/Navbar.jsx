@@ -110,6 +110,8 @@ export default function Navbar() {
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-nav-menu"
               className="w-10 h-10 rounded-full flex items-center justify-center bg-green-600 text-white shadow-sm hover:bg-green-700 transition"
             >
               {menuOpen ? <FaTimes size={16} /> : <FaBars size={16} />}
@@ -120,6 +122,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
+        id="mobile-nav-menu"
         className={`md:hidden overflow-hidden transition-all duration-300 ${
           menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}

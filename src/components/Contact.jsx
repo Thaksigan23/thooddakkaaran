@@ -5,21 +5,39 @@ import { motion } from "framer-motion"
 import Reveal from "./Reveal"
 import { fadeUp, staggerContainer } from "../utils/animations"
 
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+const CONTACT_PHONE = import.meta.env.VITE_CONTACT_PHONE || "+94 70 000 0000"
+const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || "info@thooddakkaaran.com"
+const CONTACT_LOCATION = import.meta.env.VITE_CONTACT_LOCATION || "Mirusuvil, Sri Lanka"
+const CONTACT_PHONE_HREF = `tel:${CONTACT_PHONE.replace(/[^\d+]/g, "")}`
+const CONTACT_EMAIL_HREF = `mailto:${CONTACT_EMAIL}`
+
 export default function Contact() {
   const form = useRef()
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [error, setError] = useState("")
 
   const sendEmail = (e) => {
     e.preventDefault()
+    setError("")
+
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      setError("Contact form is not configured yet. Please try WhatsApp or email.")
+      return
+    }
+
     setLoading(true)
 
     emailjs
       .sendForm(
-        "service_1t50k5g",
-        "template_ubyghnk",
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
         form.current,
-        "SxNdlpc7MdA_MI7I1"
+        EMAILJS_PUBLIC_KEY
       )
       .then(
         () => {
@@ -29,7 +47,7 @@ export default function Contact() {
         },
         () => {
           setLoading(false)
-          alert("Failed to send message")
+          setError("Failed to send message. Please try again.")
         }
       )
   }
@@ -76,17 +94,29 @@ export default function Contact() {
 
                 <div className="flex items-center gap-4">
                   <FaPhoneAlt className="text-green-600" />
-                  <span>+94 70 000 0000</span>
+                  <a
+                    href={CONTACT_PHONE_HREF}
+                    aria-label={`Call us at ${CONTACT_PHONE}`}
+                    className="hover:text-green-600 transition-colors"
+                  >
+                    {CONTACT_PHONE}
+                  </a>
                 </div>
 
                 <div className="flex items-center gap-4">
                   <FaEnvelope className="text-green-600" />
-                  <span>info@thooddakkaaran.com</span>
+                  <a
+                    href={CONTACT_EMAIL_HREF}
+                    aria-label={`Email us at ${CONTACT_EMAIL}`}
+                    className="hover:text-green-600 transition-colors"
+                  >
+                    {CONTACT_EMAIL}
+                  </a>
                 </div>
 
                 <div className="flex items-center gap-4">
                   <FaMapMarkerAlt className="text-green-600" />
-                  <span>Mirusuvil, Sri Lanka</span>
+                  <span>{CONTACT_LOCATION}</span>
                 </div>
 
               </div>
@@ -112,7 +142,7 @@ export default function Contact() {
           >
 
             {success ? (
-              <div className="text-center py-10">
+              <div className="text-center py-10" role="status" aria-live="polite">
                 <h3 className="text-2xl font-bold text-green-600 mb-2">
                   ✅ Message Sent!
                 </h3>
@@ -122,39 +152,80 @@ export default function Contact() {
               </div>
             ) : (
 
-              <form ref={form} onSubmit={sendEmail} className="space-y-5">
+              <form
+                ref={form}
+                onSubmit={sendEmail}
+                className="space-y-5"
+                aria-busy={loading}
+              >
 
+                <label htmlFor="contact-name" className="sr-only">
+                  Your Name
+                </label>
                 <input
+                  id="contact-name"
                   type="text"
                   name="name"
                   placeholder="Your Name"
                   required
+                  autoComplete="name"
+                  aria-required="true"
+                  aria-invalid={error ? "true" : "false"}
+                  aria-describedby={error ? "contact-form-error" : undefined}
                   className="w-full p-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 outline-none"
                 />
 
+                <label htmlFor="contact-email" className="sr-only">
+                  Your Email
+                </label>
                 <input
+                  id="contact-email"
                   type="email"
                   name="email"
                   placeholder="Your Email"
                   required
+                  autoComplete="email"
+                  aria-required="true"
+                  aria-invalid={error ? "true" : "false"}
+                  aria-describedby={error ? "contact-form-error" : undefined}
                   className="w-full p-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 outline-none"
                 />
 
+                <label htmlFor="contact-message" className="sr-only">
+                  Your Message
+                </label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   rows="4"
                   placeholder="Your Message"
                   required
+                  aria-required="true"
+                  aria-invalid={error ? "true" : "false"}
+                  aria-describedby={error ? "contact-form-error" : undefined}
                   className="w-full p-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 outline-none"
                 />
 
                 <button
                   type="submit"
                   disabled={loading}
+                  aria-disabled={loading}
                   className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition disabled:opacity-60"
                 >
                   {loading ? "Sending..." : "Send Message"}
                 </button>
+                <p className="sr-only" aria-live="polite">
+                  {loading ? "Sending your message" : ""}
+                </p>
+                {error ? (
+                  <p
+                    id="contact-form-error"
+                    role="alert"
+                    className="text-sm text-red-600 dark:text-red-400"
+                  >
+                    {error}
+                  </p>
+                ) : null}
 
               </form>
 

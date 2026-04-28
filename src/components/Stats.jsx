@@ -3,14 +3,14 @@ import { useEffect, useRef, useState } from "react"
 import Reveal from "./Reveal"
 import { fadeUp, staggerContainer } from "../utils/animations"
 
-export default function Stats() {
-  const stats = [
-    { value: 20, suffix: "+", label: "Years Experience" },
-    { value: 500, suffix: "+", label: "Farmers Supported" },
-    { value: 50, suffix: "+", label: "Acres Cultivated" },
-    { value: 10, suffix: "K+", label: "Plants Supplied" },
-  ]
+const stats = [
+  { value: 20, suffix: "+", label: "Years Experience" },
+  { value: 500, suffix: "+", label: "Farmers Supported" },
+  { value: 50, suffix: "+", label: "Acres Cultivated" },
+  { value: 10, suffix: "K+", label: "Plants Supplied" },
+]
 
+export default function Stats() {
   const [counts, setCounts] = useState([0, 0, 0, 0])
   const [startCount, setStartCount] = useState(false)
   const sectionRef = useRef(null)

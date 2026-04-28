@@ -2,56 +2,54 @@ import { useState } from "react"
 import { FaWhatsapp, FaTimes } from "react-icons/fa"
 import { motion } from "framer-motion"
 
+const WHATSAPP_LINK = import.meta.env.VITE_WHATSAPP_LINK || "https://wa.me/94771234567"
+
 export default function Whatsapp() {
   const [show, setShow] = useState(true)
 
   return (
-    <div className="fixed bottom-5 left-6 z-50 flex flex-col items-end gap-3">
-
-      {/* Chat Bubble */}
-      {show && (
-        <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.4 }}
-          className="bg-white dark:bg-gray-900 shadow-2xl rounded-2xl p-4 pr-10 max-w-xs relative border border-gray-200 dark:border-gray-700 backdrop-blur-md"
-        >
-          {/* Close Button */}
-          <button
-            onClick={() => setShow(false)}
-            className="absolute top-2 left-2 text-gray-400 hover:text-gray-600 dark:hover:text-white transition"
-          >
-            <FaTimes size={14} />
-          </button>
-
-          {/* Message */}
-          <p className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed">
-            👋 Need help with farming?
-          </p>
-
-          <p className="text-sm text-green-600 font-semibold mt-1">
-            Chat with us on WhatsApp
-          </p>
-        </motion.div>
-      )}
+    <div className="fixed bottom-5 left-7 z-50 flex items-center gap-3">
 
       {/* WhatsApp Button */}
       <div className="relative">
 
-        {/* Pulse Effect */}
+        {/* Pulse */}
         <span className="absolute inset-0 rounded-full bg-green-500 opacity-30 animate-ping"></span>
 
         <a
-          href="https://wa.me/94771234567"
+          href={WHATSAPP_LINK}
           target="_blank"
           rel="noreferrer"
-          aria-label="Chat on WhatsApp"
-          className="relative bg-green-500 hover:bg-green-600 text-white p-4 rounded-full text-2xl shadow-xl flex items-center justify-center transition transform hover:scale-110"
+          aria-label="Chat with us on WhatsApp"
+          title="Chat with us on WhatsApp"
+          className="relative bg-green-500 hover:bg-green-600 text-white p-4 rounded-full text-2xl shadow-xl flex items-center justify-center"
         >
           <FaWhatsapp />
         </a>
-
       </div>
+
+      {/* Chat Bubble (RIGHT side of button) */}
+      {show && (
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="bg-white dark:bg-gray-900 shadow-xl rounded-xl p-3 pr-8 max-w-xs relative border"
+        >
+          {/* Close */}
+          <button
+            onClick={() => setShow(false)}
+            aria-label="Close WhatsApp prompt"
+            className="absolute top-1 right-2 text-gray-400"
+          >
+            <FaTimes size={12} />
+          </button>
+
+          <p className="text-sm">👋 Need help with farming?</p>
+          <p className="text-green-600 text-sm font-semibold">
+            Chat with us on WhatsApp
+          </p>
+        </motion.div>
+      )}
 
     </div>
   )
