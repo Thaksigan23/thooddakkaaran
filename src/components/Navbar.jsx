@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react"
-import { FaBars, FaTimes } from "react-icons/fa"
+import { FaBars, FaTimes, FaWhatsapp } from "react-icons/fa"
 import ThemeToggle from "./ThemeToggle"
 import LanguageSwitcher from "./LanguageSwitcher"
+import { WHATSAPP_LINK, CONTACT_PHONE_HREF } from "../constants/contact"
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -12,7 +13,15 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40)
 
-      const sections = ["home", "services", "store", "gallery", "contact"]
+      const sections = [
+        "home",
+        "about",
+        "services",
+        "products",
+        "testimonials",
+        "gallery",
+        "contact",
+      ]
 
       for (const section of sections) {
         const element = document.getElementById(section)
@@ -36,10 +45,12 @@ export default function Navbar() {
 
   const navLinks = [
     { id: "home", label: "Home" },
-    { id: "services", label: "Services" },
-    { id: "store", label: "Store" },
+    { id: "about", label: "About Us" },
+    { id: "services", label: "Farming Services" },
+    { id: "products", label: "Our Products" },
+    { id: "testimonials", label: "Testimonials" },
     { id: "gallery", label: "Gallery" },
-    { id: "contact", label: "Contact" },
+    { id: "contact", label: "Contact Us" },
   ]
 
   const handleMenuClose = () => setMenuOpen(false)
@@ -53,14 +64,13 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto h-18 px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-[72px]">
-          {/* Logo */}
+        <div className="flex items-center justify-between h-[72px] gap-3">
           <a
             href="#home"
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-3 group min-w-0"
             onClick={handleMenuClose}
           >
-            <div className="bg-white rounded-xl p-1.5 shadow-sm ring-1 ring-gray-200/60 transition-transform duration-300 group-hover:scale-105">
+            <div className="bg-white rounded-xl p-1.5 shadow-sm ring-1 ring-gray-200/60 transition-transform duration-300 group-hover:scale-105 shrink-0">
               <img
                 src="/images/logo.png"
                 alt="Thooddakkaaran Logo"
@@ -68,24 +78,23 @@ export default function Navbar() {
               />
             </div>
 
-            <div className="hidden sm:block">
-              <h1 className="text-base sm:text-lg font-bold tracking-wide text-green-700 dark:text-green-400 leading-none">
+            <div className="hidden sm:block min-w-0">
+              <p className="text-base sm:text-lg font-bold tracking-wide text-green-700 dark:text-green-400 leading-none truncate">
                 Thooddakkaaran
-              </h1>
-              <p className="text-xs text-gray-500 dark:text-gray-400 leading-none mt-1">
-                Premium Pomegranate Farm
+              </p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 leading-none mt-1 truncate">
+                Fruit Farm · Jaffna, Sri Lanka
               </p>
             </div>
           </a>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-4 lg:gap-6">
-            <div className="flex items-center gap-2 lg:gap-3 text-gray-700 dark:text-gray-200 font-medium">
+          <div className="hidden lg:flex items-center gap-1 min-w-0">
+            <div className="flex items-center gap-0.5 text-gray-700 dark:text-gray-200 text-xs md:text-sm font-medium">
               {navLinks.map((link) => (
                 <a
                   key={link.id}
                   href={`#${link.id}`}
-                  className={`px-4 py-2 rounded-full transition-all duration-300 ${
+                  className={`px-2.5 py-2 rounded-full transition-all duration-300 whitespace-nowrap ${
                     active === link.id
                       ? "bg-green-600 text-white shadow-sm"
                       : "hover:text-green-600 hover:bg-green-50 dark:hover:bg-white/10"
@@ -96,17 +105,15 @@ export default function Navbar() {
               ))}
             </div>
 
-            <div className="flex items-center gap-3 pl-2">
+            <div className="flex items-center gap-2 pl-1 shrink-0">
               <LanguageSwitcher />
               <ThemeToggle />
             </div>
           </div>
 
-          {/* Mobile Right Side */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex lg:hidden items-center gap-2">
             <LanguageSwitcher />
             <ThemeToggle />
-
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
@@ -120,15 +127,14 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <div
         id="mobile-nav-menu"
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        className={`lg:hidden overflow-hidden transition-all duration-300 ${
+          menuOpen ? "max-h-[32rem] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="mx-4 mb-4 rounded-2xl bg-white dark:bg-gray-900 shadow-xl border border-gray-200 dark:border-white/10">
-          <div className="flex flex-col py-4">
+          <div className="flex flex-col py-4 max-h-[70vh] overflow-y-auto">
             {navLinks.map((link) => (
               <a
                 key={link.id}
@@ -143,6 +149,23 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            <div className="flex flex-col gap-2 px-6 pt-2">
+              <a
+                href={CONTACT_PHONE_HREF}
+                className="text-center rounded-xl border border-green-200 dark:border-white/20 py-3 font-semibold text-green-700 dark:text-green-300"
+              >
+                Dial Phone Number
+              </a>
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noreferrer"
+                className="text-center rounded-xl bg-green-600 text-white py-3 font-semibold flex items-center justify-center gap-2"
+              >
+                <FaWhatsapp />
+                Open WhatsApp Chat
+              </a>
+            </div>
           </div>
         </div>
       </div>

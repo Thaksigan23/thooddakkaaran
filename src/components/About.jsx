@@ -2,10 +2,11 @@ import { motion } from "framer-motion"
 
 export default function About() {
   return (
-    <section className="py-24 px-6 bg-white dark:bg-gray-950 transition">
+    <section
+      id="about"
+      className="py-24 px-6 bg-white dark:bg-gray-950 transition"
+    >
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-
-        {/* LEFT - Image */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -14,68 +15,55 @@ export default function About() {
         >
           <img
             src="/images/gal5.png"
-            alt="Farm"
+            alt="Thooddakkaaran farm in Jaffna"
             className="rounded-3xl shadow-2xl w-full h-[420px] object-cover"
           />
 
-          {/* small overlay box */}
           <div className="absolute bottom-6 left-6 bg-white/90 dark:bg-black/70 backdrop-blur-md p-4 rounded-xl shadow-lg">
             <h4 className="text-lg font-semibold text-green-600">
-              Sustainable Farming
+              Our Story
             </h4>
             <p className="text-sm text-gray-600 dark:text-gray-300">
-              Modern + Traditional Techniques
+              Jaffna · Northern Province
             </p>
           </div>
         </motion.div>
 
-        {/* RIGHT - Content */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Title */}
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
-            About Thooddakkaaran
+            Our Story
           </h2>
 
-          {/* Description */}
-          <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-6">
-            Thooddakkaaran Private Limited is a leading agri-based company in
-            Sri Lanka specializing in premium pomegranate and dragon fruit
-            cultivation. We combine traditional farming knowledge with modern
-            agricultural techniques to ensure high-quality, nutritious produce.
-          </p>
-
-          {/* Points */}
-          <div className="space-y-4">
-
-            <div className="flex items-start gap-3">
-              <span className="w-2 h-2 mt-2 rounded-full bg-green-500"></span>
-              <p className="text-gray-600 dark:text-gray-400">
-                Sustainable and eco-friendly farming practices
-              </p>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <span className="w-2 h-2 mt-2 rounded-full bg-green-500"></span>
-              <p className="text-gray-600 dark:text-gray-400">
-                Premium quality fruit cultivation
-              </p>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <span className="w-2 h-2 mt-2 rounded-full bg-green-500"></span>
-              <p className="text-gray-600 dark:text-gray-400">
-                Expert support for Sri Lankan farmers
-              </p>
-            </div>
-
+          <div className="space-y-5 text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+            <p>
+              Thooddakkaaran, which means &quot;the one who tends the
+              garden&quot; in Tamil, was built on a straightforward idea: Sri
+              Lanka deserves premium-quality fruits and natural products grown
+              right here on our own soil.
+            </p>
+            <p>
+              Based in Jaffna, Northern Province, we cultivate pomegranates,
+              dragon fruit, watermelon, and guava using sustainable farming
+              practices that respect both the land and the people who work it.
+              What started as a farming operation has grown into something
+              broader — a trusted agricultural brand with its own line of
+              natural products including pure cow ghee, drinking yogurt, and
+              freshly pressed pomegranate juice, all crafted from the fruits and
+              produce of our own farm.
+            </p>
+            <p>
+              We work with wholesale buyers, retailers, hotels, individual
+              consumers, and fellow farmers across Sri Lanka. Whatever your need
+              — whether it is a weekly fruit order, a bulk supply agreement,
+              quality saplings, or expert farm consultation — Thooddakkaaran is
+              your partner from the ground up.
+            </p>
           </div>
-
         </motion.div>
-
       </div>
     </section>
   )

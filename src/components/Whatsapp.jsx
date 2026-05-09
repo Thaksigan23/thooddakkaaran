@@ -1,8 +1,7 @@
 import { useState } from "react"
 import { FaWhatsapp, FaTimes } from "react-icons/fa"
 import { motion } from "framer-motion"
-
-const WHATSAPP_LINK = import.meta.env.VITE_WHATSAPP_LINK || "https://wa.me/94771234567"
+import { WHATSAPP_LINK } from "../constants/contact"
 
 export default function Whatsapp() {
   const [show, setShow] = useState(true)

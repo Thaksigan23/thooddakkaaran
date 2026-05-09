@@ -4,7 +4,7 @@ import Reveal from "./Reveal"
 import { fadeUp, staggerContainer } from "../utils/animations"
 
 const stats = [
-  { value: 20, suffix: "+", label: "Years Experience" },
+  { value: 40, suffix: "+", label: "Years Farming Expertise" },
   { value: 500, suffix: "+", label: "Farmers Supported" },
   { value: 50, suffix: "+", label: "Acres Cultivated" },
   { value: 10, suffix: "K+", label: "Plants Supplied" },

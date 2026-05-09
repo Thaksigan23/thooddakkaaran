@@ -68,8 +68,9 @@ export default function Contact() {
             </h2>
 
             <p className="text-gray-600 dark:text-gray-400 text-lg">
-              Get in touch for premium fruit cultivation, plant supply, and
-              expert farming consultation in Sri Lanka.
+              Enquire about fruits, dairy, and beverages, request wholesale
+              pricing, book a farm consultation, or ask about saplings — we
+              supply and deliver across Sri Lanka.
             </p>
           </div>
         </Reveal>
@@ -136,8 +137,8 @@ export default function Contact() {
               </h3>
 
               <p className="text-sm text-green-100">
-                We provide expert agricultural advice, high-quality plants, and
-                sustainable farming solutions tailored for Sri Lankan farmers.
+                From supply enquiries and bulk pricing to saplings and on-farm
+                guidance — tell us what you need and we will respond promptly.
               </p>
             </div>
 

@@ -1,29 +1,40 @@
 import { motion } from "framer-motion"
-import { FaLeaf, FaSeedling, FaUsers, FaChartLine } from "react-icons/fa"
+import {
+  FaAward,
+  FaSeedling,
+  FaHeart,
+  FaUsers,
+  FaTruck,
+} from "react-icons/fa"
 import Reveal from "./Reveal"
 import { fadeUp, staggerContainer } from "../utils/animations"
 
 export default function WhyChooseUs() {
   const reasons = [
     {
-      icon: <FaLeaf />,
-      title: "5+ Years of Farming Experience",
-      desc: "Our team understands the realities of modern agriculture and sustainable farming practices across Sri Lanka.",
+      icon: <FaAward />,
+      title: "40+ Years of Farming Expertise",
+      desc: "Generations of experience in agriculture and food production allow us to understand quality from the root level. We bring traditional knowledge together with modern practices.",
     },
     {
       icon: <FaSeedling />,
       title: "Farm-to-Product Integrity",
-      desc: "Because we grow our own fruits, we ensure freshness, purity, and natural quality in every product.",
+      desc: "We grow and source many of our ingredients directly, ensuring full control over freshness, hygiene, and natural quality from start to finish.",
+    },
+    {
+      icon: <FaHeart />,
+      title: "Naturally Fresh & Hygienic Production",
+      desc: "Every product is carefully processed under strict hygiene standards to maintain purity, taste, and nutritional value without compromise.",
     },
     {
       icon: <FaUsers />,
-      title: "Strategic Farmer Partnerships",
-      desc: "We work closely with local farmers, building long-term partnerships that support collective agricultural growth.",
+      title: "Trusted by Local Communities",
+      desc: "Our products are widely trusted by retailers, distributors, and families who value consistent quality and authentic taste.",
     },
     {
-      icon: <FaChartLine />,
-      title: "Eco-Friendly Agriculture",
-      desc: "Our sustainable farming methods improve soil health, conserve resources, and increase long-term productivity.",
+      icon: <FaTruck />,
+      title: "Reliable Supply & Distribution",
+      desc: "We ensure timely delivery and stable supply chains, supporting both small businesses and large-scale distributors efficiently.",
     },
   ]
 
@@ -44,18 +55,18 @@ export default function WhyChooseUs() {
             </h2>
 
             <p className="text-center text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-              We deliver reliable farming solutions and trusted produce that
-              reflect the true value of sustainable agriculture in Sri Lanka.
+              Quality from our fields, transparency in our process, and
+              dependable supply for partners across Sri Lanka.
             </p>
           </div>
         </Reveal>
 
         <motion.div
-          variants={staggerContainer(0.15, 0.1)}
+          variants={staggerContainer(0.12, 0.08)}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid sm:grid-cols-2 xl:grid-cols-4 gap-8"
+          viewport={{ once: true, amount: 0.12 }}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8"
         >
           {reasons.map((item, index) => (
             <motion.div

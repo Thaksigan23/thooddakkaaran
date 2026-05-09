@@ -32,8 +32,8 @@ export default function Gallery() {
           </h2>
 
           <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-            Explore our farms, fruit cultivation, and the sustainable
-            agricultural practices that support farmers across Sri Lanka.
+            A glimpse of our Jaffna farm — fruit cultivation, harvests, and the
+            care that goes into every crop and product.
           </p>
         </div>
       </Reveal>

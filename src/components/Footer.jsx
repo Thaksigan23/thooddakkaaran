@@ -7,6 +7,7 @@ import {
   FaEnvelope,
   FaPhoneAlt,
 } from "react-icons/fa"
+import { WHATSAPP_LINK } from "../constants/contact"
 
 export default function Footer() {
   const socialLinks = [
@@ -27,24 +28,26 @@ export default function Footer() {
     },
     {
       icon: <FaWhatsapp />,
-      href: "https://wa.me/94700000000",
+      href: WHATSAPP_LINK,
       label: "WhatsApp",
     },
   ]
 
   const quickLinks = [
     { name: "Home", href: "#home" },
-    { name: "Services", href: "#services" },
-    { name: "Store", href: "#store" },
+    { name: "About Us", href: "#about" },
+    { name: "Farming Services", href: "#services" },
+    { name: "Our Products", href: "#products" },
+    { name: "Testimonials", href: "#testimonials" },
     { name: "Gallery", href: "#gallery" },
-    { name: "Contact", href: "#contact" },
+    { name: "Contact Us", href: "#contact" },
   ]
 
   const services = [
-    "Pomegranate Cultivation",
-    "Farm Consultation",
-    "Plant Supply",
-    "Sustainable Agriculture",
+    "Fresh fruit & saplings",
+    "Farm consultation",
+    "Natural dairy & beverages",
+    "Wholesale & retail supply",
   ]
 
   return (
@@ -70,14 +73,14 @@ export default function Footer() {
                   Thooddakkaaran
                 </h2>
                 <p className="text-sm text-green-300">
-                  Premium Pomegranate Farm
+                  Fruit farm · Jaffna, Sri Lanka
                 </p>
               </div>
             </div>
 
             <p className="text-gray-400 mt-5 text-sm leading-7">
-              Trusted agriculture company in Sri Lanka specializing in premium
-              pomegranate farming, plant supply, and modern farming consultation.
+              Premium fruits, natural dairy, and farm-made beverages from our
+              Jaffna farm — with expert support for farmers across Sri Lanka.
             </p>
 
             {/* Contact Info */}

@@ -20,7 +20,10 @@ export default function Testimonials() {
   ]
 
   return (
-    <section className="py-24 px-6 bg-gradient-to-r from-green-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 transition">
+    <section
+      id="testimonials"
+      className="py-24 px-6 bg-gradient-to-r from-green-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 transition"
+    >
       <Reveal>
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block px-4 py-2 rounded-full bg-green-100 dark:bg-white/10 text-green-700 dark:text-green-300 text-sm font-semibold mb-4">
@@ -32,8 +35,8 @@ export default function Testimonials() {
           </h2>
 
           <p className="text-gray-600 dark:text-gray-400 text-lg">
-            Hear from farmers across Sri Lanka who trust our farming solutions,
-            high-quality plants, and expert consultation services.
+            Hear from farmers, buyers, and partners who trust our produce,
+            products, and farm support across Sri Lanka.
           </p>
         </div>
       </Reveal>

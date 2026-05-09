@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar"
 import Hero from "./components/Hero"
 import About from "./components/About"
 import Services from "./components/Services"
-import StoreLaunch from "./components/StoreLaunch"
+import Products from "./components/Products"
 import WhyChooseUs from "./components/WhyChooseUs"
 import Stats from "./components/Stats"
 import VisionMission from "./components/VisionMission"
@@ -48,12 +48,12 @@ function App() {
             <Hero />
             <About />
             <Services />
-            <StoreLaunch />
+            <Products />
             <WhyChooseUs />
             <Stats />
             <VisionMission />
-            <Gallery />
             <Testimonials />
+            <Gallery />
             <Instagram />
             <Map />
             <Contact />
