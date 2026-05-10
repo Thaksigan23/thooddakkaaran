@@ -1,34 +1,44 @@
 import { motion } from "framer-motion"
 import { FaArrowRight, FaWhatsapp } from "react-icons/fa"
 import Reveal from "./Reveal"
+import GrowSectionImage from "./GrowSectionImage"
 import { fadeUp, staggerContainer } from "../utils/animations"
 import { WHATSAPP_LINK } from "../constants/contact"
 import { ECOMMERCE_STORE_URL } from "../constants/site"
 
+/** Original farm photos in public/images/grow/ (see README there). */
 const fruits = [
   {
     title: "Pomegranate, Our Signature Harvest",
     description:
       "Jaffna's dry, sun-rich climate produces pomegranates with exceptional sweetness, deep ruby-red arils, and thick skin that travels well. Our pomegranates are available for wholesale bulk supply, retail packaging, and direct home delivery across Sri Lanka.",
-    image: "/images/gal1.png",
+    image: "/images/grow/pomegranate.png",
+    imageWebp: "/images/grow/pomegranate.webp",
+    imageFallback: "/images/gal1.png",
   },
   {
     title: "Dragon Fruit",
     description:
       "We cultivate dragon fruit suited to Sri Lanka's tropical conditions. Increasingly popular among health-conscious consumers, hotels, and juice bars, our dragon fruit is vibrant, fresh, and supplied directly from our farm.",
-    image: "/images/gal2.png",
+    image: "/images/grow/dragon-fruit.png",
+    imageWebp: "/images/grow/dragon-fruit.webp",
+    imageFallback: "/images/gal2.png",
   },
   {
     title: "Watermelon",
     description:
       "Grown under Jaffna's warm sun and open skies, our watermelons are naturally sweet, juicy, and refreshing. Ideal for supermarkets, fruit vendors, hotels, and bulk seasonal supply, each harvest is carefully cultivated for freshness and quality.",
-    image: "/images/gal3.png",
+    image: "/images/grow/watermelon.png",
+    imageWebp: "/images/grow/watermelon.webp",
+    imageFallback: "/images/gal3.png",
   },
   {
     title: "Guava",
     description:
       "Our farm-grown guavas are rich in flavour, naturally aromatic, and packed with nutrients. Harvested fresh and supplied directly from our fields, they are perfect for retail markets, juice shops, and health-conscious consumers across Sri Lanka.",
-    image: "/images/gal4.png",
+    image: "/images/grow/guava.png",
+    imageWebp: "/images/grow/guava.webp",
+    imageFallback: "/images/gal4.png",
   },
 ]
 
@@ -170,10 +180,12 @@ export default function Products() {
                   variants={fadeUp()}
                   className="rounded-[1.75rem] border border-emerald-100 dark:border-white/10 bg-white/85 dark:bg-white/5 backdrop-blur-xl overflow-hidden shadow-xl"
                 >
-                  <img
-                    src={fruit.image}
-                    alt=""
-                    className="h-48 w-full object-cover"
+                  <GrowSectionImage
+                    primarySrc={fruit.image}
+                    alternateSrc={fruit.imageWebp}
+                    fallbackSrc={fruit.imageFallback}
+                    alt={fruit.title}
+                    className="h-52 sm:h-56 w-full object-cover"
                   />
                   <div className="p-8">
                     <h4 className="text-xl font-bold mb-3">{fruit.title}</h4>
