@@ -8,6 +8,7 @@ import {
   FaPhoneAlt,
 } from "react-icons/fa"
 import { WHATSAPP_LINK } from "../constants/contact"
+import { INSTAGRAM_PROFILE_URL } from "../constants/social"
 
 export default function Footer() {
   const socialLinks = [
@@ -18,7 +19,7 @@ export default function Footer() {
     },
     {
       icon: <FaInstagram />,
-      href: "https://instagram.com/",
+      href: INSTAGRAM_PROFILE_URL,
       label: "Instagram",
     },
     {
