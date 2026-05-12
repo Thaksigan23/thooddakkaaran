@@ -10,6 +10,8 @@ import {
 import { WHATSAPP_LINK } from "../constants/contact"
 import { INSTAGRAM_PROFILE_URL } from "../constants/social"
 
+const year = new Date().getFullYear()
+
 export default function Footer() {
   const socialLinks = [
     {
@@ -110,6 +112,7 @@ export default function Footer() {
                   href={item.href}
                   target="_blank"
                   rel="noreferrer"
+                  aria-label={item.label}
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-green-500 transition"
                 >
                   {item.icon}
@@ -159,7 +162,7 @@ export default function Footer() {
         <div className="pt-6 flex flex-col lg:flex-row items-center justify-between gap-4">
           
           <p className="text-gray-400 text-sm text-center lg:text-left">
-            © 2026 Thooddakkaaran Pvt Ltd. All rights reserved.
+            © {year} Thooddakkaaran Pvt Ltd. All rights reserved.
           </p>
 
           <div className="flex items-center gap-2 text-sm text-gray-400">
