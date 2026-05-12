@@ -27,6 +27,7 @@ const STATIC_FALLBACK = [
 export default function Instagram() {
   const [items, setItems] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [feedNotice, setFeedNotice] = useState(null)
 
   useEffect(() => {
     let cancelled = false
@@ -43,7 +44,11 @@ export default function Instagram() {
         if (cancelled) return
 
         const posts = Array.isArray(data.posts) ? data.posts : []
+        const configured = Boolean(data.configured)
+        const apiError = typeof data.error === "string" ? data.error : ""
+
         if (posts.length > 0) {
+          setFeedNotice(null)
           setItems(
             posts.map((p) => ({
               src: p.src,
@@ -52,10 +57,20 @@ export default function Instagram() {
             }))
           )
         } else {
+          if (configured && apiError) {
+            setFeedNotice("Live feed is temporarily unavailable; showing highlights below.")
+          } else if (configured && !apiError) {
+            setFeedNotice(null)
+          } else {
+            setFeedNotice(null)
+          }
           setItems(STATIC_FALLBACK)
         }
       } catch {
-        if (!cancelled) setItems(STATIC_FALLBACK)
+        if (!cancelled) {
+          setFeedNotice(null)
+          setItems(STATIC_FALLBACK)
+        }
       } finally {
         if (!cancelled) setLoading(false)
       }
@@ -84,6 +99,15 @@ export default function Instagram() {
           Follow our farming journey and explore how we cultivate premium fruits
           across Sri Lanka.
         </p>
+        {feedNotice ? (
+          <p
+            className="mt-4 text-sm text-amber-800 dark:text-amber-200/90"
+            role="status"
+            aria-live="polite"
+          >
+            {feedNotice}
+          </p>
+        ) : null}
       </div>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

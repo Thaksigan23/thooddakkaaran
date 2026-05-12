@@ -1,14 +1,19 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import "./i18n/i18n"
+import { StrictMode } from "react"
+import { createRoot } from "react-dom/client"
+import { I18nextProvider } from "react-i18next"
+import "./index.css"
+import App from "./App.jsx"
+import i18n from "./i18n/i18n"
 import AOS from "aos"
 import "aos/dist/aos.css"
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
+    <I18nextProvider i18n={i18n}>
+      <App />
+    </I18nextProvider>
+  </StrictMode>
 )
-AOS.init()
+
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+AOS.init({ disable: reduceMotion })

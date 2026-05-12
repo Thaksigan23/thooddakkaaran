@@ -26,6 +26,13 @@ export default function Contact() {
     e.preventDefault()
     setError("")
 
+    const hp = form.current?.elements?.namedItem("company_website")
+    if (hp && "value" in hp && hp.value) {
+      setSuccess(true)
+      form.current.reset()
+      return
+    }
+
     if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
       setError("Contact form is not configured yet. Please try WhatsApp or email.")
       return
@@ -167,6 +174,14 @@ export default function Contact() {
                 className="space-y-5"
                 aria-busy={loading}
               >
+                <input
+                  type="text"
+                  name="company_website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="absolute opacity-0 left-[-9999px] top-0 h-px w-px overflow-hidden"
+                />
 
                 <label htmlFor="contact-name" className="sr-only">
                   Your Name

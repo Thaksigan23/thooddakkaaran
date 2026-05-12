@@ -3,10 +3,43 @@
  * Set INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCOUNT_ID in Vercel
  * project → Settings → Environment Variables (never commit tokens).
  *
+ * Optional: ALLOWED_CORS_ORIGINS=comma,separated,origins for cross-origin GET.
+ *
  * Meta docs: https://developers.facebook.com/docs/instagram-api/
  */
 
+function applyCors(req, res) {
+  const origin = req.headers.origin
+  const list = (process.env.ALLOWED_CORS_ORIGINS || "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean)
+
+  if (origin && list.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin)
+    res.setHeader("Vary", "Origin")
+  }
+}
+
 export default async function handler(req, res) {
+  applyCors(req, res)
+
+  if (req.method === "OPTIONS") {
+    res.statusCode = 204
+    res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS")
+    if (req.headers.origin) {
+      const list = (process.env.ALLOWED_CORS_ORIGINS || "")
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean)
+      if (list.includes(req.headers.origin)) {
+        res.setHeader("Access-Control-Allow-Origin", req.headers.origin)
+      }
+    }
+    res.setHeader("Access-Control-Max-Age", "86400")
+    return res.end()
+  }
+
   if (req.method !== "GET") {
     res.statusCode = 405
     return res.end("Method Not Allowed")
@@ -44,6 +77,7 @@ export default async function handler(req, res) {
 
     if (!igRes.ok || json.error) {
       const msg = json.error?.message || igRes.statusText || "Instagram API error"
+      console.error("[api/instagram] Graph API error:", msg)
       res.statusCode = 502
       res.setHeader("Content-Type", "application/json")
       return res.end(JSON.stringify({ configured: true, posts: [], error: msg }))
@@ -77,13 +111,15 @@ export default async function handler(req, res) {
     )
     return res.end(JSON.stringify({ configured: true, posts }))
   } catch (e) {
+    const message = e instanceof Error ? e.message : "Unknown error"
+    console.error("[api/instagram] Unexpected error:", message)
     res.statusCode = 500
     res.setHeader("Content-Type", "application/json")
     return res.end(
       JSON.stringify({
         configured: true,
         posts: [],
-        error: e instanceof Error ? e.message : "Unknown error",
+        error: message,
       })
     )
   }

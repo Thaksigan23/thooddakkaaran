@@ -7,7 +7,7 @@
     <!-- Prevent Google Auto Translate -->
     <meta name="google" content="notranslate" />
 
-    <!-- Primary SEO -->
+    <!-- Primary SEO: canonical/OG URLs injected at build (see VITE_SITE_URL in .env.example) -->
     <title>Thooddakkaaran | Official Site — Jaffna Farm, Fruits &amp; Natural Products</title>
     <meta
       name="description"
@@ -22,7 +22,7 @@
     <meta name="robots" content="index, follow" />
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://thooddakkaaran.vercel.app/" />
+    <link rel="canonical" href="__SITE_URL__/" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
@@ -39,8 +39,8 @@
       property="og:description"
       content="Official company site: fresh fruit, natural dairy &amp; beverages from our Jaffna farm, plus farmer support and wholesale supply across Sri Lanka."
     />
-    <meta property="og:image" content="https://thooddakkaaran.vercel.app/images/farm1.jpg" />
-    <meta property="og:url" content="https://thooddakkaaran.vercel.app/" />
+    <meta property="og:image" content="__SITE_URL__/images/farm1.jpg" />
+    <meta property="og:url" content="__SITE_URL__/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Thooddakkaaran" />
     <meta property="og:locale" content="en_LK" />
@@ -52,7 +52,7 @@
       name="twitter:description"
       content="Official company site: fruit farm, natural products, and agricultural services in Sri Lanka."
     />
-    <meta name="twitter:image" content="https://thooddakkaaran.vercel.app/images/farm1.jpg" />
+    <meta name="twitter:image" content="__SITE_URL__/images/farm1.jpg" />
     <meta name="twitter:site" content="@thooddakkaaran" />
 
     <script type="application/ld+json">
@@ -60,8 +60,8 @@
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Thooddakkaaran Private Limited",
-        "url": "https://thooddakkaaran.vercel.app/",
-        "logo": "https://thooddakkaaran.vercel.app/images/logo.png",
+        "url": "__SITE_URL__/",
+        "logo": "__SITE_URL__/images/logo.png",
         "email": "info@thooddakkaaran.com",
         "telephone": "+94 70 000 0000",
         "address": {
@@ -69,32 +69,13 @@
           "addressLocality": "Mirusuvil",
           "addressCountry": "LK"
         },
-        "sameAs": [
-          "https://www.instagram.com/"
-        ]
-      }
-    </script>
-
-    <!-- Google Analytics -->
-    <script>
-      if (location.hostname !== "localhost") {
-        const script = document.createElement("script");
-        script.src = "https://www.googletagmanager.com/gtag/js?id=G-CL1706T4YQ";
-        script.async = true;
-        document.head.appendChild(script);
-
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          dataLayer.push(arguments);
-        }
-        window.gtag = gtag;
-        gtag("js", new Date());
-        gtag("config", "G-CL1706T4YQ");
+        "sameAs": ["__INSTAGRAM_URL__"]
       }
     </script>
   </head>
 
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

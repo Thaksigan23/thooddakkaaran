@@ -2,9 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Skip link (visible on keyboard focus) */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 200;
+}
+.skip-link:focus {
+  left: 0.75rem;
+  top: 0.75rem;
+  width: auto;
+  height: auto;
+  padding: 0.75rem 1rem;
+  overflow: visible;
+  @apply rounded-lg bg-green-600 text-white font-semibold shadow-lg outline-none ring-2 ring-white ring-offset-2 ring-offset-green-700;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .gradient-bg {
+    animation: none;
+  }
 }
 
 /* Body styling + theme background */
