@@ -111,7 +111,7 @@ export default function Footer() {
                   key={i}
                   href={item.href}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   aria-label={item.label}
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-green-500 transition"
                 >
@@ -170,7 +170,7 @@ export default function Footer() {
             <a
               href="https://www.techloom.ai/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               <img
                 src="/images/techloom.png"

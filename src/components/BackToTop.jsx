@@ -18,9 +18,10 @@ export default function BackToTop() {
   }, [])
 
   const scrollToTop = () => {
+    const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: smooth ? "smooth" : "auto",
     })
   }
 

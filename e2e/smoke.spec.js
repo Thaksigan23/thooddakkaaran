@@ -15,4 +15,12 @@ test.describe("smoke", () => {
     await skip.focus()
     await expect(skip).toBeFocused()
   })
+
+  test("robots.txt is reachable", async ({ request }) => {
+    const res = await request.get("/robots.txt")
+    expect(res.ok()).toBeTruthy()
+    const text = await res.text()
+    expect(text).toMatch(/User-agent/i)
+    expect(text).toMatch(/Sitemap:/i)
+  })
 })
