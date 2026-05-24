@@ -75,7 +75,7 @@
 ## 9. Deployment cutover
 
 - [ ] 9.1 In Vercel project settings, add every `NEXT_PUBLIC_*` env var (Production + Preview scope) with the same value as its existing `VITE_*` counterpart; leave the old `VITE_*` keys in place for rollback
-- [ ] 9.2 Push the branch and open a PR; review the Vercel preview deployment URL
+- [~] 9.2 Branch `chore/upgrade-to-nextjs` pushed to `origin` (commit `f9f7e5c`); PR creation and Vercel preview review remain for the owner. GitHub PR URL: https://github.com/Thaksigan23/thooddakkaaran/pull/new/chore/upgrade-to-nextjs
 - [ ] 9.3 On the preview URL, manually verify: hero renders, language/theme toggles work, Instagram feed loads or shows the configured fallback, contact form submits, security headers are present (`curl -I`)
 - [ ] 9.4 Merge to `main` and watch the production deploy
 - [ ] 9.5 After 7 days of stable production with no rollback, delete the obsolete `VITE_*` env vars in the Vercel dashboard (no code change)
