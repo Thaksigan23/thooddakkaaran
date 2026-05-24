@@ -2,34 +2,33 @@
 
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
+import { useTranslation } from "react-i18next"
 import { FaInstagram } from "react-icons/fa"
 import {
   INSTAGRAM_FEED_API_URL,
   INSTAGRAM_PROFILE_URL,
 } from "../constants/social"
 
-const STATIC_FALLBACK = [
-  {
-    src: "/images/insta1.jpg",
-    permalink: INSTAGRAM_PROFILE_URL,
-    caption: "Thooddakkaaran on Instagram",
-  },
-  {
-    src: "/images/insta2.png",
-    permalink: INSTAGRAM_PROFILE_URL,
-    caption: "Thooddakkaaran on Instagram",
-  },
-  {
-    src: "/images/insta3.png",
-    permalink: INSTAGRAM_PROFILE_URL,
-    caption: "Thooddakkaaran on Instagram",
-  },
+const STATIC_FALLBACK_IMAGES = [
+  "/images/insta1.jpg",
+  "/images/insta2.png",
+  "/images/insta3.png",
 ]
 
 export default function Instagram() {
+  const { t } = useTranslation()
   const [items, setItems] = useState(null)
   const [loading, setLoading] = useState(true)
   const [feedNotice, setFeedNotice] = useState(null)
+
+  const fallbackCaption = t("instagram.fallbackCaption")
+  const postAlt = t("instagram.postAlt")
+
+  const staticFallback = STATIC_FALLBACK_IMAGES.map((src) => ({
+    src,
+    permalink: INSTAGRAM_PROFILE_URL,
+    caption: fallbackCaption,
+  }))
 
   useEffect(() => {
     let cancelled = false
@@ -55,23 +54,21 @@ export default function Instagram() {
             posts.map((p) => ({
               src: p.src,
               permalink: p.permalink,
-              caption: p.caption || "Instagram post",
+              caption: p.caption || postAlt,
             }))
           )
         } else {
           if (configured && apiError) {
-            setFeedNotice("Live feed is temporarily unavailable; showing highlights below.")
-          } else if (configured && !apiError) {
-            setFeedNotice(null)
+            setFeedNotice(t("instagram.feedUnavailable"))
           } else {
             setFeedNotice(null)
           }
-          setItems(STATIC_FALLBACK)
+          setItems(staticFallback)
         }
       } catch {
         if (!cancelled) {
           setFeedNotice(null)
-          setItems(STATIC_FALLBACK)
+          setItems(staticFallback)
         }
       } finally {
         if (!cancelled) setLoading(false)
@@ -82,24 +79,24 @@ export default function Instagram() {
     return () => {
       cancelled = true
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const grid = items ?? STATIC_FALLBACK
+  const grid = items ?? staticFallback
 
   return (
     <section className="py-24 px-6 bg-gray-50 dark:bg-gray-950 transition-colors duration-500">
       <div className="text-center max-w-3xl mx-auto mb-16">
         <span className="inline-block px-4 py-2 rounded-full bg-green-100 dark:bg-white/10 text-green-700 dark:text-green-300 text-sm font-semibold mb-4">
-          Social Media
+          {t("instagram.tag")}
         </span>
 
         <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-          Instagram Updates
+          {t("instagram.headline")}
         </h2>
 
         <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-          Follow our farming journey and explore how we cultivate premium fruits
-          across Sri Lanka.
+          {t("instagram.intro")}
         </p>
         {feedNotice ? (
           <p
@@ -133,7 +130,7 @@ export default function Instagram() {
               >
                 <img
                   src={img.src}
-                  alt={img.caption || "Instagram post"}
+                  alt={img.caption || postAlt}
                   className="w-full h-80 object-cover group-hover:scale-110 transition duration-500"
                   loading="lazy"
                   decoding="async"
@@ -154,7 +151,7 @@ export default function Instagram() {
           className="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-red-500 hover:opacity-90 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition"
         >
           <FaInstagram />
-          Follow on Instagram
+          {t("instagram.follow")}
         </a>
       </div>
     </section>

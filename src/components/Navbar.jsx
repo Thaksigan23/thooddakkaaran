@@ -1,12 +1,14 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useTranslation } from "react-i18next"
 import { FaBars, FaTimes, FaWhatsapp } from "react-icons/fa"
 import ThemeToggle from "./ThemeToggle"
 import LanguageSwitcher from "./LanguageSwitcher"
 import { WHATSAPP_LINK, CONTACT_PHONE_HREF } from "../constants/contact"
 
 export default function Navbar() {
+  const { t } = useTranslation()
   const [menuOpen, setMenuOpen] = useState(false)
   const [active, setActive] = useState("home")
   const [scrolled, setScrolled] = useState(false)
@@ -46,13 +48,13 @@ export default function Navbar() {
   }, [])
 
   const navLinks = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About Us" },
-    { id: "services", label: "Farming Services" },
-    { id: "products", label: "Our Products" },
-    { id: "testimonials", label: "Testimonials" },
-    { id: "gallery", label: "Gallery" },
-    { id: "contact", label: "Contact Us" },
+    { id: "home", label: t("nav.home") },
+    { id: "about", label: t("nav.about") },
+    { id: "services", label: t("nav.services") },
+    { id: "products", label: t("nav.products") },
+    { id: "testimonials", label: t("nav.testimonials") },
+    { id: "gallery", label: t("nav.gallery") },
+    { id: "contact", label: t("nav.contact") },
   ]
 
   const handleMenuClose = () => setMenuOpen(false)
@@ -75,7 +77,7 @@ export default function Navbar() {
             <div className="bg-white rounded-xl p-1.5 shadow-sm ring-1 ring-gray-200/60 transition-transform duration-300 group-hover:scale-105 shrink-0">
               <img
                 src="/images/logo.png"
-                alt="Thooddakkaaran Logo"
+                alt={t("nav.logoAlt")}
                 className="h-10 sm:h-11 w-auto object-contain"
               />
             </div>
@@ -85,7 +87,7 @@ export default function Navbar() {
                 Thooddakkaaran
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400 leading-none mt-1 truncate">
-                Fruit Farm · Jaffna, Sri Lanka
+                {t("nav.tagline")}
               </p>
             </div>
           </a>
@@ -118,7 +120,7 @@ export default function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Toggle menu"
+              aria-label={t("nav.toggleMenu")}
               aria-expanded={menuOpen}
               aria-controls="mobile-nav-menu"
               className="w-10 h-10 rounded-full flex items-center justify-center bg-green-600 text-white shadow-sm hover:bg-green-700 transition"
@@ -156,7 +158,7 @@ export default function Navbar() {
                 href={CONTACT_PHONE_HREF}
                 className="text-center rounded-xl border border-green-200 dark:border-white/20 py-3 font-semibold text-green-700 dark:text-green-300"
               >
-                Dial Phone Number
+                {t("nav.dialPhone")}
               </a>
               <a
                 href={WHATSAPP_LINK}
@@ -165,7 +167,7 @@ export default function Navbar() {
                 className="text-center rounded-xl bg-green-600 text-white py-3 font-semibold flex items-center justify-center gap-2"
               >
                 <FaWhatsapp />
-                Open WhatsApp Chat
+                {t("nav.openWhatsapp")}
               </a>
             </div>
           </div>

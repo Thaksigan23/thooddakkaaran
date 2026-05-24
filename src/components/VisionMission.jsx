@@ -1,17 +1,16 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useTranslation } from "react-i18next"
 import { FaEye, FaBullseye, FaCheckCircle } from "react-icons/fa"
 import Reveal from "./Reveal"
 import { fadeUp, staggerContainer } from "../utils/animations"
 
 export default function VisionMission() {
-  const missionPoints = [
-    "Grow premium quality fruits",
-    "Create nutritious farm-based products",
-    "Empower farmers with expert guidance",
-    "Promote sustainable agriculture",
-  ]
+  const { t } = useTranslation()
+  const missionPoints = t("vision_mission.mission.points", {
+    returnObjects: true,
+  })
 
   return (
     <section className="py-24 px-6 bg-gray-50 dark:bg-gray-900 transition">
@@ -19,16 +18,15 @@ export default function VisionMission() {
         <Reveal>
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-block px-4 py-2 rounded-full bg-green-100 dark:bg-white/10 text-green-700 dark:text-green-300 text-sm font-semibold mb-4">
-              Vision & Mission
+              {t("vision_mission.tag")}
             </span>
 
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Our Purpose for Growth
+              {t("vision_mission.headline")}
             </h2>
 
             <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-              We are committed to building a strong agricultural future through
-              trusted farming, quality produce, and sustainable practices in Sri Lanka.
+              {t("vision_mission.intro")}
             </p>
           </div>
         </Reveal>
@@ -51,12 +49,11 @@ export default function VisionMission() {
             </div>
 
             <h3 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-              Our Vision
+              {t("vision_mission.vision.title")}
             </h3>
 
             <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-              To build a trusted agricultural brand that delivers purity,
-              supports farmers, and promotes sustainable farming for future generations.
+              {t("vision_mission.vision.description")}
             </p>
           </motion.div>
 
@@ -71,19 +68,21 @@ export default function VisionMission() {
             </div>
 
             <h3 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-              Our Mission
+              {t("vision_mission.mission.title")}
             </h3>
 
             <ul className="space-y-4">
-              {missionPoints.map((point, index) => (
-                <li
-                  key={index}
-                  className="flex items-start gap-3 text-gray-600 dark:text-gray-400"
-                >
-                  <FaCheckCircle className="text-green-500 mt-1 shrink-0" />
-                  <span className="text-lg leading-relaxed">{point}</span>
-                </li>
-              ))}
+              {(Array.isArray(missionPoints) ? missionPoints : []).map(
+                (point) => (
+                  <li
+                    key={point}
+                    className="flex items-start gap-3 text-gray-600 dark:text-gray-400"
+                  >
+                    <FaCheckCircle className="text-green-500 mt-1 shrink-0" />
+                    <span className="text-lg leading-relaxed">{point}</span>
+                  </li>
+                )
+              )}
             </ul>
           </motion.div>
         </motion.div>

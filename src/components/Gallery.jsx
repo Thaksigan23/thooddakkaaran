@@ -2,21 +2,28 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useTranslation } from "react-i18next"
 import { FaTimes } from "react-icons/fa"
 import Reveal from "./Reveal"
 import { fadeUp, staggerContainer, scaleIn } from "../utils/animations"
 
-export default function Gallery() {
-  const images = [
-    { src: "/images/gal1.png", title: "Premium Fruit Cultivation" },
-    { src: "/images/gal2.png", title: "Healthy Farm Growth" },
-    { src: "/images/gal3.png", title: "Quality Harvesting" },
-    { src: "/images/gal4.png", title: "Modern Farming Techniques" },
-    { src: "/images/gal5.png", title: "Sustainable Agriculture" },
-    { src: "/images/gal6.png", title: "Farmer Support Services" },
-  ]
+const GALLERY_DEFS = [
+  { key: "premium", src: "/images/gal1.png" },
+  { key: "growth", src: "/images/gal2.png" },
+  { key: "harvest", src: "/images/gal3.png" },
+  { key: "modern", src: "/images/gal4.png" },
+  { key: "sustainable", src: "/images/gal5.png" },
+  { key: "support", src: "/images/gal6.png" },
+]
 
+export default function Gallery() {
+  const { t } = useTranslation()
   const [selectedImage, setSelectedImage] = useState(null)
+
+  const images = GALLERY_DEFS.map((def) => ({
+    ...def,
+    title: t(`gallery.items.${def.key}`),
+  }))
 
   return (
     <section
@@ -26,16 +33,15 @@ export default function Gallery() {
       <Reveal>
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block px-4 py-2 rounded-full bg-green-100 dark:bg-white/10 text-green-700 dark:text-green-300 text-sm font-semibold mb-4">
-            Our Gallery
+            {t("gallery.tag")}
           </span>
 
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Farm Gallery
+            {t("gallery.headline")}
           </h2>
 
           <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-            A glimpse of our Jaffna farm — fruit cultivation, harvests, and the
-            care that goes into every crop and product.
+            {t("gallery.intro")}
           </p>
         </div>
       </Reveal>
@@ -47,9 +53,9 @@ export default function Gallery() {
         viewport={{ once: true, amount: 0.15 }}
         className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
       >
-        {images.map((img, i) => (
+        {images.map((img) => (
           <motion.div
-            key={i}
+            key={img.key}
             variants={fadeUp()}
             whileHover={{ y: -6 }}
             transition={{ duration: 0.3 }}
@@ -65,11 +71,9 @@ export default function Gallery() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300" />
 
             <div className="absolute bottom-0 left-0 p-5 translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-300">
-              <h3 className="text-white text-lg font-semibold">
-                {img.title}
-              </h3>
+              <h3 className="text-white text-lg font-semibold">{img.title}</h3>
               <p className="text-green-200 text-sm mt-1">
-                Click to preview
+                {t("gallery.previewHint")}
               </p>
             </div>
           </motion.div>
@@ -88,7 +92,7 @@ export default function Gallery() {
             <button
               onClick={() => setSelectedImage(null)}
               className="absolute top-6 right-6 text-white bg-white/10 hover:bg-white/20 p-3 rounded-full transition"
-              aria-label="Close preview"
+              aria-label={t("gallery.closePreview")}
             >
               <FaTimes />
             </button>

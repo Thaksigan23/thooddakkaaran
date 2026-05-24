@@ -1,5 +1,6 @@
 "use client"
 
+import { useTranslation } from "react-i18next"
 import {
   FaFacebookF,
   FaInstagram,
@@ -14,61 +15,42 @@ import { INSTAGRAM_PROFILE_URL } from "../constants/social"
 
 const year = new Date().getFullYear()
 
+const QUICK_LINKS = [
+  { id: "home", href: "#home", key: "nav.home" },
+  { id: "about", href: "#about", key: "nav.about" },
+  { id: "services", href: "#services", key: "nav.services" },
+  { id: "products", href: "#products", key: "nav.products" },
+  { id: "testimonials", href: "#testimonials", key: "nav.testimonials" },
+  { id: "gallery", href: "#gallery", key: "nav.gallery" },
+  { id: "contact", href: "#contact", key: "nav.contact" },
+]
+
 export default function Footer() {
+  const { t } = useTranslation()
+
   const socialLinks = [
-    {
-      icon: <FaFacebookF />,
-      href: "https://facebook.com/",
-      label: "Facebook",
-    },
+    { icon: <FaFacebookF />, href: "https://facebook.com/", label: "Facebook" },
     {
       icon: <FaInstagram />,
       href: INSTAGRAM_PROFILE_URL,
       label: "Instagram",
     },
-    {
-      icon: <FaLinkedinIn />,
-      href: "https://linkedin.com/",
-      label: "LinkedIn",
-    },
-    {
-      icon: <FaWhatsapp />,
-      href: WHATSAPP_LINK,
-      label: "WhatsApp",
-    },
+    { icon: <FaLinkedinIn />, href: "https://linkedin.com/", label: "LinkedIn" },
+    { icon: <FaWhatsapp />, href: WHATSAPP_LINK, label: "WhatsApp" },
   ]
 
-  const quickLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About Us", href: "#about" },
-    { name: "Farming Services", href: "#services" },
-    { name: "Our Products", href: "#products" },
-    { name: "Testimonials", href: "#testimonials" },
-    { name: "Gallery", href: "#gallery" },
-    { name: "Contact Us", href: "#contact" },
-  ]
-
-  const services = [
-    "Fresh fruit & saplings",
-    "Farm consultation",
-    "Natural dairy & beverages",
-    "Wholesale & retail supply",
-  ]
+  const services = t("footer.services", { returnObjects: true })
 
   return (
     <footer className="bg-[#0b2215] text-gray-300 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6">
-        
-        {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-12 border-b border-white/10">
-          
-          {/* Company Info */}
           <div>
             <div className="flex items-center gap-4">
               <div className="bg-white p-2.5 rounded-xl shadow-md">
                 <img
                   src="/images/logo.png"
-                  alt="Logo"
+                  alt={t("footer.logoAlt")}
                   className="h-14 w-auto"
                 />
               </div>
@@ -77,36 +59,31 @@ export default function Footer() {
                 <h2 className="text-white text-xl font-bold">
                   Thooddakkaaran
                 </h2>
-                <p className="text-sm text-green-300">
-                  Fruit farm · Jaffna, Sri Lanka
-                </p>
+                <p className="text-sm text-green-300">{t("footer.tagline")}</p>
               </div>
             </div>
 
             <p className="text-gray-400 mt-5 text-sm leading-7">
-              Premium fruits, natural dairy, and farm-made beverages from our
-              Jaffna farm — with expert support for farmers across Sri Lanka.
+              {t("footer.blurb")}
             </p>
 
-            {/* Contact Info */}
             <div className="mt-6 space-y-3 text-sm">
               <div className="flex items-center gap-3">
                 <FaMapMarkerAlt className="text-green-400" />
-                <span>Mirusuvil, Sri Lanka</span>
+                <span>{t("footer.address")}</span>
               </div>
 
               <div className="flex items-center gap-3">
                 <FaEnvelope className="text-green-400" />
-                <span>info@thooddakkaaran.com</span>
+                <span>{t("footer.email")}</span>
               </div>
 
               <div className="flex items-center gap-3">
                 <FaPhoneAlt className="text-green-400" />
-                <span>+94 70 000 0000</span>
+                <span>{t("footer.phone")}</span>
               </div>
             </div>
 
-            {/* Social Icons */}
             <div className="flex gap-3 mt-6">
               {socialLinks.map((item, i) => (
                 <a
@@ -123,52 +100,47 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="text-white font-semibold mb-5 text-lg">
-              Quick Links
+              {t("footer.quickLinks")}
             </h3>
 
             <ul className="space-y-3 text-sm">
-              {quickLinks.map((link, i) => (
-                <li key={i}>
+              {QUICK_LINKS.map((link) => (
+                <li key={link.id}>
                   <a
                     href={link.href}
                     className="text-gray-400 hover:text-green-400 transition"
                   >
-                    {link.name}
+                    {t(link.key)}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Services */}
           <div>
             <h3 className="text-white font-semibold mb-5 text-lg">
-              Our Services
+              {t("footer.ourServices")}
             </h3>
 
             <ul className="space-y-3 text-sm">
-              {services.map((service, i) => (
+              {(Array.isArray(services) ? services : []).map((service, i) => (
                 <li key={i} className="text-gray-400">
                   {service}
                 </li>
               ))}
             </ul>
           </div>
-
         </div>
 
-        {/* Bottom Section */}
         <div className="pt-6 flex flex-col lg:flex-row items-center justify-between gap-4">
-          
           <p className="text-gray-400 text-sm text-center lg:text-left">
-            © {year} Thooddakkaaran Pvt Ltd. All rights reserved.
+            {t("footer.copyright", { year })}
           </p>
 
           <div className="flex items-center gap-2 text-sm text-gray-400">
-            <span>Made with love by</span>
+            <span>{t("footer.madeWith")}</span>
             <a
               href="https://www.techloom.ai/"
               target="_blank"
@@ -177,20 +149,19 @@ export default function Footer() {
               <img
                 src="/images/techloom.png"
                 className="h-4"
-                alt="Techloom"
+                alt={t("footer.techloomAlt")}
               />
             </a>
           </div>
 
           <div className="flex gap-5 text-sm">
             <a href="#" className="text-gray-400 hover:text-green-400 transition">
-              Privacy Policy
+              {t("footer.privacyPolicy")}
             </a>
             <a href="#" className="text-gray-400 hover:text-green-400 transition">
-              Terms of Service
+              {t("footer.termsOfService")}
             </a>
           </div>
-
         </div>
       </div>
     </footer>

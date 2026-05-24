@@ -1,25 +1,21 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useTranslation } from "react-i18next"
 import { FaStar } from "react-icons/fa"
 import Reveal from "./Reveal"
 import { fadeUp, staggerContainer } from "../utils/animations"
 
+const TESTIMONIAL_KEYS = ["jaffna", "kilinochchi", "vavuniya"]
+
 export default function Testimonials() {
-  const testimonials = [
-    {
-      name: "Farmer – Jaffna",
-      text: "Thooddakkaaran helped improve my pomegranate farm productivity. Their guidance and plant quality significantly increased my harvest.",
-    },
-    {
-      name: "Farmer – Kilinochchi",
-      text: "Healthy plants and professional agricultural consultation. I highly recommend Thooddakkaaran for sustainable fruit farming.",
-    },
-    {
-      name: "Farmer – Vavuniya",
-      text: "Their modern farming techniques and crop management support helped improve both crop quality and farm income.",
-    },
-  ]
+  const { t } = useTranslation()
+
+  const testimonials = TESTIMONIAL_KEYS.map((key) => ({
+    key,
+    name: t(`testimonials.items.${key}.name`),
+    text: t(`testimonials.items.${key}.text`),
+  }))
 
   return (
     <section
@@ -29,16 +25,15 @@ export default function Testimonials() {
       <Reveal>
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block px-4 py-2 rounded-full bg-green-100 dark:bg-white/10 text-green-700 dark:text-green-300 text-sm font-semibold mb-4">
-            Testimonials
+            {t("testimonials.tag")}
           </span>
 
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            What Farmers Say
+            {t("testimonials.headline")}
           </h2>
 
           <p className="text-gray-600 dark:text-gray-400 text-lg">
-            Hear from farmers, buyers, and partners who trust our produce,
-            products, and farm support across Sri Lanka.
+            {t("testimonials.intro")}
           </p>
         </div>
       </Reveal>
@@ -50,9 +45,9 @@ export default function Testimonials() {
         viewport={{ once: true, amount: 0.2 }}
         className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8"
       >
-        {testimonials.map((item, index) => (
+        {testimonials.map((item) => (
           <motion.div
-            key={index}
+            key={item.key}
             variants={fadeUp()}
             whileHover={{ y: -8 }}
             transition={{ duration: 0.3 }}
@@ -78,7 +73,7 @@ export default function Testimonials() {
                   {item.name}
                 </h3>
                 <p className="text-sm text-gray-500">
-                  Verified Farmer
+                  {t("common.verifiedFarmer")}
                 </p>
               </div>
             </div>

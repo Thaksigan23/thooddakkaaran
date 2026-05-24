@@ -1,0 +1,380 @@
+{
+  "common": {
+    "skipToMainContent": "Skip to main content",
+    "enquire": "Enquire",
+    "loading": "Loading...",
+    "verifiedFarmer": "Verified Farmer",
+    "available_sizes": "Available Sizes",
+    "factory": "Factory",
+    "farm": "Farm",
+    "speciality": "Speciality"
+  },
+  "language_switcher": {
+    "label": "Language",
+    "en": "EN",
+    "ta": "தமிழ்",
+    "si": "සිංහල"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Farming Services",
+    "products": "Our Products",
+    "testimonials": "Testimonials",
+    "gallery": "Gallery",
+    "contact": "Contact Us",
+    "toggleMenu": "Toggle menu",
+    "tagline": "Fruit Farm · Jaffna, Sri Lanka",
+    "dialPhone": "Dial Phone Number",
+    "openWhatsapp": "Open WhatsApp Chat",
+    "logoAlt": "Thooddakkaaran Logo"
+  },
+  "hero": {
+    "rooted": "Rooted in Jaffna, Sri Lanka",
+    "title": "Sri Lanka's Fruit Farm, Rooted in Jaffna",
+    "description": "From our Jaffna farm in Sri Lanka, we cultivate fresh fruits, natural dairy products, and farm-made beverages crafted with quality and care.",
+    "ctaPrimary": "Our product range",
+    "ctaSecondary": "Talk to a Farm Expert"
+  },
+  "about": {
+    "imageAlt": "Thooddakkaaran farm in Jaffna",
+    "story": "Our Story",
+    "location": "Jaffna · Northern Province",
+    "headline": "Our Story",
+    "p1": "Thooddakkaaran, which means \"the one who tends the garden\" in Tamil, was built on a straightforward idea: Sri Lanka deserves premium-quality fruits and natural products grown right here on our own soil.",
+    "p2": "Based in Jaffna, Northern Province, we cultivate pomegranates, dragon fruit, watermelon, and guava using sustainable farming practices that respect both the land and the people who work it. What started as a farming operation has grown into something broader — a trusted agricultural brand with its own line of natural products including pure cow ghee, drinking yogurt, and freshly pressed pomegranate juice, all crafted from the fruits and produce of our own farm.",
+    "p3": "We work with wholesale buyers, retailers, hotels, individual consumers, and fellow farmers across Sri Lanka. Whatever your need — whether it is a weekly fruit order, a bulk supply agreement, quality saplings, or expert farm consultation — Thooddakkaaran is your partner from the ground up."
+  },
+  "services": {
+    "tag": "Farming Services",
+    "headline": "Expert Support for Sri Lankan Farmers",
+    "intro": "Thooddakkaaran is more than a fruit farm. We work closely with farmers across Sri Lanka, sharing our knowledge, saplings, and hands-on experience to help you grow premium fruits successfully and sustainably.",
+    "consultation": {
+      "title": "Farm Consultation",
+      "description": "Guidance for farmers starting or improving pomegranate, dragon fruit, or guava cultivation. Available on-site in Jaffna and remotely across Sri Lanka.",
+      "items": [
+        "Soil suitability assessment",
+        "Irrigation planning for dry and intermediate zones",
+        "Fertilisation and nutrient guidance",
+        "Pest and disease management",
+        "Yield planning and harvest guidance"
+      ],
+      "cta": "Book a Farm Consultation"
+    },
+    "saplings": {
+      "title": "High-Yield Sapling Supply",
+      "description": "We supply high-quality saplings from our Jaffna nursery, selected and grown to suit Sri Lanka's climate and ensure reliable yield.",
+      "items": [
+        "Grafted saplings for faster fruiting and consistent yield",
+        "Field-ready plants (3–6 months old)",
+        "Bulk supply for commercial farms",
+        "Planting guidance included",
+        "Minimum order: 25 saplings"
+      ],
+      "cta": "Request Sapling Availability"
+    },
+    "sustainable": {
+      "title": "Sustainable Farming Practices",
+      "description": "We help farmers build healthier soil and reduce reliance on chemicals using practical, field-tested methods.",
+      "items": [
+        "Low-chemical pest control approaches",
+        "Drip irrigation guidance for water efficiency",
+        "Composting and organic soil improvement",
+        "Mulching techniques for moisture retention"
+      ]
+    },
+    "cropManagement": {
+      "title": "Crop Management Support",
+      "description": "Ongoing support from planting to harvest, so you are never managing your farm alone.",
+      "items": [
+        "Custom crop calendars based on region",
+        "Monthly farm visits (Jaffna and nearby areas)",
+        "Remote support via WhatsApp",
+        "Post-harvest handling and storage guidance"
+      ]
+    }
+  },
+  "products": {
+    "tag": "Our Products",
+    "headline": "From Our Jaffna Farm to Your Table",
+    "intro": "We grow premium fruits and craft natural dairy and beverages with ingredients from our own farm — no artificial additives and no compromise on quality.",
+    "ecommerceNote": "This is the official Thooddakkaaran website. Supply, wholesale, and product enquiries are handled by our team by phone, email, or WhatsApp. A dedicated retail e-commerce site is planned separately — we'll link it here when it is live.",
+    "fruitsHeadline": "What We Grow & Supply",
+    "fruitsIntro": "We grow four premium fruits on our Jaffna farm, each variety chosen for its suitability to Sri Lanka's dry-zone climate and its demand among buyers across the island. Every fruit is hand-harvested, graded, and supplied directly from our farm, with no middlemen and no long cold chains.",
+    "fruits": {
+      "pomegranate": {
+        "title": "Pomegranate, Our Signature Harvest",
+        "description": "Jaffna's dry, sun-rich climate produces pomegranates with exceptional sweetness, deep ruby-red arils, and thick skin that travels well. Our pomegranates are available for wholesale bulk supply, retail packaging, and direct home delivery across Sri Lanka."
+      },
+      "dragonFruit": {
+        "title": "Dragon Fruit",
+        "description": "We cultivate dragon fruit suited to Sri Lanka's tropical conditions. Increasingly popular among health-conscious consumers, hotels, and juice bars, our dragon fruit is vibrant, fresh, and supplied directly from our farm."
+      },
+      "watermelon": {
+        "title": "Watermelon",
+        "description": "Grown under Jaffna's warm sun and open skies, our watermelons are naturally sweet, juicy, and refreshing. Ideal for supermarkets, fruit vendors, hotels, and bulk seasonal supply, each harvest is carefully cultivated for freshness and quality."
+      },
+      "guava": {
+        "title": "Guava",
+        "description": "Our farm-grown guavas are rich in flavour, naturally aromatic, and packed with nutrients. Harvested fresh and supplied directly from our fields, they are perfect for retail markets, juice shops, and health-conscious consumers across Sri Lanka."
+      }
+    },
+    "fruitsCtaSupply": "Enquire: fruit supply",
+    "fruitsCtaSaplings": "Enquire: saplings",
+    "naturalHeadline": "Natural Products Crafted from Our Own Farm",
+    "naturalIntro": "Everything we make starts on our farm. Our branded product range includes pure cow ghee, drinking yogurt, set yogurt, curd, and freshly pressed pomegranate juice, all crafted using farm-sourced ingredients with no artificial additives, and no compromise on quality.",
+    "ranges": {
+      "setYogurt": {
+        "title": "Set Yogurt (80g)",
+        "intro": "Prepared using fresh milk and natural fruit flavours, our 80g set yogurts offer a rich texture and satisfying taste in convenient individual portions — ideal for school tuck shops, supermarkets, hotel buffets, and daily consumption.",
+        "flavoursLabel": "Available in 4 flavours",
+        "items": [
+          "Pomegranate Set Yogurt 80g",
+          "Vanilla Set Yogurt 80g",
+          "Pineapple Set Yogurt 80g",
+          "Carrot Set Yogurt 80g"
+        ]
+      },
+      "drinkingYogurt": {
+        "title": "Drinking Yogurt (200ml)",
+        "intro": "Our drinking yogurts are light, refreshing, and crafted without artificial thickeners or flavour enhancers. Available in a variety of flavours, they are perfect for everyday refreshment, cafés, canteens, hotels, and retail outlets.",
+        "flavoursLabel": "Available in 6 flavours",
+        "items": [
+          "Pomegranate Drinking Yogurt 200ml",
+          "Pineapple Drinking Yogurt 200ml",
+          "Wood Apple Drinking Yogurt 200ml",
+          "Mango Drinking Yogurt 200ml",
+          "Chocolate Drinking Yogurt 200ml",
+          "Vanilla Drinking Yogurt 200ml"
+        ]
+      },
+      "fruitDrinks": {
+        "title": "Fruit Drinks (200ml)",
+        "intro": "Made for everyday refreshment, our fruit drinks are crafted using carefully selected ingredients and natural flavours without artificial colouring. Convenient, refreshing, and suitable for all age groups.",
+        "flavoursLabel": "Available in 3 varieties",
+        "items": [
+          "Pomegranate Drink 200ml",
+          "Pineapple Drink 200ml",
+          "Aloe Vera Drink 200ml"
+        ]
+      },
+      "cordials": {
+        "title": "Cordials (500ml)",
+        "intro": "Our 500ml cordials are concentrated fruit beverages designed for home use, restaurants, catering services, and hospitality environments. Enjoy rich fruit flavour in every serving.",
+        "flavoursLabel": "Available in 5 varieties",
+        "items": [
+          "Pomegranate Cordial 500ml",
+          "Wood Apple Cordial 500ml",
+          "Mango Cordial 500ml",
+          "Pineapple Cordial 500ml",
+          "Mixed Fruit Cordial 500ml"
+        ]
+      }
+    },
+    "dairyHeadline": "Dairy Products",
+    "dairyIntro": "Our dairy products are crafted from fresh cow's milk using traditional preparation methods and carefully maintained quality standards. Fresh, natural, and trusted for everyday use.",
+    "dairy": {
+      "curd": {
+        "title": "Curd",
+        "intro": "Fresh, thick curd prepared for daily meals, hospitality use, and retail supply.",
+        "sizes": ["Curd 250g", "Curd 80g"]
+      },
+      "ghee": {
+        "title": "Pure Cow Ghee",
+        "intro": "Traditionally slow-cooked pure cow ghee with a rich aroma and golden texture — prepared without vegetable oil blending or artificial additives.",
+        "sizes": ["Ghee 400ml", "Ghee 185ml"]
+      },
+      "paneer": {
+        "title": "Paneer",
+        "intro": "Fresh paneer made from cow's milk with a firm texture suitable for a variety of cooking applications.",
+        "sizes": ["Paneer 100g", "Paneer 250g"]
+      }
+    },
+    "ctaHeadline": "Supply & product enquiries",
+    "ctaIntro": "Get in touch for availability, wholesale pricing, or any question about our range. We supply and deliver across Sri Lanka.",
+    "ctaContact": "Contact our team",
+    "ctaWhatsapp": "Message on WhatsApp",
+    "ctaShop": "Retail online shop"
+  },
+  "why_choose": {
+    "tag": "Why Choose Us",
+    "headline": "Why Choose Thooddakkaaran",
+    "intro": "Quality from our fields, transparency in our process, and dependable supply for partners across Sri Lanka.",
+    "reasons": {
+      "expertise": {
+        "title": "40+ Years of Farming Expertise",
+        "desc": "Generations of experience in agriculture and food production allow us to understand quality from the root level. We bring traditional knowledge together with modern practices."
+      },
+      "integrity": {
+        "title": "Farm-to-Product Integrity",
+        "desc": "We grow and source many of our ingredients directly, ensuring full control over freshness, hygiene, and natural quality from start to finish."
+      },
+      "fresh": {
+        "title": "Naturally Fresh & Hygienic Production",
+        "desc": "Every product is carefully processed under strict hygiene standards to maintain purity, taste, and nutritional value without compromise."
+      },
+      "trusted": {
+        "title": "Trusted by Local Communities",
+        "desc": "Our products are widely trusted by retailers, distributors, and families who value consistent quality and authentic taste."
+      },
+      "supply": {
+        "title": "Reliable Supply & Distribution",
+        "desc": "We ensure timely delivery and stable supply chains, supporting both small businesses and large-scale distributors efficiently."
+      }
+    }
+  },
+  "stats": {
+    "tag": "Our Impact",
+    "headline": "Supporting Farmers Across Sri Lanka",
+    "intro": "Empowering farmers with modern agricultural knowledge, high-quality plants, and sustainable farming solutions.",
+    "items": {
+      "experience": "Years Farming Expertise",
+      "farmers": "Farmers Supported",
+      "acres": "Acres Cultivated",
+      "plants": "Plants Supplied"
+    }
+  },
+  "vision_mission": {
+    "tag": "Vision & Mission",
+    "headline": "Our Purpose for Growth",
+    "intro": "We are committed to building a strong agricultural future through trusted farming, quality produce, and sustainable practices in Sri Lanka.",
+    "vision": {
+      "title": "Our Vision",
+      "description": "To build a trusted agricultural brand that delivers purity, supports farmers, and promotes sustainable farming for future generations."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "points": [
+        "Grow premium quality fruits",
+        "Create nutritious farm-based products",
+        "Empower farmers with expert guidance",
+        "Promote sustainable agriculture"
+      ]
+    }
+  },
+  "testimonials": {
+    "tag": "Testimonials",
+    "headline": "What Farmers Say",
+    "intro": "Hear from farmers, buyers, and partners who trust our produce, products, and farm support across Sri Lanka.",
+    "items": {
+      "jaffna": {
+        "name": "Farmer – Jaffna",
+        "text": "Thooddakkaaran helped improve my pomegranate farm productivity. Their guidance and plant quality significantly increased my harvest."
+      },
+      "kilinochchi": {
+        "name": "Farmer – Kilinochchi",
+        "text": "Healthy plants and professional agricultural consultation. I highly recommend Thooddakkaaran for sustainable fruit farming."
+      },
+      "vavuniya": {
+        "name": "Farmer – Vavuniya",
+        "text": "Their modern farming techniques and crop management support helped improve both crop quality and farm income."
+      }
+    }
+  },
+  "gallery": {
+    "tag": "Our Gallery",
+    "headline": "Farm Gallery",
+    "intro": "A glimpse of our Jaffna farm — fruit cultivation, harvests, and the care that goes into every crop and product.",
+    "previewHint": "Click to preview",
+    "closePreview": "Close preview",
+    "items": {
+      "premium": "Premium Fruit Cultivation",
+      "growth": "Healthy Farm Growth",
+      "harvest": "Quality Harvesting",
+      "modern": "Modern Farming Techniques",
+      "sustainable": "Sustainable Agriculture",
+      "support": "Farmer Support Services"
+    }
+  },
+  "instagram": {
+    "tag": "Social Media",
+    "headline": "Instagram Updates",
+    "intro": "Follow our farming journey and explore how we cultivate premium fruits across Sri Lanka.",
+    "feedUnavailable": "Live feed is temporarily unavailable; showing highlights below.",
+    "follow": "Follow on Instagram",
+    "fallbackCaption": "Thooddakkaaran on Instagram",
+    "postAlt": "Instagram post"
+  },
+  "map": {
+    "tag": "Our Location",
+    "headline": "Visit Our Farm",
+    "intro": "Visit our farm and factory locations in Sri Lanka, where we cultivate premium fruits and support farmers with modern agricultural solutions.",
+    "farmTitle": "Thooddakkaaran Farm",
+    "farmDescription": "Located in Sri Lanka, our farm is dedicated to premium fruit cultivation, sustainable agriculture, and farmer support.",
+    "speciality": "Pomegranate & Fruit Cultivation",
+    "farmDirections": "Farm Directions",
+    "factoryDirections": "Factory Directions",
+    "iframeTitle": "Thooddakkaaran Farm Location"
+  },
+  "contact": {
+    "headline": "Contact Us",
+    "intro": "Enquire about fruits, dairy, and beverages, request wholesale pricing, book a farm consultation, or ask about saplings — we supply and deliver across Sri Lanka.",
+    "getInTouch": "Get in Touch",
+    "whyContact": "Why Contact Us?",
+    "whyContactBody": "From supply enquiries and bulk pricing to saplings and on-farm guidance — tell us what you need and we will respond promptly.",
+    "callAria": "Call us at {{phone}}",
+    "emailAria": "Email us at {{email}}",
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "Your Message",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "sendingAria": "Sending your message",
+      "successTitle": "Message Sent!",
+      "successBody": "We will contact you soon.",
+      "configError": "Contact form is not configured yet. Please try WhatsApp or email.",
+      "sendError": "Failed to send message. Please try again."
+    }
+  },
+  "footer": {
+    "tagline": "Fruit farm · Jaffna, Sri Lanka",
+    "blurb": "Premium fruits, natural dairy, and farm-made beverages from our Jaffna farm — with expert support for farmers across Sri Lanka.",
+    "address": "Mirusuvil, Sri Lanka",
+    "email": "info@thooddakkaaran.com",
+    "phone": "+94 70 000 0000",
+    "logoAlt": "Logo",
+    "techloomAlt": "Techloom",
+    "quickLinks": "Quick Links",
+    "ourServices": "Our Services",
+    "services": [
+      "Fresh fruit & saplings",
+      "Farm consultation",
+      "Natural dairy & beverages",
+      "Wholesale & retail supply"
+    ],
+    "copyright": "© {{year}} Thooddakkaaran Pvt Ltd. All rights reserved.",
+    "madeWith": "Made with love by",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "cookie_consent": {
+    "title": "Analytics cookies",
+    "body": "We use Google Analytics to understand how visitors use this site. This is optional — you can continue with essential cookies only.",
+    "deny": "Essential only",
+    "accept": "Accept analytics"
+  },
+  "whatsapp": {
+    "buttonAria": "Chat with us on WhatsApp",
+    "buttonTitle": "Chat with us on WhatsApp",
+    "closeAria": "Close WhatsApp prompt",
+    "promptLine1": "👋 Need help with farming?",
+    "promptLine2": "Chat with us on WhatsApp"
+  },
+  "loader": {
+    "logoAlt": "Thooddakkaaran",
+    "loading": "Loading..."
+  },
+  "error_boundary": {
+    "title": "Something went wrong",
+    "body": "Please reload the page. If the problem continues, contact us by phone or WhatsApp.",
+    "reload": "Reload page"
+  },
+  "theme_toggle": {
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
+  },
+  "back_to_top": {
+    "label": "Back to top"
+  }
+}

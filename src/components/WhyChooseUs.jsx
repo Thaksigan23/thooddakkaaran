@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useTranslation } from "react-i18next"
 import {
   FaAward,
   FaSeedling,
@@ -11,34 +12,24 @@ import {
 import Reveal from "./Reveal"
 import { fadeUp, staggerContainer } from "../utils/animations"
 
+const REASON_KEYS = ["expertise", "integrity", "fresh", "trusted", "supply"]
+const REASON_ICONS = {
+  expertise: <FaAward />,
+  integrity: <FaSeedling />,
+  fresh: <FaHeart />,
+  trusted: <FaUsers />,
+  supply: <FaTruck />,
+}
+
 export default function WhyChooseUs() {
-  const reasons = [
-    {
-      icon: <FaAward />,
-      title: "40+ Years of Farming Expertise",
-      desc: "Generations of experience in agriculture and food production allow us to understand quality from the root level. We bring traditional knowledge together with modern practices.",
-    },
-    {
-      icon: <FaSeedling />,
-      title: "Farm-to-Product Integrity",
-      desc: "We grow and source many of our ingredients directly, ensuring full control over freshness, hygiene, and natural quality from start to finish.",
-    },
-    {
-      icon: <FaHeart />,
-      title: "Naturally Fresh & Hygienic Production",
-      desc: "Every product is carefully processed under strict hygiene standards to maintain purity, taste, and nutritional value without compromise.",
-    },
-    {
-      icon: <FaUsers />,
-      title: "Trusted by Local Communities",
-      desc: "Our products are widely trusted by retailers, distributors, and families who value consistent quality and authentic taste.",
-    },
-    {
-      icon: <FaTruck />,
-      title: "Reliable Supply & Distribution",
-      desc: "We ensure timely delivery and stable supply chains, supporting both small businesses and large-scale distributors efficiently.",
-    },
-  ]
+  const { t } = useTranslation()
+
+  const reasons = REASON_KEYS.map((key) => ({
+    key,
+    icon: REASON_ICONS[key],
+    title: t(`why_choose.reasons.${key}.title`),
+    desc: t(`why_choose.reasons.${key}.desc`),
+  }))
 
   return (
     <section className="relative py-24 px-6 bg-gray-50 dark:bg-gray-900 transition overflow-hidden">
@@ -49,16 +40,15 @@ export default function WhyChooseUs() {
         <Reveal>
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-block px-4 py-2 rounded-full bg-green-100 dark:bg-white/10 text-green-700 dark:text-green-300 text-sm font-semibold mb-4">
-              Why Choose Us
+              {t("why_choose.tag")}
             </span>
 
             <h2 className="text-4xl md:text-5xl font-bold mb-5 text-gray-900 dark:text-white leading-tight">
-              Why Choose Thooddakkaaran
+              {t("why_choose.headline")}
             </h2>
 
             <p className="text-center text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-              Quality from our fields, transparency in our process, and
-              dependable supply for partners across Sri Lanka.
+              {t("why_choose.intro")}
             </p>
           </div>
         </Reveal>
@@ -70,9 +60,9 @@ export default function WhyChooseUs() {
           viewport={{ once: true, amount: 0.12 }}
           className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8"
         >
-          {reasons.map((item, index) => (
+          {reasons.map((item) => (
             <motion.div
-              key={index}
+              key={item.key}
               variants={fadeUp()}
               whileHover={{ y: -8 }}
               transition={{ duration: 0.3 }}

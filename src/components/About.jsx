@@ -1,8 +1,11 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useTranslation } from "react-i18next"
 
 export default function About() {
+  const { t } = useTranslation()
+
   return (
     <section
       id="about"
@@ -17,16 +20,16 @@ export default function About() {
         >
           <img
             src="/images/gal5.png"
-            alt="Thooddakkaaran farm in Jaffna"
+            alt={t("about.imageAlt")}
             className="rounded-3xl shadow-2xl w-full h-[420px] object-cover"
           />
 
           <div className="absolute bottom-6 left-6 bg-white/90 dark:bg-black/70 backdrop-blur-md p-4 rounded-xl shadow-lg">
             <h4 className="text-lg font-semibold text-green-600">
-              Our Story
+              {t("about.story")}
             </h4>
             <p className="text-sm text-gray-600 dark:text-gray-300">
-              Jaffna · Northern Province
+              {t("about.location")}
             </p>
           </div>
         </motion.div>
@@ -37,33 +40,13 @@ export default function About() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
-            Our Story
+            {t("about.headline")}
           </h2>
 
           <div className="space-y-5 text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-            <p>
-              Thooddakkaaran, which means &quot;the one who tends the
-              garden&quot; in Tamil, was built on a straightforward idea: Sri
-              Lanka deserves premium-quality fruits and natural products grown
-              right here on our own soil.
-            </p>
-            <p>
-              Based in Jaffna, Northern Province, we cultivate pomegranates,
-              dragon fruit, watermelon, and guava using sustainable farming
-              practices that respect both the land and the people who work it.
-              What started as a farming operation has grown into something
-              broader — a trusted agricultural brand with its own line of
-              natural products including pure cow ghee, drinking yogurt, and
-              freshly pressed pomegranate juice, all crafted from the fruits and
-              produce of our own farm.
-            </p>
-            <p>
-              We work with wholesale buyers, retailers, hotels, individual
-              consumers, and fellow farmers across Sri Lanka. Whatever your need
-              — whether it is a weekly fruit order, a bulk supply agreement,
-              quality saplings, or expert farm consultation — Thooddakkaaran is
-              your partner from the ground up.
-            </p>
+            <p>{t("about.p1")}</p>
+            <p>{t("about.p2")}</p>
+            <p>{t("about.p3")}</p>
           </div>
         </motion.div>
       </div>

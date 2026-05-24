@@ -6,13 +6,14 @@ import { MotionConfig } from "framer-motion"
 import AOS from "aos"
 import "aos/dist/aos.css"
 
-import i18n from "../../i18n/i18n"
+import i18n, { syncLanguageFromStorage } from "../../i18n/i18n"
 import Loader from "../Loader"
 
 export default function AppProviders({ children }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    syncLanguageFromStorage()
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     AOS.init({ disable: reduced })
 

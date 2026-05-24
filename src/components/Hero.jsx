@@ -1,10 +1,12 @@
 "use client"
 
 import { motion, useScroll, useTransform } from "framer-motion"
+import { useTranslation } from "react-i18next"
 import { FaArrowRight } from "react-icons/fa"
 import { fadeUp, slideLeft, floatingAnimation } from "../utils/animations"
 
 export default function Hero() {
+  const { t } = useTranslation()
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 500], [0, 120])
 
@@ -57,7 +59,7 @@ export default function Hero() {
             >
               <span className="w-2 h-2 rounded-full bg-green-400" />
               <span className="text-sm text-green-100 font-medium">
-                Rooted in Jaffna, Sri Lanka
+                {t("hero.rooted")}
               </span>
             </motion.div>
 
@@ -67,7 +69,7 @@ export default function Hero() {
               animate="visible"
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-white"
             >
-              Sri Lanka&apos;s Fruit Farm, Rooted in Jaffna
+              {t("hero.title")}
             </motion.h1>
 
             <motion.p
@@ -76,9 +78,7 @@ export default function Hero() {
               animate="visible"
               className="text-base sm:text-lg md:text-xl text-green-100/95 leading-relaxed mb-8"
             >
-              From our Jaffna farm in Sri Lanka, we cultivate fresh fruits,
-              natural dairy products, and farm-made beverages crafted with
-              quality and care.
+              {t("hero.description")}
             </motion.p>
 
             <motion.div
@@ -91,7 +91,7 @@ export default function Hero() {
                 href="#products"
                 className="inline-flex items-center justify-center gap-2 bg-accent text-white px-7 py-3.5 rounded-xl font-semibold shadow-lg hover:scale-105 hover:shadow-2xl transition duration-300"
               >
-                Our product range
+                {t("hero.ctaPrimary")}
                 <FaArrowRight className="text-sm" />
               </a>
 
@@ -99,7 +99,7 @@ export default function Hero() {
                 href="#contact"
                 className="inline-flex items-center justify-center gap-2 border border-white/30 bg-white/10 backdrop-blur-md text-white px-7 py-3.5 rounded-xl font-semibold hover:bg-white hover:text-gray-900 transition duration-300"
               >
-                Talk to a Farm Expert
+                {t("hero.ctaSecondary")}
               </a>
             </motion.div>
           </motion.div>

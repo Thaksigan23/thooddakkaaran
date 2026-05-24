@@ -1,18 +1,20 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useTranslation } from "react-i18next"
 import { useEffect, useRef, useState } from "react"
 import Reveal from "./Reveal"
 import { fadeUp, staggerContainer } from "../utils/animations"
 
-const stats = [
-  { value: 40, suffix: "+", label: "Years Farming Expertise" },
-  { value: 500, suffix: "+", label: "Farmers Supported" },
-  { value: 50, suffix: "+", label: "Acres Cultivated" },
-  { value: 10, suffix: "K+", label: "Plants Supplied" },
+const STAT_DEFS = [
+  { key: "experience", value: 40, suffix: "+" },
+  { key: "farmers", value: 500, suffix: "+" },
+  { key: "acres", value: 50, suffix: "+" },
+  { key: "plants", value: 10, suffix: "K+" },
 ]
 
 export default function Stats() {
+  const { t } = useTranslation()
   const [counts, setCounts] = useState([0, 0, 0, 0])
   const [startCount, setStartCount] = useState(false)
   const sectionRef = useRef(null)
@@ -38,7 +40,7 @@ export default function Stats() {
   useEffect(() => {
     if (!startCount) return
 
-    const intervals = stats.map((stat, index) => {
+    const intervals = STAT_DEFS.map((stat, index) => {
       let start = 0
       const end = stat.value
       const duration = 2000
@@ -71,16 +73,15 @@ export default function Stats() {
       <Reveal>
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block px-4 py-2 rounded-full bg-green-100 dark:bg-white/10 text-green-700 dark:text-green-300 text-sm font-semibold mb-4">
-            Our Impact
+            {t("stats.tag")}
           </span>
 
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Supporting Farmers Across Sri Lanka
+            {t("stats.headline")}
           </h2>
 
           <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-            Empowering farmers with modern agricultural knowledge,
-            high-quality plants, and sustainable farming solutions.
+            {t("stats.intro")}
           </p>
         </div>
       </Reveal>
@@ -92,9 +93,9 @@ export default function Stats() {
         viewport={{ once: true, amount: 0.2 }}
         className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center"
       >
-        {stats.map((stat, index) => (
+        {STAT_DEFS.map((stat, index) => (
           <motion.div
-            key={index}
+            key={stat.key}
             variants={fadeUp()}
             whileHover={{ y: -8 }}
             transition={{ duration: 0.3 }}
@@ -107,7 +108,7 @@ export default function Stats() {
               </h3>
 
               <p className="mt-3 text-gray-600 dark:text-gray-400 text-sm md:text-base">
-                {stat.label}
+                {t(`stats.items.${stat.key}`)}
               </p>
 
               <div className="mt-5 w-12 h-1 mx-auto rounded-full bg-green-500 group-hover:w-20 transition-all duration-300" />
