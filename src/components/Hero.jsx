@@ -1,3 +1,5 @@
+"use client"
+
 import { motion, useScroll, useTransform } from "framer-motion"
 import { FaArrowRight } from "react-icons/fa"
 import { fadeUp, slideLeft, floatingAnimation } from "../utils/animations"

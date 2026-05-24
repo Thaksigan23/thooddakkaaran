@@ -1,7 +1,9 @@
+"use client"
+
 import { useEffect, useState } from "react"
 
 const STORAGE_KEY = "thooddakkaaran_analytics_consent"
-const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || "G-CL1706T4YQ"
+const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-CL1706T4YQ"
 
 function injectGa() {
   if (typeof window === "undefined" || window.gtag) return
@@ -19,7 +21,6 @@ function injectGa() {
 }
 
 function readConsentBannerOpen() {
-  if (typeof window === "undefined") return false
   const host = window.location.hostname
   if (host === "localhost" || host === "127.0.0.1") return false
   const choice = localStorage.getItem(STORAGE_KEY)
@@ -27,9 +28,12 @@ function readConsentBannerOpen() {
 }
 
 export default function CookieConsent() {
-  const [open, setOpen] = useState(readConsentBannerOpen)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
+    // Client-only state — must be derived after mount so server HTML is stable.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setOpen(readConsentBannerOpen())
     const host = window.location.hostname
     if (host === "localhost" || host === "127.0.0.1") return
     if (localStorage.getItem(STORAGE_KEY) === "granted") injectGa()

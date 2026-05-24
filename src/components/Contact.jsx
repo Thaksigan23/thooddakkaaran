@@ -1,3 +1,5 @@
+"use client"
+
 import { useRef, useState } from "react"
 import emailjs from "@emailjs/browser"
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa"
@@ -5,14 +7,14 @@ import { motion } from "framer-motion"
 import Reveal from "./Reveal"
 import { fadeUp, staggerContainer } from "../utils/animations"
 
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
-const CONTACT_PHONE = import.meta.env.VITE_CONTACT_PHONE || "+94 70 000 0000"
-const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || "info@thooddakkaaran.com"
-const CONTACT_LOCATION = import.meta.env.VITE_CONTACT_LOCATION || "Mirusuvil, Sri Lanka"
-const FACTORY_LOCATION = import.meta.env.VITE_FACTORY_LOCATION || "Factory Location - Add in .env"
+const CONTACT_PHONE = process.env.NEXT_PUBLIC_CONTACT_PHONE || "+94 70 000 0000"
+const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@thooddakkaaran.com"
+const CONTACT_LOCATION = process.env.NEXT_PUBLIC_CONTACT_LOCATION || "Mirusuvil, Sri Lanka"
+const FACTORY_LOCATION = process.env.NEXT_PUBLIC_FACTORY_LOCATION || "Factory Location - Add in .env"
 const CONTACT_PHONE_HREF = `tel:${CONTACT_PHONE.replace(/[^\d+]/g, "")}`
 const CONTACT_EMAIL_HREF = `mailto:${CONTACT_EMAIL}`
 

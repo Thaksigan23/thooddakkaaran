@@ -1,20 +1,29 @@
+"use client"
+
 import { useEffect, useState } from "react"
 import { FaMoon, FaSun } from "react-icons/fa"
 
 export default function ThemeToggle() {
-  const [darkMode, setDarkMode] = useState(() => {
-    const savedTheme = localStorage.getItem("theme")
-    return savedTheme === "dark"
-  })
+  const [darkMode, setDarkMode] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    // Client-only state — must be derived after mount so server HTML is stable.
+    const saved = localStorage.getItem("theme")
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setDarkMode(saved === "dark")
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return
     if (darkMode) {
       document.documentElement.classList.add("dark")
       return
     }
 
     document.documentElement.classList.remove("dark")
-  }, [darkMode])
+  }, [darkMode, mounted])
 
   const toggleTheme = () => {
 

@@ -1,18 +1,27 @@
+"use client"
+
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 export default function Loader() {
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-white dark:bg-black z-50">
 
-      {/* Logo */}
-      <motion.img
-        src="/images/logo.png"
-        alt="Thooddakkaaran"
-        className="h-16 w-auto mb-6"
+      <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.6 }}
-      />
+        className="mb-6"
+      >
+        <Image
+          src="/images/logo.png"
+          alt="Thooddakkaaran"
+          width={64}
+          height={64}
+          priority
+          className="h-16 w-auto"
+        />
+      </motion.div>
 
       {/* Spinner */}
       <motion.div

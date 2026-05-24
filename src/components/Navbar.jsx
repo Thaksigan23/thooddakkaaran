@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect } from "react"
 import { FaBars, FaTimes, FaWhatsapp } from "react-icons/fa"
 import ThemeToggle from "./ThemeToggle"

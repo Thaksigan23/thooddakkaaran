@@ -1,3 +1,5 @@
+"use client"
+
 import { motion } from "framer-motion"
 import { FaArrowRight, FaWhatsapp } from "react-icons/fa"
 import Reveal from "./Reveal"

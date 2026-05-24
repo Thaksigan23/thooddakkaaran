@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test"
 
-const preview = "npm run preview -- --host 127.0.0.1 --port 4173"
-const buildAndPreview = `npm run build && ${preview}`
+const start = "npm run start -- -H 127.0.0.1 -p 4173"
+const buildAndStart = `npm run build && ${start}`
 
 export default defineConfig({
   testDir: "./e2e",
@@ -16,9 +16,9 @@ export default defineConfig({
     trace: "on-first-retry",
   },
   webServer: {
-    command: process.env.CI ? preview : buildAndPreview,
+    command: process.env.CI ? start : buildAndStart,
     url: "http://127.0.0.1:4173",
     reuseExistingServer: !process.env.CI,
-    timeout: 180_000,
+    timeout: 240_000,
   },
 })

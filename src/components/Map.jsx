@@ -1,9 +1,11 @@
+"use client"
+
 import { motion } from "framer-motion"
 import { FaMapMarkerAlt, FaArrowRight } from "react-icons/fa"
 
-const FARM_LOCATION = import.meta.env.VITE_CONTACT_LOCATION || "Mirusuvil, Sri Lanka"
-const FACTORY_LOCATION = import.meta.env.VITE_FACTORY_LOCATION || "Factory Location, Sri Lanka"
-const FACTORY_MAP_URL = import.meta.env.VITE_FACTORY_MAP_URL
+const FARM_LOCATION = process.env.NEXT_PUBLIC_CONTACT_LOCATION || "Mirusuvil, Sri Lanka"
+const FACTORY_LOCATION = process.env.NEXT_PUBLIC_FACTORY_LOCATION || "Factory Location, Sri Lanka"
+const FACTORY_MAP_URL = process.env.NEXT_PUBLIC_FACTORY_MAP_URL
 const FARM_MAP_QUERY = encodeURIComponent(FARM_LOCATION)
 const FACTORY_MAP_QUERY = encodeURIComponent(FACTORY_LOCATION)
 

@@ -1,5 +1,5 @@
 /**
- * Vercel Serverless Function — fetches recent posts from Instagram Graph API.
+ * Next.js Route Handler — fetches recent posts from the Instagram Graph API.
  * Set INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCOUNT_ID in Vercel
  * project → Settings → Environment Variables (never commit tokens).
  *
@@ -8,56 +8,59 @@
  * Meta docs: https://developers.facebook.com/docs/instagram-api/
  */
 
-function applyCors(req, res) {
-  const origin = req.headers.origin
-  const list = (process.env.ALLOWED_CORS_ORIGINS || "")
+function getAllowedOrigins() {
+  return (process.env.ALLOWED_CORS_ORIGINS || "")
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean)
-
-  if (origin && list.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin)
-    res.setHeader("Vary", "Origin")
-  }
 }
 
-export default async function handler(req, res) {
-  applyCors(req, res)
-
-  if (req.method === "OPTIONS") {
-    res.statusCode = 204
-    res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS")
-    if (req.headers.origin) {
-      const list = (process.env.ALLOWED_CORS_ORIGINS || "")
-        .split(",")
-        .map((s) => s.trim())
-        .filter(Boolean)
-      if (list.includes(req.headers.origin)) {
-        res.setHeader("Access-Control-Allow-Origin", req.headers.origin)
-      }
-    }
-    res.setHeader("Access-Control-Max-Age", "86400")
-    return res.end()
+function corsHeadersFor(origin) {
+  const headers = {}
+  if (origin && getAllowedOrigins().includes(origin)) {
+    headers["Access-Control-Allow-Origin"] = origin
+    headers["Vary"] = "Origin"
   }
+  return headers
+}
 
-  if (req.method !== "GET") {
-    res.statusCode = 405
-    return res.end("Method Not Allowed")
+function jsonResponse(status, body, extraHeaders = {}) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: {
+      "Content-Type": "application/json",
+      ...extraHeaders,
+    },
+  })
+}
+
+export async function OPTIONS(request) {
+  const origin = request.headers.get("origin")
+  const headers = {
+    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Access-Control-Max-Age": "86400",
+    ...corsHeadersFor(origin),
   }
+  return new Response(null, { status: 204, headers })
+}
+
+export async function GET(request) {
+  const origin = request.headers.get("origin")
+  const cors = corsHeadersFor(origin)
 
   const token = process.env.INSTAGRAM_ACCESS_TOKEN
   const userId = process.env.INSTAGRAM_BUSINESS_ACCOUNT_ID
 
   if (!token || !userId) {
-    res.statusCode = 200
-    res.setHeader("Content-Type", "application/json")
-    return res.end(
-      JSON.stringify({
+    return jsonResponse(
+      200,
+      {
         configured: false,
         posts: [],
         message:
           "Set INSTAGRAM_ACCESS_TOKEN and INSTAGRAM_BUSINESS_ACCOUNT_ID on the server (e.g. Vercel env).",
-      })
+      },
+      cors
     )
   }
 
@@ -78,9 +81,11 @@ export default async function handler(req, res) {
     if (!igRes.ok || json.error) {
       const msg = json.error?.message || igRes.statusText || "Instagram API error"
       console.error("[api/instagram] Graph API error:", msg)
-      res.statusCode = 502
-      res.setHeader("Content-Type", "application/json")
-      return res.end(JSON.stringify({ configured: true, posts: [], error: msg }))
+      return jsonResponse(
+        502,
+        { configured: true, posts: [], error: msg },
+        cors
+      )
     }
 
     const rows = (json.data || []).map((item) => {
@@ -103,24 +108,37 @@ export default async function handler(req, res) {
 
     const posts = rows.filter((p) => p.src && p.permalink)
 
-    res.statusCode = 200
-    res.setHeader("Content-Type", "application/json")
-    res.setHeader(
-      "Cache-Control",
-      "public, s-maxage=1800, stale-while-revalidate=3600"
+    return jsonResponse(
+      200,
+      { configured: true, posts },
+      {
+        ...cors,
+        "Cache-Control": "public, s-maxage=1800, stale-while-revalidate=3600",
+      }
     )
-    return res.end(JSON.stringify({ configured: true, posts }))
   } catch (e) {
     const message = e instanceof Error ? e.message : "Unknown error"
     console.error("[api/instagram] Unexpected error:", message)
-    res.statusCode = 500
-    res.setHeader("Content-Type", "application/json")
-    return res.end(
-      JSON.stringify({
-        configured: true,
-        posts: [],
-        error: message,
-      })
+    return jsonResponse(
+      500,
+      { configured: true, posts: [], error: message },
+      cors
     )
   }
+}
+
+export async function POST() {
+  return new Response("Method Not Allowed", { status: 405 })
+}
+
+export async function PUT() {
+  return new Response("Method Not Allowed", { status: 405 })
+}
+
+export async function DELETE() {
+  return new Response("Method Not Allowed", { status: 405 })
+}
+
+export async function PATCH() {
+  return new Response("Method Not Allowed", { status: 405 })
 }
