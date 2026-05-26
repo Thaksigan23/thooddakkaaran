@@ -1,16 +1,11 @@
 "use client"
 
-import { useRef, useState } from "react"
-import emailjs from "@emailjs/browser"
+import { useEffect, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa"
 import { motion } from "framer-motion"
 import Reveal from "./Reveal"
 import { fadeUp, staggerContainer } from "../utils/animations"
-
-const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
-const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
 const CONTACT_PHONE = process.env.NEXT_PUBLIC_CONTACT_PHONE || "+94 70 000 0000"
 const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@thooddakkaaran.com"
@@ -22,46 +17,88 @@ const CONTACT_EMAIL_HREF = `mailto:${CONTACT_EMAIL}`
 export default function Contact() {
   const { t } = useTranslation()
   const form = useRef()
+  const abortRef = useRef(null)
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState("")
 
-  const sendEmail = (e) => {
+  useEffect(() => {
+    return () => {
+      if (abortRef.current) {
+        abortRef.current.abort()
+        abortRef.current = null
+      }
+    }
+  }, [])
+
+  const errorMessageFor = (code) => {
+    switch (code) {
+      case "unconfigured":
+        return t("contact.form.configError")
+      case "invalid":
+        return t("contact.form.invalidError")
+      case "rate_limited":
+        return t("contact.form.rateLimitError")
+      default:
+        return t("contact.form.sendError")
+    }
+  }
+
+  const sendEmail = async (e) => {
     e.preventDefault()
     setError("")
 
-    const hp = form.current?.elements?.namedItem("company_website")
-    if (hp && "value" in hp && hp.value) {
+    const formEl = form.current
+    if (!formEl) return
+
+    const elements = formEl.elements
+    const honeypot = elements.namedItem("company_website")
+    if (honeypot && "value" in honeypot && honeypot.value) {
       setSuccess(true)
-      form.current.reset()
+      formEl.reset()
       return
     }
 
-    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-      setError(t("contact.form.configError"))
-      return
-    }
+    const name = elements.namedItem("name")?.value || ""
+    const email = elements.namedItem("email")?.value || ""
+    const message = elements.namedItem("message")?.value || ""
 
     setLoading(true)
 
-    emailjs
-      .sendForm(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        form.current,
-        EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false)
-          setSuccess(true)
-          form.current.reset()
-        },
-        () => {
-          setLoading(false)
-          setError(t("contact.form.sendError"))
-        }
-      )
+    const controller = new AbortController()
+    abortRef.current = controller
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+        signal: controller.signal,
+      })
+
+      let body = null
+      try {
+        body = await res.json()
+      } catch {
+        body = null
+      }
+
+      if (res.ok && body?.ok === true) {
+        setSuccess(true)
+        formEl.reset()
+        return
+      }
+
+      setError(errorMessageFor(body?.error))
+    } catch (err) {
+      if (err?.name === "AbortError") return
+      setError(t("contact.form.sendError"))
+    } finally {
+      if (abortRef.current === controller) {
+        abortRef.current = null
+      }
+      setLoading(false)
+    }
   }
 
   return (
