@@ -98,7 +98,6 @@
     "tag": "Our Products",
     "headline": "From Our Jaffna Farm to Your Table",
     "intro": "We grow premium fruits and craft natural dairy and beverages with ingredients from our own farm — no artificial additives and no compromise on quality.",
-    "ecommerceNote": "This is the official Thooddakkaaran website. Supply, wholesale, and product enquiries are handled by our team by phone, email, or WhatsApp. A dedicated retail e-commerce site is planned separately — we'll link it here when it is live.",
     "fruitsHeadline": "What We Grow & Supply",
     "fruitsIntro": "We grow four premium fruits on our Jaffna farm, each variety chosen for its suitability to Sri Lanka's dry-zone climate and its demand among buyers across the island. Every fruit is hand-harvested, graded, and supplied directly from our farm, with no middlemen and no long cold chains.",
     "fruits": {
@@ -193,8 +192,7 @@
     "ctaHeadline": "Supply & product enquiries",
     "ctaIntro": "Get in touch for availability, wholesale pricing, or any question about our range. We supply and deliver across Sri Lanka.",
     "ctaContact": "Contact our team",
-    "ctaWhatsapp": "Message on WhatsApp",
-    "ctaShop": "Retail online shop"
+    "ctaWhatsapp": "Message on WhatsApp"
   },
   "why_choose": {
     "tag": "Why Choose Us",
@@ -324,7 +322,9 @@
       "successTitle": "Message Sent!",
       "successBody": "We will contact you soon.",
       "configError": "Contact form is not configured yet. Please try WhatsApp or email.",
-      "sendError": "Failed to send message. Please try again."
+      "sendError": "Failed to send message. Please try again.",
+      "invalidError": "Please check the name, email, and message fields and try again.",
+      "rateLimitError": "You've sent several messages already — please wait a few minutes and try again."
     }
   },
   "footer": {

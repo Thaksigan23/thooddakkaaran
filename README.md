@@ -9,7 +9,7 @@ Marketing site for Thooddakkaaran (Pvt) Ltd, built with [Next.js 15](https://nex
 - Tailwind CSS 3.4
 - Framer Motion, AOS (animations)
 - i18next + react-i18next (English / Tamil / Sinhala)
-- EmailJS (contact form)
+- Resend (contact form, server-side via `/api/contact`)
 - Vercel (hosting + Instagram Graph API proxy at `/api/instagram`)
 
 ## Layout
@@ -22,6 +22,8 @@ app/
   robots.js           /robots.txt
   sitemap.js          /sitemap.xml
   api/
+    contact/
+      route.js        POST handler that delivers the contact form via Resend
     instagram/
       route.js        GET/OPTIONS handler for the Instagram feed
 src/
@@ -54,6 +56,12 @@ Required server-only keys for the live Instagram feed:
 
 - `INSTAGRAM_ACCESS_TOKEN`
 - `INSTAGRAM_BUSINESS_ACCOUNT_ID`
+
+Required server-only keys for the contact form (delivered via Resend):
+
+- `RESEND_API_KEY` — restricted-scope Resend API key (Send emails only)
+- `RESEND_FROM_EMAIL` — verified sender, e.g. `Thooddakkaaran <noreply@thooddakkaaran.com>`
+- `RESEND_TO_EMAIL` — recipient inbox (defaults to `info@thooddakkaaran.com` if unset)
 
 Optional: `ALLOWED_CORS_ORIGINS` for cross-origin `/api/instagram` access.
 
