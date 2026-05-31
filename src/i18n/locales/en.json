@@ -109,6 +109,44 @@
     "card": {
       "moreBadges": "+{{count}} more"
     },
+    "order": {
+      "add": "Add to order",
+      "viewOrder": "View order ({{count}})",
+      "title": "Your order",
+      "close": "Close order panel",
+      "itemsHeading": "Items",
+      "customerHeading": "Your details",
+      "emptyCart": "Add products from the catalogue to start an order.",
+      "remove": "Remove",
+      "decrease": "Decrease quantity",
+      "increase": "Increase quantity",
+      "quantityFor": "Quantity for {{product}}",
+      "send": "Send order via WhatsApp",
+      "sendHint": "You will open WhatsApp with a pre-filled message. Tap Send there to place your order.",
+      "fields": {
+        "name": "Full name",
+        "phone": "Phone number",
+        "delivery": "Delivery address or area",
+        "notes": "Notes (optional)"
+      },
+      "validation": {
+        "cart": "Add at least one product to your order.",
+        "name": "Enter your name (2–100 characters).",
+        "phone": "Enter a valid phone number (9–15 digits).",
+        "delivery": "Enter a delivery address or area (5–300 characters).",
+        "notes": "Notes must be 500 characters or fewer.",
+        "messageTooLong": "Your order is too long for WhatsApp. Remove items or shorten your notes."
+      },
+      "message": {
+        "title": "*New order — Thooddakkaaran*",
+        "itemsHeading": "*Items:*",
+        "customerHeading": "*Customer:*",
+        "name": "Name",
+        "phone": "Phone",
+        "delivery": "Delivery",
+        "notesHeading": "*Notes:*"
+      }
+    },
     "catalogue": {
       "pomegranate": {
         "title": "Pomegranate",

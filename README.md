@@ -65,6 +65,11 @@ Required server-only keys for the contact form (delivered via Resend):
 
 Optional: `ALLOWED_CORS_ORIGINS` for cross-origin `/api/instagram` access.
 
+Public contact keys used by the catalogue order flow:
+
+- `NEXT_PUBLIC_CONTACT_PHONE` — display phone, `tel:` links, and **WhatsApp order handoff** (`wa.me/<digits>?text=…`). Should match your business WhatsApp number.
+- `NEXT_PUBLIC_WHATSAPP_LINK` — generic WhatsApp chat when the order cart is empty (optional; can point to the same number as contact phone).
+
 ## Deployment
 
 Vercel auto-detects Next.js and runs `next build`. Security headers are set at the Vercel edge via `vercel.json` (X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy).

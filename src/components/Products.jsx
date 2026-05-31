@@ -3,32 +3,27 @@
 import { useCallback, useMemo, useState } from "react"
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
 import { useTranslation } from "react-i18next"
-import { FaArrowRight, FaWhatsapp } from "react-icons/fa"
+import { FaArrowRight, FaShoppingBag, FaWhatsapp } from "react-icons/fa"
 import Reveal from "./Reveal"
 import { fadeUp, staggerContainer } from "../utils/animations"
 import { WHATSAPP_LINK } from "../constants/contact"
+import { CATALOGUE, CATALOGUE_CATEGORIES } from "../constants/catalogue"
+import { useOrder } from "../context/OrderContext"
+import QuantityStepper from "./order/QuantityStepper"
 
-const CATALOGUE = [
-  { key: "pomegranate", category: "fruits", image: "/images/catalogue/pomegranate.jpg" },
-  { key: "dragonFruit", category: "fruits", image: "/images/catalogue/dragon-fruit.jpg" },
-  { key: "watermelon", category: "fruits", image: "/images/catalogue/watermelon.jpg" },
-  { key: "guava", category: "fruits", image: "/images/catalogue/guava.jpg" },
-  { key: "setYogurt", category: "yogurt", image: "/images/catalogue/set-yogurt.jpg" },
-  { key: "drinkingYogurt", category: "yogurt", image: "/images/catalogue/drinking-yogurt.jpg" },
-  { key: "fruitDrinks", category: "drinks", image: "/images/catalogue/fruit-drinks.jpg" },
-  { key: "cordials", category: "drinks", image: "/images/catalogue/cordials.jpg" },
-  { key: "curd", category: "dairy", image: "/images/catalogue/curd.jpg" },
-  { key: "ghee", category: "dairy", image: "/images/catalogue/ghee.jpg" },
-  { key: "paneer", category: "dairy", image: "/images/catalogue/paneer.jpg" },
-]
-
-const CATEGORIES = ["all", "fruits", "yogurt", "drinks", "dairy"]
 const MAX_BADGES = 3
 
 export default function Products() {
   const { t } = useTranslation()
   const [active, setActive] = useState("all")
   const prefersReducedMotion = useReducedMotion()
+  const {
+    totalItemCount,
+    getQuantity,
+    addItem,
+    setQuantity,
+    openDrawer,
+  } = useOrder()
 
   const items = useMemo(
     () =>
@@ -52,18 +47,26 @@ export default function Products() {
     (event) => {
       if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return
       event.preventDefault()
-      const currentIndex = CATEGORIES.indexOf(active)
+      const currentIndex = CATALOGUE_CATEGORIES.indexOf(active)
       const nextIndex =
         event.key === "ArrowRight"
-          ? (currentIndex + 1) % CATEGORIES.length
-          : (currentIndex - 1 + CATEGORIES.length) % CATEGORIES.length
-      const nextCat = CATEGORIES[nextIndex]
+          ? (currentIndex + 1) % CATALOGUE_CATEGORIES.length
+          : (currentIndex - 1 + CATALOGUE_CATEGORIES.length) %
+            CATALOGUE_CATEGORIES.length
+      const nextCat = CATALOGUE_CATEGORIES[nextIndex]
       setActive(nextCat)
       if (typeof document !== "undefined") {
         document.getElementById(`catalogue-tab-${nextCat}`)?.focus()
       }
     },
     [active]
+  )
+
+  const handleOpenDrawer = useCallback(
+    (event) => {
+      openDrawer(event.currentTarget)
+    },
+    [openDrawer]
   )
 
   return (
@@ -88,6 +91,17 @@ export default function Products() {
             <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-8">
               {t("products.intro")}
             </p>
+            {totalItemCount > 0 ? (
+              <button
+                type="button"
+                data-testid="order-view-btn"
+                onClick={handleOpenDrawer}
+                className="mt-6 inline-flex cursor-pointer items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md hover:bg-emerald-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900"
+              >
+                <FaShoppingBag aria-hidden="true" />
+                {t("products.order.viewOrder", { count: totalItemCount })}
+              </button>
+            ) : null}
           </div>
         </Reveal>
 
@@ -96,7 +110,7 @@ export default function Products() {
           aria-label={t("products.filter.label")}
           className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10"
         >
-          {CATEGORIES.map((cat) => {
+          {CATALOGUE_CATEGORIES.map((cat) => {
             const isActive = active === cat
             return (
               <button
@@ -132,68 +146,92 @@ export default function Products() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16"
         >
           <AnimatePresence mode="popLayout" initial={false}>
-            {items.map((item) => (
-              <motion.article
-                key={item.key}
-                layout={!prefersReducedMotion}
-                variants={fadeUp(0, 0.45)}
-                initial="hidden"
-                animate="visible"
-                exit={
-                  prefersReducedMotion
-                    ? { opacity: 0 }
-                    : { opacity: 0, scale: 0.96, transition: { duration: 0.18 } }
-                }
-                whileHover={prefersReducedMotion ? undefined : { y: -4 }}
-                data-category={item.category}
-                data-testid="catalogue-card"
-                className="group relative flex flex-col rounded-3xl border border-emerald-100 dark:border-white/10 bg-white/85 dark:bg-white/5 backdrop-blur-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden bg-emerald-50/40 dark:bg-white/5">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    loading="lazy"
-                    decoding="async"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-                  />
-                </div>
-                <div className="flex flex-col flex-1 p-6">
-                  <h3 className="text-lg font-semibold mb-2 leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-6 line-clamp-2 mb-4">
-                    {item.tagline}
-                  </p>
-                  {item.badges.length > 0 ? (
-                    <ul className="flex flex-wrap gap-1.5 mb-5">
-                      {item.badges.slice(0, MAX_BADGES).map((badge) => (
-                        <li
-                          key={badge}
-                          className="text-xs font-medium rounded-full px-2.5 py-1 bg-emerald-50 text-emerald-800 dark:bg-white/10 dark:text-emerald-200 border border-emerald-100/80 dark:border-white/10"
-                        >
-                          {badge}
-                        </li>
-                      ))}
-                      {item.badges.length > MAX_BADGES ? (
-                        <li className="text-xs font-medium rounded-full px-2.5 py-1 bg-emerald-100/70 text-emerald-900 dark:bg-white/15 dark:text-emerald-100">
-                          {t("products.card.moreBadges", {
-                            count: item.badges.length - MAX_BADGES,
+            {items.map((item) => {
+              const quantity = getQuantity(item.key)
+              return (
+                <motion.article
+                  key={item.key}
+                  layout={!prefersReducedMotion}
+                  variants={fadeUp(0, 0.45)}
+                  initial="hidden"
+                  animate="visible"
+                  exit={
+                    prefersReducedMotion
+                      ? { opacity: 0 }
+                      : {
+                          opacity: 0,
+                          scale: 0.96,
+                          transition: { duration: 0.18 },
+                        }
+                  }
+                  whileHover={prefersReducedMotion ? undefined : { y: -4 }}
+                  data-category={item.category}
+                  data-testid="catalogue-card"
+                  className="group relative flex flex-col rounded-3xl border border-emerald-100 dark:border-white/10 bg-white/85 dark:bg-white/5 backdrop-blur-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-emerald-50/40 dark:bg-white/5">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                    />
+                  </div>
+                  <div className="flex flex-col flex-1 p-6">
+                    <h3 className="text-lg font-semibold mb-2 leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-6 line-clamp-2 mb-4">
+                      {item.tagline}
+                    </p>
+                    {item.badges.length > 0 ? (
+                      <ul className="flex flex-wrap gap-1.5 mb-5">
+                        {item.badges.slice(0, MAX_BADGES).map((badge) => (
+                          <li
+                            key={badge}
+                            className="text-xs font-medium rounded-full px-2.5 py-1 bg-emerald-50 text-emerald-800 dark:bg-white/10 dark:text-emerald-200 border border-emerald-100/80 dark:border-white/10"
+                          >
+                            {badge}
+                          </li>
+                        ))}
+                        {item.badges.length > MAX_BADGES ? (
+                          <li className="text-xs font-medium rounded-full px-2.5 py-1 bg-emerald-100/70 text-emerald-900 dark:bg-white/15 dark:text-emerald-100">
+                            {t("products.card.moreBadges", {
+                              count: item.badges.length - MAX_BADGES,
+                            })}
+                          </li>
+                        ) : null}
+                      </ul>
+                    ) : null}
+                    <div className="mt-auto">
+                      {quantity > 0 ? (
+                        <QuantityStepper
+                          value={quantity}
+                          onChange={(next) => setQuantity(item.key, next)}
+                          label={t("products.order.quantityFor", {
+                            product: item.title,
                           })}
-                        </li>
-                      ) : null}
-                    </ul>
-                  ) : null}
-                  <a
-                    href="#contact"
-                    className="mt-auto inline-flex items-center justify-center gap-2 cursor-pointer rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2.5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900"
-                  >
-                    {t("common.enquire")}
-                    <FaArrowRight className="text-xs" aria-hidden="true" />
-                  </a>
-                </div>
-              </motion.article>
-            ))}
+                          decrementLabel={t("products.order.decrease")}
+                          incrementLabel={t("products.order.increase")}
+                        />
+                      ) : (
+                        <button
+                          type="button"
+                          data-testid="order-add-btn"
+                          data-product-key={item.key}
+                          onClick={() => addItem(item.key)}
+                          className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2.5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900"
+                        >
+                          {t("products.order.add")}
+                          <FaArrowRight className="text-xs" aria-hidden="true" />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </motion.article>
+              )
+            })}
           </AnimatePresence>
         </motion.div>
 
@@ -218,15 +256,26 @@ export default function Products() {
               {t("products.ctaContact")}
               <FaArrowRight className="text-sm" aria-hidden="true" />
             </a>
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 cursor-pointer rounded-xl border-2 border-emerald-600 dark:border-emerald-400 bg-white/90 dark:bg-white/10 px-8 py-3.5 font-semibold text-emerald-800 dark:text-emerald-200 transition-colors duration-200 hover:bg-white dark:hover:bg-white/15"
-            >
-              <FaWhatsapp className="text-lg" aria-hidden="true" />
-              {t("products.ctaWhatsapp")}
-            </a>
+            {totalItemCount > 0 ? (
+              <button
+                type="button"
+                onClick={handleOpenDrawer}
+                className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-emerald-600 dark:border-emerald-400 bg-white/90 dark:bg-white/10 px-8 py-3.5 font-semibold text-emerald-800 dark:text-emerald-200 transition-colors duration-200 hover:bg-white dark:hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              >
+                <FaWhatsapp className="text-lg" aria-hidden="true" />
+                {t("products.order.viewOrder", { count: totalItemCount })}
+              </button>
+            ) : (
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 cursor-pointer rounded-xl border-2 border-emerald-600 dark:border-emerald-400 bg-white/90 dark:bg-white/10 px-8 py-3.5 font-semibold text-emerald-800 dark:text-emerald-200 transition-colors duration-200 hover:bg-white dark:hover:bg-white/15"
+              >
+                <FaWhatsapp className="text-lg" aria-hidden="true" />
+                {t("products.ctaWhatsapp")}
+              </a>
+            )}
           </div>
         </motion.div>
       </div>

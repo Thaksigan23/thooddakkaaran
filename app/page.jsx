@@ -18,9 +18,11 @@ import Testimonials from "../src/components/Testimonials"
 import VisionMission from "../src/components/VisionMission"
 import Whatsapp from "../src/components/Whatsapp"
 import WhyChooseUs from "../src/components/WhyChooseUs"
+import OrderShell from "../src/components/order/OrderShell"
 
 export default function HomePage() {
   return (
+    <OrderShell>
     <div className="bg-soft dark:bg-black text-gray-900 dark:text-gray-100 min-h-screen overflow-x-hidden">
       <ErrorBoundary>
         <DocumentLangSync />
@@ -48,5 +50,6 @@ export default function HomePage() {
         <CookieConsent />
       </ErrorBoundary>
     </div>
+    </OrderShell>
   )
 }
