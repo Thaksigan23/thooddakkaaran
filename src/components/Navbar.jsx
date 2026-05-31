@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next"
 import { FaBars, FaTimes, FaWhatsapp } from "react-icons/fa"
 import ThemeToggle from "./ThemeToggle"
 import LanguageSwitcher from "./LanguageSwitcher"
+import NavbarCartButton from "./NavbarCartButton"
 import { WHATSAPP_LINK, CONTACT_PHONE_HREF } from "../constants/contact"
 
 export default function Navbar() {
@@ -110,12 +111,14 @@ export default function Navbar() {
             </div>
 
             <div className="flex items-center gap-2 pl-1 shrink-0">
+              <NavbarCartButton />
               <LanguageSwitcher />
               <ThemeToggle />
             </div>
           </div>
 
           <div className="flex lg:hidden items-center gap-2">
+            <NavbarCartButton onOpen={handleMenuClose} />
             <LanguageSwitcher />
             <ThemeToggle />
             <button

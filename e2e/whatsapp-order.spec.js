@@ -67,6 +67,33 @@ test.describe("WhatsApp product ordering", () => {
     await expect(drawer.getByLabel(/Increase quantity/i).first()).toBeVisible()
   })
 
+  test("navbar cart shows badge and opens drawer", async ({ page }) => {
+    await page.goto("/#products")
+    await expect(page.locator("#main-content")).toBeVisible({ timeout: 15_000 })
+
+    const cartBtn = page.locator('[data-testid="navbar-cart-btn"]').first()
+    await cartBtn.click()
+    await expect(page.locator('[data-testid="order-drawer"]')).toBeVisible()
+    await expect(
+      page.getByText(/Add products from the catalogue to start an order/i)
+    ).toBeVisible()
+
+    await page.keyboard.press("Escape")
+    await expect(page.locator('[data-testid="order-drawer"]')).toBeHidden()
+
+    await page
+      .locator('section#products [data-testid="order-add-btn"]')
+      .first()
+      .click()
+
+    await expect(page.locator('[data-testid="navbar-cart-badge"]').first()).toHaveText(
+      "1"
+    )
+
+    await cartBtn.click()
+    await expect(page.locator('[data-testid="order-drawer"]')).toBeVisible()
+  })
+
   test("Tamil locale renders order UI strings", async ({ page }) => {
     await page.goto("/#products")
     await expect(page.locator("#main-content")).toBeVisible({ timeout: 15_000 })

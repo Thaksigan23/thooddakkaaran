@@ -27,7 +27,10 @@
     "tagline": "Fruit Farm · Jaffna, Sri Lanka",
     "dialPhone": "Dial Phone Number",
     "openWhatsapp": "Open WhatsApp Chat",
-    "logoAlt": "Thooddakkaaran Logo"
+    "logoAlt": "Thooddakkaaran Logo",
+    "cartTitle": "View order",
+    "cartAriaEmpty": "View order, empty cart",
+    "cartAriaWithCount": "View order, {{count}} items"
   },
   "hero": {
     "rooted": "Rooted in Jaffna, Sri Lanka",

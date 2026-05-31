@@ -27,7 +27,10 @@
     "tagline": "පළතුරු ගොවිපල · යාපනය, ශ්‍රී ලංකාව",
     "dialPhone": "දුරකථන අංකය අමතන්න",
     "openWhatsapp": "WhatsApp කතා බස විවෘත කරන්න",
-    "logoAlt": "Thooddakkaaran ලාංඡනය"
+    "logoAlt": "Thooddakkaaran ලාංඡනය",
+    "cartTitle": "ඇණවුම බලන්න",
+    "cartAriaEmpty": "ඇණවුම බලන්න, හිස් ටrolley",
+    "cartAriaWithCount": "ඇණවුම බලන්න, {{count}} භාණ්ඩ"
   },
   "hero": {
     "rooted": "යාපනය, ශ්‍රී ලංකාවේ මුල් බැස ඇත",
