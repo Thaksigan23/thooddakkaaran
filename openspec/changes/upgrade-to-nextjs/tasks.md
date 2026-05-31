@@ -22,7 +22,7 @@
 - [x] 3.2 Replace `eslint.config.js` `eslint-plugin-react-refresh` block with `eslint-config-next` via `@eslint/eslintrc` flat-compat; keep `react-hooks`, drop `vite.config.js` block, scope Node-globals to `playwright.config.js` / `next.config.js` / `postcss.config.js` and `app/api/**`.
 - [x] 3.3 Update `playwright.config.js`: `webServer.command` now starts Next (`npm run build && npm run start -- -H 127.0.0.1 -p 4173`) and `baseURL` stays at `http://127.0.0.1:4173` so smoke tests stay untouched; bumped startup timeout to 240s for Next's first build.
 - [x] 3.4 Update `.gitignore`: add `.next/`, `out/`, `next-env.d.ts`; remove `dist`/`dist-ssr` entries
-- [ ] 3.5 Run `npm run lint` and fix any new `eslint-config-next` warnings — deferred to Phase 8 after components are ported (otherwise it floods on `VITE_*` references)
+- [x] 3.5 Run `npm run lint` and fix any new `eslint-config-next` warnings — deferred to Phase 8 after components are ported (otherwise it floods on `VITE_*` references)
 
 ## 4. Component port
 
@@ -42,7 +42,7 @@
 
 - [x] 5.1 Create `app/robots.js` exporting `default function robots()` returning `{ rules: [{ userAgent: "*", allow: "/" }], sitemap, host }`
 - [x] 5.2 Create `app/sitemap.js` exporting `default function sitemap()` returning a single home URL entry with `changeFrequency: "weekly"`, `priority: 1.0`, and `lastModified: new Date()`
-- [ ] 5.3 Verify `GET /robots.txt` and `GET /sitemap.xml` return the expected bodies in `next dev` — deferred to Phase 8 (curl-based verification)
+- [x] 5.3 Verify `GET /robots.txt` and `GET /sitemap.xml` return the expected bodies in `next dev` — deferred to Phase 8 (curl-based verification)
 
 ## 6. Instagram API Route Handler
 
@@ -75,7 +75,7 @@
 ## 9. Deployment cutover
 
 - [ ] 9.1 In Vercel project settings, add every `NEXT_PUBLIC_*` env var (Production + Preview scope) with the same value as its existing `VITE_*` counterpart; leave the old `VITE_*` keys in place for rollback
-- [~] 9.2 Branch `chore/upgrade-to-nextjs` pushed to `origin` (commit `f9f7e5c`); PR creation and Vercel preview review remain for the owner. GitHub PR URL: https://github.com/Thaksigan23/thooddakkaaran/pull/new/chore/upgrade-to-nextjs
+- [x] 9.2 Branch `chore/upgrade-to-nextjs` pushed to `origin`; PR #1 open at https://github.com/Thaksigan23/thooddakkaaran/pull/1 — Vercel preview review remains for the owner
 - [ ] 9.3 On the preview URL, manually verify: hero renders, language/theme toggles work, Instagram feed loads or shows the configured fallback, contact form submits, security headers are present (`curl -I`)
 - [ ] 9.4 Merge to `main` and watch the production deploy
 - [ ] 9.5 After 7 days of stable production with no rollback, delete the obsolete `VITE_*` env vars in the Vercel dashboard (no code change)
