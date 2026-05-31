@@ -95,98 +95,97 @@
     }
   },
   "products": {
-    "tag": "Our Products",
+    "tag": "Our Catalogue",
     "headline": "From Our Jaffna Farm to Your Table",
-    "intro": "We grow premium fruits and craft natural dairy and beverages with ingredients from our own farm — no artificial additives and no compromise on quality.",
-    "fruitsHeadline": "What We Grow & Supply",
-    "fruitsIntro": "We grow four premium fruits on our Jaffna farm, each variety chosen for its suitability to Sri Lanka's dry-zone climate and its demand among buyers across the island. Every fruit is hand-harvested, graded, and supplied directly from our farm, with no middlemen and no long cold chains.",
-    "fruits": {
+    "intro": "Premium fruits, natural dairy, and farm-crafted beverages — handpicked from our Jaffna farm, supplied across Sri Lanka.",
+    "filter": {
+      "label": "Filter catalogue by category",
+      "all": "All",
+      "fruits": "Fruits",
+      "yogurt": "Yogurt",
+      "drinks": "Drinks",
+      "dairy": "Dairy"
+    },
+    "card": {
+      "moreBadges": "+{{count}} more"
+    },
+    "catalogue": {
       "pomegranate": {
-        "title": "Pomegranate, Our Signature Harvest",
-        "description": "Jaffna's dry, sun-rich climate produces pomegranates with exceptional sweetness, deep ruby-red arils, and thick skin that travels well. Our pomegranates are available for wholesale bulk supply, retail packaging, and direct home delivery across Sri Lanka."
+        "title": "Pomegranate",
+        "tagline": "Deep ruby arils with exceptional sweetness — wholesale, retail, and home delivery across Sri Lanka.",
+        "badges": ["Wholesale", "Retail", "Home delivery"]
       },
       "dragonFruit": {
         "title": "Dragon Fruit",
-        "description": "We cultivate dragon fruit suited to Sri Lanka's tropical conditions. Increasingly popular among health-conscious consumers, hotels, and juice bars, our dragon fruit is vibrant, fresh, and supplied directly from our farm."
+        "tagline": "Vibrant, tropical, and farm-fresh — favoured by health-conscious buyers, hotels, and juice bars.",
+        "badges": ["Wholesale", "Hotels", "Juice bars"]
       },
       "watermelon": {
         "title": "Watermelon",
-        "description": "Grown under Jaffna's warm sun and open skies, our watermelons are naturally sweet, juicy, and refreshing. Ideal for supermarkets, fruit vendors, hotels, and bulk seasonal supply, each harvest is carefully cultivated for freshness and quality."
+        "tagline": "Naturally sweet and juicy, grown under Jaffna's warm sun — ideal for supermarkets and seasonal bulk supply.",
+        "badges": ["Supermarkets", "Vendors", "Seasonal"]
       },
       "guava": {
         "title": "Guava",
-        "description": "Our farm-grown guavas are rich in flavour, naturally aromatic, and packed with nutrients. Harvested fresh and supplied directly from our fields, they are perfect for retail markets, juice shops, and health-conscious consumers across Sri Lanka."
-      }
-    },
-    "fruitsCtaSupply": "Enquire: fruit supply",
-    "fruitsCtaSaplings": "Enquire: saplings",
-    "naturalHeadline": "Natural Products Crafted from Our Own Farm",
-    "naturalIntro": "Everything we make starts on our farm. Our branded product range includes pure cow ghee, drinking yogurt, set yogurt, curd, and freshly pressed pomegranate juice, all crafted using farm-sourced ingredients with no artificial additives, and no compromise on quality.",
-    "ranges": {
+        "tagline": "Aromatic, nutrient-rich, harvested fresh — perfect for retail markets and juice shops.",
+        "badges": ["Retail", "Juice shops"]
+      },
       "setYogurt": {
         "title": "Set Yogurt (80g)",
-        "intro": "Prepared using fresh milk and natural fruit flavours, our 80g set yogurts offer a rich texture and satisfying taste in convenient individual portions — ideal for school tuck shops, supermarkets, hotel buffets, and daily consumption.",
-        "flavoursLabel": "Available in 4 flavours",
-        "items": [
-          "Pomegranate Set Yogurt 80g",
-          "Vanilla Set Yogurt 80g",
-          "Pineapple Set Yogurt 80g",
-          "Carrot Set Yogurt 80g"
+        "tagline": "Rich, creamy 80g cups made with fresh milk and natural fruit flavours.",
+        "badges": [
+          "Pomegranate 80g",
+          "Vanilla 80g",
+          "Pineapple 80g",
+          "Carrot 80g"
         ]
       },
       "drinkingYogurt": {
         "title": "Drinking Yogurt (200ml)",
-        "intro": "Our drinking yogurts are light, refreshing, and crafted without artificial thickeners or flavour enhancers. Available in a variety of flavours, they are perfect for everyday refreshment, cafés, canteens, hotels, and retail outlets.",
-        "flavoursLabel": "Available in 6 flavours",
-        "items": [
-          "Pomegranate Drinking Yogurt 200ml",
-          "Pineapple Drinking Yogurt 200ml",
-          "Wood Apple Drinking Yogurt 200ml",
-          "Mango Drinking Yogurt 200ml",
-          "Chocolate Drinking Yogurt 200ml",
-          "Vanilla Drinking Yogurt 200ml"
+        "tagline": "Light, refreshing 200ml bottles crafted without artificial thickeners or flavour enhancers.",
+        "badges": [
+          "Pomegranate 200ml",
+          "Pineapple 200ml",
+          "Wood Apple 200ml",
+          "Mango 200ml",
+          "Chocolate 200ml",
+          "Vanilla 200ml"
         ]
       },
       "fruitDrinks": {
         "title": "Fruit Drinks (200ml)",
-        "intro": "Made for everyday refreshment, our fruit drinks are crafted using carefully selected ingredients and natural flavours without artificial colouring. Convenient, refreshing, and suitable for all age groups.",
-        "flavoursLabel": "Available in 3 varieties",
-        "items": [
-          "Pomegranate Drink 200ml",
-          "Pineapple Drink 200ml",
-          "Aloe Vera Drink 200ml"
+        "tagline": "Everyday refreshment in 200ml, made with natural flavours and no artificial colouring.",
+        "badges": [
+          "Pomegranate 200ml",
+          "Pineapple 200ml",
+          "Aloe Vera 200ml"
         ]
       },
       "cordials": {
         "title": "Cordials (500ml)",
-        "intro": "Our 500ml cordials are concentrated fruit beverages designed for home use, restaurants, catering services, and hospitality environments. Enjoy rich fruit flavour in every serving.",
-        "flavoursLabel": "Available in 5 varieties",
-        "items": [
-          "Pomegranate Cordial 500ml",
-          "Wood Apple Cordial 500ml",
-          "Mango Cordial 500ml",
-          "Pineapple Cordial 500ml",
-          "Mixed Fruit Cordial 500ml"
+        "tagline": "Concentrated 500ml fruit beverages for home, restaurants, catering, and hospitality.",
+        "badges": [
+          "Pomegranate 500ml",
+          "Wood Apple 500ml",
+          "Mango 500ml",
+          "Pineapple 500ml",
+          "Mixed Fruit 500ml"
         ]
-      }
-    },
-    "dairyHeadline": "Dairy Products",
-    "dairyIntro": "Our dairy products are crafted from fresh cow's milk using traditional preparation methods and carefully maintained quality standards. Fresh, natural, and trusted for everyday use.",
-    "dairy": {
+      },
       "curd": {
         "title": "Curd",
-        "intro": "Fresh, thick curd prepared for daily meals, hospitality use, and retail supply.",
-        "sizes": ["Curd 250g", "Curd 80g"]
+        "tagline": "Fresh, thick curd prepared for daily meals, hospitality, and retail supply.",
+        "badges": ["Curd 250g", "Curd 80g"]
       },
       "ghee": {
         "title": "Pure Cow Ghee",
-        "intro": "Traditionally slow-cooked pure cow ghee with a rich aroma and golden texture — prepared without vegetable oil blending or artificial additives.",
-        "sizes": ["Ghee 400ml", "Ghee 185ml"]
+        "tagline": "Traditionally slow-cooked — golden, aromatic, with no vegetable oil blends or additives.",
+        "badges": ["Ghee 400ml", "Ghee 185ml"]
       },
       "paneer": {
         "title": "Paneer",
-        "intro": "Fresh paneer made from cow's milk with a firm texture suitable for a variety of cooking applications.",
-        "sizes": ["Paneer 100g", "Paneer 250g"]
+        "tagline": "Fresh paneer made from cow's milk with a firm texture for a variety of cooking applications.",
+        "badges": ["Paneer 100g", "Paneer 250g"]
       }
     },
     "ctaHeadline": "Supply & product enquiries",
