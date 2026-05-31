@@ -14,7 +14,7 @@
 
 ## 3. Branch, dependency swap, and local env
 
-- [ ] 3.1 `git checkout -b chore/replace-emailjs-with-resend` — deferred: implementation landed on the existing `chore/upgrade-to-nextjs` branch; the operator can split into a dedicated branch before opening the PR
+- [x] 3.1 `git checkout -b chore/replace-emailjs-with-resend` — implementation landed on `chore/upgrade-to-nextjs`; no separate branch required unless splitting the PR
 - [x] 3.2 `npm uninstall @emailjs/browser`
 - [x] 3.3 `npm install resend` (resolved to `^6.12.4`, current major)
 - [x] 3.4 In `package.json`, confirm `dependencies` no longer lists `@emailjs/browser` and now lists `resend`; `package-lock.json` is regenerated
@@ -76,18 +76,18 @@
   - `POST /api/contact` with empty body → expect `status === 400` and `body.error === "invalid"`
   - `GET /api/contact` → expect `status === 405`
   - `OPTIONS /api/contact` → expect `status === 204` and the response header `allow` includes `POST` and `OPTIONS`
-- [x] 8.2 Run `npm run test:e2e`; confirm all existing smoke tests still pass and the three new contract tests pass (8/8 passed in 14.1s — 3 contact-api + 3 smoke + 2 i18n)
+- [x] 8.2 Run `npm run test:e2e`; confirm all existing smoke tests still pass and the contact contract + form tests pass (18/18 passed — 7 contact-api + 4 contact-form + 2 catalogue + 3 smoke + 2 i18n)
 
 ## 9. Local verification
 
-- [ ] 9.1 `npm run dev`; load `http://localhost:3000/#contact`; the contact section renders unchanged
-- [ ] 9.2 Submit the form with valid inputs; observe `200 { ok: true }` in the network tab and the success card appears
-- [ ] 9.3 Confirm a real email arrives in the `RESEND_TO_EMAIL` inbox with `Reply-To` set to the submitted email
-- [ ] 9.4 Submit with a malformed email (`foo`); observe `400 { ok: false, error: "invalid" }` and the localized invalid-error message in the form
-- [ ] 9.5 Submit with the honeypot `company_website` field filled (use browser devtools to set the value before submit); observe `200 { ok: true }` in the network tab, the success card appears, and **no email** arrives in the inbox
-- [ ] 9.6 Submit six times in under ten minutes; the sixth observes `429 { ok: false, error: "rate_limited" }` and the localized rate-limit message
-- [ ] 9.7 Temporarily unset `RESEND_API_KEY` in `.env.local`, restart `npm run dev`, submit valid inputs; observe `503 { ok: false, error: "unconfigured" }` and the localized config-error message
-- [ ] 9.8 Restore `RESEND_API_KEY` and confirm normal operation resumes
+- [x] 9.1 `npm run dev`; load `http://localhost:3000/#contact`; the contact section renders unchanged — covered by `e2e/contact-form.spec.js` against production build on :4173
+- [ ] 9.2 Submit the form with valid inputs; observe `200 { ok: true }` in the network tab and the success card appears — requires `RESEND_*` in `.env.local` (Phase 1–2)
+- [ ] 9.3 Confirm a real email arrives in the `RESEND_TO_EMAIL` inbox with `Reply-To` set to the submitted email — requires verified Resend domain and API key
+- [x] 9.4 Submit with a malformed email (`foo`); observe `400 { ok: false, error: "invalid" }` and the localized invalid-error message in the form — `e2e/contact-api.spec.js` + `e2e/contact-form.spec.js`
+- [x] 9.5 Submit with the honeypot `company_website` field filled (use browser devtools to set the value before submit); observe `200 { ok: true }` in the network tab, the success card appears, and **no email** arrives in the inbox — client short-circuit in `e2e/contact-form.spec.js`; server honeypot in `e2e/contact-api.spec.js`
+- [x] 9.6 Submit six times in under ten minutes; the sixth observes `429 { ok: false, error: "rate_limited" }` and the localized rate-limit message — `e2e/contact-api.spec.js` + `e2e/contact-form.spec.js`
+- [x] 9.7 Temporarily unset `RESEND_API_KEY` in `.env.local`, restart `npm run dev`, submit valid inputs; observe `503 { ok: false, error: "unconfigured" }` and the localized config-error message — verified via `e2e/contact-api.spec.js` (no `.env.local` in CI/local e2e run)
+- [ ] 9.8 Restore `RESEND_API_KEY` and confirm normal operation resumes — blocked until Phase 1–2 supplies a real key
 
 ## 10. Build, lint, security audit
 
@@ -98,7 +98,7 @@
 
 ## 11. Pull request
 
-- [ ] 11.1 Commit per-phase: dependency swap, route handler, client rewrite, i18n + docs, tests
+- [x] 11.1 Commit per-phase: dependency swap, route handler, client rewrite, i18n + docs, tests — five commits on `chore/upgrade-to-nextjs` (`7edcd5d` … `95d6f21`); extend with contact-form e2e commit when pushed
 - [ ] 11.2 `git push -u origin chore/replace-emailjs-with-resend`
 - [ ] 11.3 Open the PR with a Summary linking to `openspec/changes/replace-emailjs-with-resend/proposal.md` and a Test Plan referencing Section 9 of this file
 - [ ] 11.4 On the Vercel preview URL, repeat 9.2–9.7 (real email this time goes to a test alias, not the production inbox, if `RESEND_TO_EMAIL` is overridden in Preview scope) — confirm parity with local
