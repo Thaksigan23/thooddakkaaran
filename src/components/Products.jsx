@@ -1,65 +1,70 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useCallback, useMemo, useState } from "react"
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
 import { useTranslation } from "react-i18next"
 import { FaArrowRight, FaWhatsapp } from "react-icons/fa"
 import Reveal from "./Reveal"
-import GrowSectionImage from "./GrowSectionImage"
 import { fadeUp, staggerContainer } from "../utils/animations"
 import { WHATSAPP_LINK } from "../constants/contact"
-import { ECOMMERCE_STORE_URL } from "../constants/site"
 
-const FRUIT_KEYS = ["pomegranate", "dragonFruit", "watermelon", "guava"]
-const FRUIT_IMAGES = {
-  pomegranate: {
-    image: "/images/grow/pomegranate.png",
-    imageWebp: "/images/grow/pomegranate.webp",
-    imageFallback: "/images/gal1.png",
-  },
-  dragonFruit: {
-    image: "/images/grow/dragon-fruit.png",
-    imageWebp: "/images/grow/dragon-fruit.webp",
-    imageFallback: "/images/gal2.png",
-  },
-  watermelon: {
-    image: "/images/grow/watermelon.png",
-    imageWebp: "/images/grow/watermelon.webp",
-    imageFallback: "/images/gal3.png",
-  },
-  guava: {
-    image: "/images/grow/guava.png",
-    imageWebp: "/images/grow/guava.webp",
-    imageFallback: "/images/gal4.png",
-  },
-}
+const CATALOGUE = [
+  { key: "pomegranate", category: "fruits", image: "/images/catalogue/pomegranate.jpg" },
+  { key: "dragonFruit", category: "fruits", image: "/images/catalogue/dragon-fruit.jpg" },
+  { key: "watermelon", category: "fruits", image: "/images/catalogue/watermelon.jpg" },
+  { key: "guava", category: "fruits", image: "/images/catalogue/guava.jpg" },
+  { key: "setYogurt", category: "yogurt", image: "/images/catalogue/set-yogurt.jpg" },
+  { key: "drinkingYogurt", category: "yogurt", image: "/images/catalogue/drinking-yogurt.jpg" },
+  { key: "fruitDrinks", category: "drinks", image: "/images/catalogue/fruit-drinks.jpg" },
+  { key: "cordials", category: "drinks", image: "/images/catalogue/cordials.jpg" },
+  { key: "curd", category: "dairy", image: "/images/catalogue/curd.jpg" },
+  { key: "ghee", category: "dairy", image: "/images/catalogue/ghee.jpg" },
+  { key: "paneer", category: "dairy", image: "/images/catalogue/paneer.jpg" },
+]
 
-const RANGE_KEYS = ["setYogurt", "drinkingYogurt", "fruitDrinks", "cordials"]
-const DAIRY_KEYS = ["curd", "ghee", "paneer"]
+const CATEGORIES = ["all", "fruits", "yogurt", "drinks", "dairy"]
+const MAX_BADGES = 3
 
 export default function Products() {
   const { t } = useTranslation()
+  const [active, setActive] = useState("all")
+  const prefersReducedMotion = useReducedMotion()
 
-  const fruits = FRUIT_KEYS.map((key) => ({
-    key,
-    title: t(`products.fruits.${key}.title`),
-    description: t(`products.fruits.${key}.description`),
-    ...FRUIT_IMAGES[key],
-  }))
+  const items = useMemo(
+    () =>
+      CATALOGUE.filter(
+        (item) => active === "all" || item.category === active
+      ).map((item) => {
+        const badges = t(`products.catalogue.${item.key}.badges`, {
+          returnObjects: true,
+        })
+        return {
+          ...item,
+          title: t(`products.catalogue.${item.key}.title`),
+          tagline: t(`products.catalogue.${item.key}.tagline`),
+          badges: Array.isArray(badges) ? badges : [],
+        }
+      }),
+    [active, t]
+  )
 
-  const productRanges = RANGE_KEYS.map((key) => ({
-    key,
-    title: t(`products.ranges.${key}.title`),
-    intro: t(`products.ranges.${key}.intro`),
-    flavoursLabel: t(`products.ranges.${key}.flavoursLabel`),
-    items: t(`products.ranges.${key}.items`, { returnObjects: true }),
-  }))
-
-  const dairyProducts = DAIRY_KEYS.map((key) => ({
-    key,
-    title: t(`products.dairy.${key}.title`),
-    intro: t(`products.dairy.${key}.intro`),
-    sizes: t(`products.dairy.${key}.sizes`, { returnObjects: true }),
-  }))
+  const handleTabKeyDown = useCallback(
+    (event) => {
+      if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return
+      event.preventDefault()
+      const currentIndex = CATEGORIES.indexOf(active)
+      const nextIndex =
+        event.key === "ArrowRight"
+          ? (currentIndex + 1) % CATEGORIES.length
+          : (currentIndex - 1 + CATEGORIES.length) % CATEGORIES.length
+      const nextCat = CATEGORIES[nextIndex]
+      setActive(nextCat)
+      if (typeof document !== "undefined") {
+        document.getElementById(`catalogue-tab-${nextCat}`)?.focus()
+      }
+    },
+    [active]
+  )
 
   return (
     <section
@@ -73,7 +78,7 @@ export default function Products() {
 
       <div className="relative max-w-7xl mx-auto">
         <Reveal>
-          <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="max-w-3xl mx-auto text-center mb-10">
             <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-white/15 bg-white/80 dark:bg-white/10 px-4 py-2 text-sm font-semibold text-emerald-700 dark:text-emerald-200 mb-5">
               {t("products.tag")}
             </span>
@@ -83,157 +88,113 @@ export default function Products() {
             <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-8">
               {t("products.intro")}
             </p>
-            <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 leading-7 mt-5 max-w-2xl mx-auto border-t border-emerald-200/60 dark:border-white/10 pt-5">
-              {t("products.ecommerceNote")}
-            </p>
           </div>
         </Reveal>
 
-        <Reveal>
-          <div className="mb-20">
-            <h3 className="text-3xl md:text-4xl font-bold text-center mb-4">
-              {t("products.fruitsHeadline")}
-            </h3>
-            <p className="max-w-3xl mx-auto text-center text-gray-600 dark:text-gray-300 leading-8 mb-12">
-              {t("products.fruitsIntro")}
-            </p>
+        <div
+          role="tablist"
+          aria-label={t("products.filter.label")}
+          className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10"
+        >
+          {CATEGORIES.map((cat) => {
+            const isActive = active === cat
+            return (
+              <button
+                key={cat}
+                type="button"
+                role="tab"
+                id={`catalogue-tab-${cat}`}
+                aria-selected={isActive}
+                aria-controls="catalogue-grid"
+                tabIndex={isActive ? 0 : -1}
+                onClick={() => setActive(cat)}
+                onKeyDown={handleTabKeyDown}
+                data-cat={cat}
+                className={`cursor-pointer rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 ${
+                  isActive
+                    ? "bg-emerald-600 text-white shadow-md"
+                    : "bg-white/80 dark:bg-white/5 border border-emerald-100 dark:border-white/10 text-emerald-800 dark:text-emerald-200 hover:bg-emerald-50 dark:hover:bg-white/10"
+                }`}
+              >
+                {t(`products.filter.${cat}`)}
+              </button>
+            )
+          })}
+        </div>
 
-            <motion.div
-              variants={staggerContainer(0.12, 0.08)}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.12 }}
-              className="grid md:grid-cols-2 gap-8"
-            >
-              {fruits.map((fruit) => (
-                <motion.div
-                  key={fruit.key}
-                  variants={fadeUp()}
-                  className="rounded-[1.75rem] border border-emerald-100 dark:border-white/10 bg-white/85 dark:bg-white/5 backdrop-blur-xl overflow-hidden shadow-xl"
-                >
-                  <GrowSectionImage
-                    primarySrc={fruit.image}
-                    alternateSrc={fruit.imageWebp}
-                    fallbackSrc={fruit.imageFallback}
-                    alt={fruit.title}
-                    className="h-52 sm:h-56 w-full object-cover"
+        <motion.div
+          id="catalogue-grid"
+          role="tabpanel"
+          aria-labelledby={`catalogue-tab-${active}`}
+          variants={staggerContainer(0.06, 0.04)}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16"
+        >
+          <AnimatePresence mode="popLayout" initial={false}>
+            {items.map((item) => (
+              <motion.article
+                key={item.key}
+                layout={!prefersReducedMotion}
+                variants={fadeUp(0, 0.45)}
+                initial="hidden"
+                animate="visible"
+                exit={
+                  prefersReducedMotion
+                    ? { opacity: 0 }
+                    : { opacity: 0, scale: 0.96, transition: { duration: 0.18 } }
+                }
+                whileHover={prefersReducedMotion ? undefined : { y: -4 }}
+                data-category={item.category}
+                data-testid="catalogue-card"
+                className="group relative flex flex-col rounded-3xl border border-emerald-100 dark:border-white/10 bg-white/85 dark:bg-white/5 backdrop-blur-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-emerald-50/40 dark:bg-white/5">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                   />
-                  <div className="p-8">
-                    <h4 className="text-xl font-bold mb-3">{fruit.title}</h4>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm leading-7 mb-6">
-                      {fruit.description}
-                    </p>
-                    <div className="flex flex-wrap gap-3">
-                      <a
-                        href="#contact"
-                        className="inline-flex items-center justify-center rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
-                      >
-                        {t("products.fruitsCtaSupply")}
-                      </a>
-                      <a
-                        href="#contact"
-                        className="inline-flex items-center justify-center rounded-xl border border-emerald-200 dark:border-white/20 bg-white/70 dark:bg-white/5 px-5 py-2.5 text-sm font-semibold text-emerald-700 dark:text-emerald-200 transition hover:bg-emerald-50 dark:hover:bg-white/10"
-                      >
-                        {t("products.fruitsCtaSaplings")}
-                      </a>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </Reveal>
-
-        <Reveal>
-          <div className="mb-16 text-center max-w-3xl mx-auto">
-            <h3 className="text-3xl md:text-4xl font-bold mb-4">
-              {t("products.naturalHeadline")}
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 leading-8">
-              {t("products.naturalIntro")}
-            </p>
-          </div>
-        </Reveal>
-
-        <motion.div
-          variants={staggerContainer(0.1, 0.06)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.08 }}
-          className="grid lg:grid-cols-2 gap-8 mb-16"
-        >
-          {productRanges.map((range) => (
-            <motion.div
-              key={range.key}
-              variants={fadeUp()}
-              className="rounded-[1.75rem] border border-emerald-100 dark:border-white/10 bg-white/80 dark:bg-black/20 p-8 backdrop-blur-md shadow-xl"
-            >
-              <h4 className="text-xl font-bold mb-3">{range.title}</h4>
-              <p className="text-gray-600 dark:text-gray-300 text-sm leading-7 mb-4">
-                {range.intro}
-              </p>
-              <p className="text-sm font-semibold text-emerald-700 dark:text-emerald-300 mb-2">
-                {range.flavoursLabel}
-              </p>
-              <ul className="list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 mb-6">
-                {(Array.isArray(range.items) ? range.items : []).map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
-              >
-                {t("common.enquire")}
-                <FaArrowRight className="text-xs" />
-              </a>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <Reveal>
-          <h3 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            {t("products.dairyHeadline")}
-          </h3>
-          <p className="max-w-3xl mx-auto text-center text-gray-600 dark:text-gray-300 leading-8 mb-10">
-            {t("products.dairyIntro")}
-          </p>
-        </Reveal>
-
-        <motion.div
-          variants={staggerContainer(0.1, 0.06)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.08 }}
-          className="grid md:grid-cols-3 gap-8 mb-20"
-        >
-          {dairyProducts.map((d) => (
-            <motion.div
-              key={d.key}
-              variants={fadeUp()}
-              className="rounded-[1.75rem] border border-emerald-100 dark:border-white/10 bg-white/80 dark:bg-black/20 p-8 backdrop-blur-md shadow-xl"
-            >
-              <h4 className="text-xl font-bold mb-3">{d.title}</h4>
-              <p className="text-gray-600 dark:text-gray-300 text-sm leading-7 mb-4">
-                {d.intro}
-              </p>
-              <p className="text-sm font-semibold text-emerald-700 dark:text-emerald-300 mb-2">
-                {t("common.available_sizes")}
-              </p>
-              <ul className="list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 mb-6">
-                {(Array.isArray(d.sizes) ? d.sizes : []).map((s) => (
-                  <li key={s}>{s}</li>
-                ))}
-              </ul>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
-              >
-                {t("common.enquire")}
-                <FaArrowRight className="text-xs" />
-              </a>
-            </motion.div>
-          ))}
+                </div>
+                <div className="flex flex-col flex-1 p-6">
+                  <h3 className="text-lg font-semibold mb-2 leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-6 line-clamp-2 mb-4">
+                    {item.tagline}
+                  </p>
+                  {item.badges.length > 0 ? (
+                    <ul className="flex flex-wrap gap-1.5 mb-5">
+                      {item.badges.slice(0, MAX_BADGES).map((badge) => (
+                        <li
+                          key={badge}
+                          className="text-xs font-medium rounded-full px-2.5 py-1 bg-emerald-50 text-emerald-800 dark:bg-white/10 dark:text-emerald-200 border border-emerald-100/80 dark:border-white/10"
+                        >
+                          {badge}
+                        </li>
+                      ))}
+                      {item.badges.length > MAX_BADGES ? (
+                        <li className="text-xs font-medium rounded-full px-2.5 py-1 bg-emerald-100/70 text-emerald-900 dark:bg-white/15 dark:text-emerald-100">
+                          {t("products.card.moreBadges", {
+                            count: item.badges.length - MAX_BADGES,
+                          })}
+                        </li>
+                      ) : null}
+                    </ul>
+                  ) : null}
+                  <a
+                    href="#contact"
+                    className="mt-auto inline-flex items-center justify-center gap-2 cursor-pointer rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2.5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900"
+                  >
+                    {t("common.enquire")}
+                    <FaArrowRight className="text-xs" aria-hidden="true" />
+                  </a>
+                </div>
+              </motion.article>
+            ))}
+          </AnimatePresence>
         </motion.div>
 
         <motion.div
@@ -252,31 +213,20 @@ export default function Products() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 flex-wrap">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-8 py-3.5 font-semibold text-white transition hover:bg-emerald-700"
+              className="inline-flex items-center justify-center gap-2 cursor-pointer rounded-xl bg-emerald-600 px-8 py-3.5 font-semibold text-white transition-colors duration-200 hover:bg-emerald-700"
             >
               {t("products.ctaContact")}
-              <FaArrowRight className="text-sm" />
+              <FaArrowRight className="text-sm" aria-hidden="true" />
             </a>
             <a
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-emerald-600 dark:border-emerald-400 bg-white/90 dark:bg-white/10 px-8 py-3.5 font-semibold text-emerald-800 dark:text-emerald-200 transition hover:bg-white dark:hover:bg-white/15"
+              className="inline-flex items-center justify-center gap-2 cursor-pointer rounded-xl border-2 border-emerald-600 dark:border-emerald-400 bg-white/90 dark:bg-white/10 px-8 py-3.5 font-semibold text-emerald-800 dark:text-emerald-200 transition-colors duration-200 hover:bg-white dark:hover:bg-white/15"
             >
-              <FaWhatsapp className="text-lg" />
+              <FaWhatsapp className="text-lg" aria-hidden="true" />
               {t("products.ctaWhatsapp")}
             </a>
-            {ECOMMERCE_STORE_URL ? (
-              <a
-                href={ECOMMERCE_STORE_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-emerald-300 dark:border-emerald-500/50 bg-emerald-50/80 dark:bg-white/5 px-8 py-3.5 font-semibold text-emerald-900 dark:text-emerald-100 transition hover:bg-emerald-100/80 dark:hover:bg-white/10"
-              >
-                {t("products.ctaShop")}
-                <FaArrowRight className="text-sm" />
-              </a>
-            ) : null}
           </div>
         </motion.div>
       </div>
